@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/06 22:24:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/07 14:08:00 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,8 @@ void ft_putstr(char *str)
 	if(str)
 		while(str[i])
 			write(1, &str[i++], 1);
+}
+int main(void)
+{
+	ft_putstr("This is a test\n");
 }

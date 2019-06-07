@@ -6,11 +6,11 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/06/06 22:52:04 by mbutt            ###   ########.fr        #
+#    Updated: 2019/06/07 14:22:14 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf.a
+NAME = fdf
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I. -c
 C_FILES = *.c
@@ -20,7 +20,7 @@ all: $(NAME)
 
 $(NAME):
 	$(CC) $(CFLAGS) $(C_FILES) #Creates .o files
-	ar rc $(NAME) $(O_FILES) #takes each .o file and creates a static library
+	$(CC) -o $(NAME) $(O_FILES) #takes .o files to create fdf executable binary
 
 clean:
 	rm -f $(O_FILES)
@@ -30,6 +30,3 @@ fclean: clean
 
 re: fclean all
 .PHONY: all clean fclean re
-
-build:
-	@echo "Building..."
