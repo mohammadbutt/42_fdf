@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_draw.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/07 15:31:34 by mbutt            ###   ########.fr       */
+/*   Created: 2019/03/24 20:20:49 by mbutt             #+#    #+#             */
+/*   Updated: 2019/03/25 11:54:53 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+/*
+** Description - Iterates the list lst and applies the function f to to each
+** link.
+** Param#1 - A pointer to the first link of a list.
+** Param#2 - The address of a function to apply to each link of a list.
+** Return Value - None.
+** Lib function - None.
+*/
 
+#include "libft.h"
 
-int main(void)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	void *mlx_ptr;
-	void *win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
+	while (lst)
+	{
+		f(lst);
+		lst = lst->next;
+	}
 }

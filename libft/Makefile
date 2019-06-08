@@ -5,34 +5,29 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/06/07 18:36:07 by mbutt            ###   ########.fr        #
+#    Created: 2019/02/15 19:54:05 by mbutt             #+#    #+#              #
+#    Updated: 2019/06/07 18:05:24 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I. -c
-C_FILES = *.c
-O_FILES = $(C_FILES:.c=.o)
-
-MLX_LINK = -L ./minilibx/ -lmlx
-FRAMEWORK = -framework OpenGL -framework Appkit
-FT_LINK = -L ./libf -lft
-
-$(NAME):
-	make -C libft/
-	$(CC) $(CFLAGS) $(MLX_LINK) $(FRAMEWORK) $(FT_LINK) $(C_FILES) -o $(NAME)
+C_FILES = ft_*.c \
+		  get_next_line.c
+O_FILES = *.o
 
 all: $(NAME)
 
+$(NAME):	
+	$(CC) $(CFLAGS) $(C_FILES) #Creates .o file
+	ar rc $(NAME) $(O_FILES) #takes each .o file and creates a static library libft.a \ 
+
 clean:
 	rm -f $(O_FILES)
-	make -C libft/ clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C libft/ fclean
 
 re: fclean all
 .PHONY: all clean fclean re

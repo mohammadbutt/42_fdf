@@ -6,9 +6,16 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/06 22:24:52 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/07 18:22:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FDF_H
+# define FDF_H
+
 #include <unistd.h>
-#include "./sources/minilibx_macos/mlx.h"
+#include "minilibx/mlx.h"
+#include "libft/libft.h"
+#include <math.h>
+
+#endif
