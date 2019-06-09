@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_draw.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/08 21:40:38 by mbutt            ###   ########.fr       */
+/*   Created: 2019/02/16 15:08:38 by mbutt             #+#    #+#             */
+/*   Updated: 2019/03/19 15:23:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 /*
-int main(void)
-{
-	ft_putstr("This is a test\n");
-}
+** The strlen() function computes the length of the string s.
 */
 
-int main(void)
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
 {
-	void *mlx_ptr;
-	void *win_ptr;
+	size_t	num;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	mlx_loop(mlx_ptr);
+	num = 0;
+	while (s[num])
+	{
+		num++;
+	}
+	return (num);
 }
-
+/*
+** int main(void)
+** {
+**	char string[] = "Testing";
+**	printf("%zu", ft_strlen(string));
+**	return(0);
+** }
+*/

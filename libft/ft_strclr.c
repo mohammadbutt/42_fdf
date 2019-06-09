@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_draw.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/08 21:40:38 by mbutt            ###   ########.fr       */
+/*   Created: 2019/03/07 13:01:30 by mbutt             #+#    #+#             */
+/*   Updated: 2019/03/07 13:50:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 /*
-int main(void)
-{
-	ft_putstr("This is a test\n");
-}
+** Sets every character of the string to the value ’\0’.
 */
 
-int main(void)
+#include "libft.h"
+
+void	ft_strclr(char *s)
 {
-	void *mlx_ptr;
-	void *win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	mlx_loop(mlx_ptr);
+	if (s)
+		while (*s)
+			*s++ = '\0';
 }
-
+/*
+** int main (void)
+** {
+**	char string[0xF00] = "testing";
+**	ft_strclr(string);
+**	printf("%s", string);
+**	return(0);
+** }
+*/

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_draw.c                                        :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/08 21:40:38 by mbutt            ###   ########.fr       */
+/*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
+/*   Updated: 2019/06/08 21:43:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-/*
-int main(void)
-{
-	ft_putstr("This is a test\n");
-}
-*/
+#ifndef FDF_H
+# define FDF_H
 
-int main(void)
-{
-	void *mlx_ptr;
-	void *win_ptr;
+//#include "../resources/minilibx_macos/mlx.h"
+//#include "./minilibx/mlx.h"
+#include "./resources/minilibx_macos/mlx.h"
+#include "libft/libft.h"
+#include <math.h>
+#include <unistd.h>
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	mlx_loop(mlx_ptr);
-}
-
+#endif

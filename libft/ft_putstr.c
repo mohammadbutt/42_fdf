@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_draw.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/08 21:40:38 by mbutt            ###   ########.fr       */
+/*   Created: 2019/02/25 20:10:59 by mbutt             #+#    #+#             */
+/*   Updated: 2019/03/21 23:36:09 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
+
+void	ft_putstr(char const *s)
+{
+	if (s)
+		while (*s)
+			write(1, s++, 1);
+}
 /*
-int main(void)
-{
-	ft_putstr("This is a test\n");
-}
+** int main (void)
+** {
+**	char *string1 = "Testing";
+**	ft_putstr(string1);
+**	return(0);
+**}
 */
-
-int main(void)
-{
-	void *mlx_ptr;
-	void *win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	mlx_loop(mlx_ptr);
-}
-

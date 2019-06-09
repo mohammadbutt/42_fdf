@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_draw.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/08 21:40:38 by mbutt            ###   ########.fr       */
+/*   Created: 2019/03/27 11:17:35 by mbutt             #+#    #+#             */
+/*   Updated: 2019/06/07 18:02:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-/*
-int main(void)
-{
-	ft_putstr("This is a test\n");
-}
-*/
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int main(void)
-{
-	void *mlx_ptr;
-	void *win_ptr;
+# define BUFF_SIZE 8
+# define FD_MAX 4864
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	mlx_loop(mlx_ptr);
-}
+# include <unistd.h>
+# include <string.h>
+# include <stdlib.h>
+# include <ctype.h>
+# include <fcntl.h>
+# include <limits.h>
+# include "libft.h"
 
+int	get_next_line(const int fd, char **line);
+int step2(int fd, char *s[], char **line);
+
+#endif
