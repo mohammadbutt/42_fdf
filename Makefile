@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/06/09 18:30:49 by mbutt            ###   ########.fr        #
+#    Updated: 2019/06/11 18:44:31 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ MINILIBX = -I resources/minilibx_macos 			#comment it for linux
 LIBFT = libft/libft.a
 OPENGL = -lmlx -framework OpenGL -framework AppKit
 
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -35,7 +36,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAG) $(MLXLINK) $(MINILIBX) $(LIBFT) $(OPENGL) $^ -o $(NAME)
 
 clean:
-	#make clean -C resources/minilibx_macos/	#uncomment it for linux
+	#make clean -C resources/minilibx/	#uncomment it for linux
 	make clean -C resources/minilibx_macos/		#comment it for linux
 	make clean -C libft/
 	/bin/rm -f *.o

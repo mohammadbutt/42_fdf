@@ -139,4 +139,16 @@ int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 int	mlx_do_key_autorepeaton(void *mlx_ptr);
 int	mlx_do_sync(void *mlx_ptr);
 
+/*
+** Below prototypes were added by Mohammad Butt because these prototypes exist
+** in the regular minilibx library, but are missing in minilibx_macos version.
+*/
+
+struct s_col_name
+{
+	char *name;
+	int color;
+	struct s_col_name *next;
+} mlx_color;
+
 #endif /* MLX_H */
