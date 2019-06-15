@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/14 15:01:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/14 21:27:33 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,76 @@ int deal_keys(int key, void *param)
 	return(0);
 }
 
+/*
 int draw_function(void *param)
 {
 	void *mlx_ptr;
 	void *win_ptr;
 	void *img_ptr;
 
-	win_ptr = mlx_new_window(mlx_ptr, 1000, 1000, "This is mlx 42 - by Mo");
-	mlx_string_put(mlx_ptr, win_ptr, 250, 250, 127, "(_______)" );
+	mlx_ptr = mlx_init();
+//	win_ptr = mlx_new_window(mlx_ptr, 1000, 1000, "This is mlx 42 - by Mo");
+	img_ptr = mlx_new_image(mlx_ptr, 500, 500);
+//	mlx_get_data_addr(img_ptr, 127, 200, 0);
+//	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
+	mlx_string_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF, "(_______)");
 	return(0);
 }
+*/
 
+/*
+int draw_function(void * param)
+{
+	void *mlx_ptr;
+	void *win_ptr;
+//	void *img_ptr;
+
+//	mlx_ptr = mlx_init();
+//	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "Mlx42 function - by Mo");
+	mlx_string_put(mlx_ptr, win_ptr, 200, 200, 0xFFFFFF, "(____)");
+}
+*/
+/*
+void draw_function(void *param)
+{
+	void *mlx_ptr;
+	void *win_ptr;
+	void *img_ptr;
+	
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "MLX42-by Mo");
+	mlx_string_put(mlx_ptr, win_ptr, 200, 200, 0xFFFFFF, "(_____)");
+}
+*/
+
+int main(void)
+{
+	t_mlx *fdf;
+
+	fdf = (t_mlx *)malloc(sizeof(t_mlx));
+
+	fdf->mlx_ptr = mlx_init();
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 400, 400, "MLX-42-by Mo");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 200, 200, 0xFFFFFF, "(______)");
+	mlx_loop(fdf->mlx_ptr);
+}
+
+/*
 int main(void)
 {
 	void *mlx_ptr;
 	void *win_ptr;
 	void *img_ptr;
-
 	mlx_ptr = mlx_init();
-	mlx_hook(win_ptr, 2, 5, deal_keys, (void *)0);
-	mlx_loop_hook(mlx_ptr, draw_function, (void *)0);
+	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "This is mlx 42- by Mo");
+//	mlx_hook(win_ptr, 2, 5, deal_keys, (void *)0);
+//	mlx_loop_hook(mlx_ptr, draw_function, (void *)0);
 	
+	mlx_string_put(mlx_ptr, win_ptr, 200, 200, 0xFFFFFF, "(_____)"); // Use it
+//	draw_function;
 	mlx_loop(mlx_ptr);
 }
-
+*/
 /*
 int main(void)
 {
