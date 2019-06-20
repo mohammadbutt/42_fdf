@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/14 21:27:33 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/18 15:35:38 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,34 @@ void draw_function(void *param)
 	mlx_string_put(mlx_ptr, win_ptr, 200, 200, 0xFFFFFF, "(_____)");
 }
 */
+/*
+void draw_function(void *param)
+{
+	t_mlx *fdf;
 
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 200, 200, 0xFFFFFF, "(______)");
+}
+*/
+int draw_function(t_mlx *fdf)
+{
+	t_image *draw;
+
+	draw = (t_image *)malloc(sizeof(t_image));
+	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, 400, 400);
+	draw->get_data = (fdf->img_ptr, draw->bpp, draw->size_line, draw->endian);
+
+
+}
 int main(void)
 {
 	t_mlx *fdf;
 
 	fdf = (t_mlx *)malloc(sizeof(t_mlx));
-
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 400, 400, "MLX-42-by Mo");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 200, 200, 0xFFFFFF, "(______)");
+	mlx_loop_hook(fdf->mlx_ptr, draw_function, fdf);
+
+//	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 200, 200, 0xFFFFFF, "(______)");
 	mlx_loop(fdf->mlx_ptr);
 }
 

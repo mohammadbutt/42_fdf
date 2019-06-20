@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/14 21:00:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/15 15:12:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,13 @@ typedef struct s_mlx
 	void *win_ptr;
 	void *img_ptr;
 }	t_mlx;
+
+typedef struct s_image
+{
+	char *get_data;
+	int bpp;
+	int size_line;
+	int endian;
+}	t_image;
 
 #endif
