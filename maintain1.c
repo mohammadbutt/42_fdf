@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/20 23:47:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/21 15:06:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,17 @@ void ft_exit(char *str)
 	perror(str);
 	exit(EXIT_FAILURE);
 }
+
+void ft_exit_success(char *str)
+{
+	ft_putstr(str);
+	exit(EXIT_SUCCESS);
+}
+
 /*
 ** ft_zero initializes the values of multiple variables to 0.
 */
+
 int ft_zero(int *a, int *b, int *c, int *d)
 {
 	*a = 0;

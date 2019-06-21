@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/20 23:58:19 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/21 15:06:08 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,21 @@ void ft_read(int fd, char *argv)
 	int temp_wordcount;
 	char *one_line;
 
-	temp_wordcount = -1;
-	wordcount = 0;
-
-	printf("%d\n", temp_wordcount);
-	if((ft_return = get_next_line(fd, &one_line) != 1))
-		(ft_exit(argv));
-	while((ft_return= get_next_line(fd, &one_line) == 1))
+	ft_zero(&temp_wordcount, &wordcount, &ft_return, &ft_return);
+	ft_return = get_next_line(fd, &one_line);
+	if(ft_return == -1)
+		ft_exit(argv);
+	if(ft_return == 1)
 	{
 		wordcount = ft_wordcount(one_line, ' ');
+		printf("|%d||%d|line:|%s|\n", ft_return, wordcount, one_line);
+		free(one_line);
+	}
+	while((ft_return= get_next_line(fd, &one_line) == 1))
+	{
+		temp_wordcount = ft_wordcount(one_line, ' ');
+		if(temp_wordcount != wordcount)
+			ft_exit_success("Error: Invalid file. Exiting program.\n");
 		printf("|%d||%d|line:|%s|\n", ft_return, wordcount, one_line);
 		free(one_line);
 	}
