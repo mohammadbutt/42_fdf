@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/21 15:51:45 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/21 16:25:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** 4. Stores from temporary placeholder to a sturct.
 ** 5. 
 */
-
+/*
 void ft_read(int fd, char *argv)
 {
 	t_data	*data;
@@ -55,6 +55,36 @@ void ft_read(int fd, char *argv)
 	}
 //	data->lines = NULL;
 	printf("%d\n", ft_return);
+}
+*/
+void ft_read(int fd, char *argv)
+{
+	t_data *data;
+
+	data = malloc(sizeof(data));
+	if(data == NULL)
+		ft_exit_success("Unable to allocate memory\n") ;
+	ft_zero(&data->wcount, &data->temp_wcount, &data->ft_return, &data->ft_return);
+	data->ft_return = get_next_line(fd, &data->temp_line);
+	if(data->ft_return == -1)
+		ft_exit(argv);
+	if(data->ft_return == 1)
+	{
+		data->wcount = ft_wordcount(data->temp_line, ' ');
+		data->lines = data->temp_line;
+		free(data->temp_line);
+		data = data->next;
+	}
+	while((data->ft_return = get_next_line(fd, &data->temp_line) == 1))
+	{
+		data->temp_wcount = ft_wordcount(data->temp_line,  ' ');
+		if(data->temp_wcount != data->wcount)
+			ft_exit_success("Error: Invalid file. Exiting program.\n");
+		data->lines = data->temp_line;
+		free(data->temp_line);
+		data = data->next;
+	}
+	data->lines = NULL;
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/21 15:51:42 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/21 16:25:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_image
 typedef struct	s_data
 {
 	int				ft_return;
-	int				wordcount;
-	int				temp_wordcount;
+	int				wcount;
+	int				temp_wcount;
 	char			*temp_line;
 	char 			*lines;
 	char 			*words;
