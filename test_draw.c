@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:20:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/18 15:35:38 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/20 20:58:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,15 @@ static void random_color(void *param)
 	blue = (rand() % 127);
 }
 
-int deal_keys(int key, void *param)
+int keyboard_buttons(int key, void *param)
 {
 	if(key == 0)
 		ft_putchar('A');
+	if(key == 1)
+		ft_putchar('S');
+	if(key == 2)
+		ft_putchar('D');
+
 	if(key == 8)
 		random_color(param);
 	if(key == 53)
@@ -100,9 +105,9 @@ int main(void)
 
 	fdf = (t_mlx *)malloc(sizeof(t_mlx));
 	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 400, 400, "MLX-42-by Mo");
-	mlx_loop_hook(fdf->mlx_ptr, draw_function, fdf);
-
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1024, 720, "MLX-42-by Mo");
+//	mlx_loop_hook(fdf->mlx_ptr, draw_function, fdf);
+	mlx_hook(fdf->win_ptr, 2, 5, keyboard_buttons, fdf);
 //	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 200, 200, 0xFFFFFF, "(______)");
 	mlx_loop(fdf->mlx_ptr);
 }

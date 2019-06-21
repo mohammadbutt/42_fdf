@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 21:46:49 by mbutt             #+#    #+#             */
-/*   Updated: 2019/03/25 12:31:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/20 19:45:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ char		**ft_strsplit(char const *s, char c)
 			i++;
 		while (s[i] != c && s[i] != '\0' && (len++ >= 0))
 			i++;
-		if (!(new_s[a] = (char *)malloc(sizeof(char) * (len + 1))))
-			return (NULL);
 		new_s[a] = ft_strsub(s, i - len, len);
 		a++;
 	}
