@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/20 20:54:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/20 22:08:13 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ typedef struct s_image
 }	t_image;
 
 /*
-** Maintain1.c functions
+** maintain1.c functions
 */
+void ft_usage(char *str);
 void ft_exit(char *str);
 
 #endif
