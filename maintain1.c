@@ -6,14 +6,16 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/20 21:32:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/20 23:47:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /*
-** Prints error message and exits the program.
+** Error messages:
+** ft_usage is only used if the user does not specfiy a file name.
+** ft_exit is used if the specified file does not exist or is invalid.
 */
 
 void ft_usage(char *str)
@@ -24,7 +26,18 @@ void ft_usage(char *str)
 
 void ft_exit(char *str)
 {
+	ft_putstr("Error\n");
 	perror(str);
 	exit(EXIT_FAILURE);
 }
-
+/*
+** ft_zero initializes the values of multiple variables to 0.
+*/
+int ft_zero(int *a, int *b, int *c, int *d)
+{
+	*a = 0;
+	*b = 0;
+	*c = 0;
+	*d = 0;
+	return(0);
+}

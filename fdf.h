@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/20 22:08:13 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/20 23:46:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,15 @@ typedef struct s_image
 }	t_image;
 
 /*
+** main.c functions
+*/
+void ft_read(int fd, char *argv);
+
+/*
 ** maintain1.c functions
 */
-void ft_usage(char *str);
-void ft_exit(char *str);
+void 	ft_usage(char *str);
+void 	ft_exit(char *str);
+int		ft_zero(int *a, int *b, int *c, int *d);
 
 #endif
