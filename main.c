@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/21 15:06:08 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/21 15:51:45 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,40 @@
 
 void ft_read(int fd, char *argv)
 {
-	int ft_return;
-	int wordcount;
-	int temp_wordcount;
-	char *one_line;
+	t_data	*data;
+	int		ft_return;
+	int		wordcount;
+	int		temp_wordcount;
+	char	*temp_line;
 
+//	if(!(data = malloc(sizeof(data))))
+//		return ;
 	ft_zero(&temp_wordcount, &wordcount, &ft_return, &ft_return);
-	ft_return = get_next_line(fd, &one_line);
+	ft_return = get_next_line(fd, &temp_line);
 	if(ft_return == -1)
 		ft_exit(argv);
 	if(ft_return == 1)
 	{
-		wordcount = ft_wordcount(one_line, ' ');
-		printf("|%d||%d|line:|%s|\n", ft_return, wordcount, one_line);
-		free(one_line);
+		wordcount = ft_wordcount(temp_line, ' ');
+//		data->lines = one_line;
+		printf("|%d||%d|line:|%s|\n", ft_return, wordcount, temp_line);
+		free(temp_line);
+//		data = data->next;
 	}
-	while((ft_return= get_next_line(fd, &one_line) == 1))
+	while((ft_return= get_next_line(fd, &temp_line) == 1))
 	{
-		temp_wordcount = ft_wordcount(one_line, ' ');
+		temp_wordcount = ft_wordcount(temp_line, ' ');
 		if(temp_wordcount != wordcount)
 			ft_exit_success("Error: Invalid file. Exiting program.\n");
-		printf("|%d||%d|line:|%s|\n", ft_return, wordcount, one_line);
-		free(one_line);
+//		data->lines = one_line;
+		printf("|%d||%d|line:|%s|\n", ft_return, wordcount, temp_line);
+		free(temp_line);
+//		data = data->next;
 	}
+//	data->lines = NULL;
 	printf("%d\n", ft_return);
 }
+
 
 int main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/21 14:52:39 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/21 15:51:42 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 /*
 ** Put structs here
 */
-
+/*
 typedef struct s_mlx
 {
 	void *mlx_ptr;
@@ -38,6 +38,17 @@ typedef struct s_image
 	int size_line;
 	int endian;
 }	t_image;
+*/
+typedef struct	s_data
+{
+	int				ft_return;
+	int				wordcount;
+	int				temp_wordcount;
+	char			*temp_line;
+	char 			*lines;
+	char 			*words;
+	struct s_data 	*next;
+}					t_data;
 
 /*
 ** main.c functions
