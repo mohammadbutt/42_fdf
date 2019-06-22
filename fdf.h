@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/21 16:25:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/21 21:47:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef struct	s_data
 /*
 ** main.c functions
 */
-void ft_read(int fd, char *argv);
+void	ft_read(int fd, char *argv);
+int		ft_valid(int fd, char *argv);
 
 /*
 ** maintain1.c functions
