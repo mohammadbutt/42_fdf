@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/22 22:10:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/22 22:45:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ char **str_data(int fd, int height, char *argv)
 	data_points[i] = NULL;
 	return(data_points);
 }
-
+/*
 int **str_to_int(char **data_points, int i, int j)
 {
 	int wordcount;
@@ -177,6 +177,46 @@ int **str_to_int(char **data_points, int i, int j)
 	}
 	printf("%d\n", wordcount);
 	printf("%d\n", height);
+	return(int_data);
+}
+*/
+int **str_to_int(char **data_points, int i, int j)
+{
+	int height;
+	int **int_data;
+	int wordcount; // Can remove this after testing;
+//	int j; // Can remove this after testing;
+	int temp_wordcount; // Can remove this after testing;
+
+	wordcount = ft_wordcount(data_points[i], ' '); // Can remove this after testing;
+	temp_wordcount = wordcount; // Can remove this after testing;
+	i = 0;
+	height = ft_height((void **) data_points);
+	int_data = malloc(sizeof(int *) * (height));
+	while(height)
+	{
+		int_data[i] = ft_2d_atoi(data_points[i]);
+		i++;
+		height--;
+	}
+//--------- Can delete the below after test;
+	i = 0;
+	j = 0;
+	height = ft_height((void **) data_points);
+	while(height)
+	{
+		while(wordcount)
+		{
+			printf("%d ", int_data[i][j++]);
+			wordcount--;
+		}
+		printf("\n");
+		i++;
+		j = 0;
+		height--;
+		wordcount = temp_wordcount;
+	}
+//------------ Can delete the above ater test;
 	return(int_data);
 }
 

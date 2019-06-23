@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/22 22:10:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/22 22:45:36 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int *ft_2d_atoi(char *str)
 	char **words;
 
 	i = 0;
-	wordcount = ft_wordcount(str);
+	wordcount = ft_wordcount(str, ' ');
 	int_data = (int *)malloc(sizeof(int) * (wordcount));
 	words = ft_strsplit(str, ' ');
 	while(wordcount)
