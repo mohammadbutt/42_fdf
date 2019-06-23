@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/21 21:04:11 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/22 22:10:34 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ void ft_usage(char *str)
 	exit(EXIT_FAILURE);
 }
 
-void ft_exit(char *str)
+void ft_exit_dir(char *str)
 {
 	ft_putstr("Error\n");
 	perror(str);
+	exit(EXIT_FAILURE);
+}
+
+void ft_exit(char *str)
+{
+	ft_putstr(str);
 	exit(EXIT_FAILURE);
 }
 
@@ -48,4 +54,47 @@ int ft_zero(int *a, int *b, int *c, int *d)
 	*c = 0;
 	*d = 0;
 	return(0);
+}
+
+/*
+** ft_height counts the number of elements there are in a 2D-array.
+*/
+
+int ft_height(void **double_array)
+{
+	int i;
+
+	i = 0;
+	if(double_array)
+		while(double_array[i])
+			i++;
+	return(i);
+}
+
+/*
+** ft_2d_atoi takes a string and converts it into an int array:
+** Has builtin garbage collector to free memory that was allocated using
+** malloc(3).
+*/
+
+int *ft_2d_atoi(char *str)
+{
+	int i;
+	int wordcount;
+	int *int_data;
+	char **words;
+
+	i = 0;
+	wordcount = ft_wordcount(str);
+	int_data = (int *)malloc(sizeof(int) * (wordcount));
+	words = ft_strsplit(str, ' ');
+	while(wordcount)
+	{
+		int_data[i] = ft_atoi(words[i]);
+		free(words[i]);
+		i++;
+		wordcount--;
+	}
+	free(words);
+	return(int_data);
 }

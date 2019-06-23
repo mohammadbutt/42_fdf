@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/21 21:47:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/22 22:10:40 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,22 @@ void ft_read(int fd, char *argv)
 	data->lines = NULL;
 }
 */
-int ft_valid(int fd, char *argv)
+int ft_valid(int fd, int height, char *argv)
 {
 	int		ft_return;
 	int		wcount;
 	int		temp_wcount;
 	char	*temp_line;
 
-	ft_zero(&temp_wcount, &wcount, &ft_return, &ft_return);
+	ft_zero(&temp_wcount, &wcount, &ft_return, &height);
 	ft_return = get_next_line(fd, &temp_line);
 	if(ft_return == -1)
-		ft_exit(argv);
+		ft_exit_dir(argv);
 	if(ft_return == 1)
 	{
 		wcount = ft_wordcount(temp_line, ' ');
 		free(temp_line);
+		height++;
 	}
 	while((ft_return = get_next_line(fd, &temp_line) == 1))
 	{
@@ -116,23 +117,87 @@ int ft_valid(int fd, char *argv)
 		if(temp_wcount != wcount)
 			ft_exit("Error: Invalid file. Exiting program.\n");
 		free(temp_line);
+		height++;
 	}
-	return()
+	close(fd);
+	return(height);
+}
+
+char **str_data(int fd, int height, char *argv)
+{
+	int i;
+	int width;
+	char **data_points;
+	char *line;
+
+	ft_zero(&fd, &i, &width, &width);
+	data_points = (char **)malloc(sizeof(char *) * (height+1));
+	if(data_points == NULL)
+		return(NULL);
+	fd = open(argv, O_RDONLY);
+	while(get_next_line(fd, &line) == 1)
+	{
+		(width == 0) && (width = ft_strlen(line));
+		line[width] = '\0';
+		data_points[i] = ft_strdup(line);
+		ft_bzero(line, width);
+		free(line);
+		i++;
+	}
+	data_points[i] = NULL;
+	return(data_points);
+}
+
+int **str_to_int(char **data_points, int i, int j)
+{
+	int wordcount;
+	int height;
+	int **int_data;
+	char **temp_data;
+
+	ft_zero(&wordcount, &height, &height, &height);
+	wordcount = ft_wordcount(data_points[i], ' ');
+	height = ft_height((void **) data_points);
+	int_data = (int **)malloc(sizeof(int *) * (height));
+	while(height)
+	{
+//		temp_data = ft_strsplit(data_points[i], ' ');
+		while(wordcount)
+		{
+			int_data[i] = (int *)malloc(sizeof(int) * (wordcount));
+			int_data[i] = ft_strsplit(data_points[i], ' ');
+			int_data[i][j] = ft_atoi(ft_strdup(temp_data[i]));
+			j++;
+			wordcount--;
+		}
+		j = 0;
+		i++;
+		height--;
+		free(temp_data);
+	}
+	printf("%d\n", wordcount);
+	printf("%d\n", height);
+	return(int_data);
 }
 
 int main(int argc, char **argv)
 {
 	int fd;
+	int height;
+	char **data_points;
 
+	ft_zero(&height, &fd, &fd, &fd);
 	if(argc == 1)
 		ft_usage("Usage: ./fdf resources/test_maps\n");
 	fd = open(argv[1], O_RDONLY);
 	if(fd  == -1)
 	{
-		ft_exit("Main error 1: File does not exist");
-//		ft_exit(argv[1]);
+		ft_exit("Main Error 1:\nFile does not exist\n");
+//		ft_exit_dir(argv[1]);
 	}
-	ft_read(fd, argv[1]);
+	height = ft_valid(fd, height, argv[1]);
+	data_points = str_data(fd, height, argv[1]);
+	str_to_int(data_points, 0, 0);
 	close(fd);
 	return(0);
 }
