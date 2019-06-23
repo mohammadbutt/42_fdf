@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/22 22:45:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/23 16:25:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ void ft_read(int fd, char *argv)
 	data->lines = NULL;
 }
 */
+/*
+** ft_valid checks if the file path is a directory or if the file is
+** invalid because all of the lines dont have the same number of elements
+** or words.
+*/
 int ft_valid(int fd, int height, char *argv)
 {
 	int		ft_return;
@@ -122,7 +127,10 @@ int ft_valid(int fd, int height, char *argv)
 	close(fd);
 	return(height);
 }
-
+/*
+** str_data takes the file discriptor, height, and the height to store
+** data points in a 2-Dimensional char array.
+*/
 char **str_data(int fd, int height, char *argv)
 {
 	int i;
@@ -148,48 +156,13 @@ char **str_data(int fd, int height, char *argv)
 	return(data_points);
 }
 /*
-int **str_to_int(char **data_points, int i, int j)
-{
-	int wordcount;
-	int height;
-	int **int_data;
-	char **temp_data;
-
-	ft_zero(&wordcount, &height, &height, &height);
-	wordcount = ft_wordcount(data_points[i], ' ');
-	height = ft_height((void **) data_points);
-	int_data = (int **)malloc(sizeof(int *) * (height));
-	while(height)
-	{
-//		temp_data = ft_strsplit(data_points[i], ' ');
-		while(wordcount)
-		{
-			int_data[i] = (int *)malloc(sizeof(int) * (wordcount));
-			int_data[i] = ft_strsplit(data_points[i], ' ');
-			int_data[i][j] = ft_atoi(ft_strdup(temp_data[i]));
-			j++;
-			wordcount--;
-		}
-		j = 0;
-		i++;
-		height--;
-		free(temp_data);
-	}
-	printf("%d\n", wordcount);
-	printf("%d\n", height);
-	return(int_data);
-}
+** str_to_int takes datapoints that were stored in a 2d char array, converts
+** then into integers and stores them in a 2-Dimensional int array.
 */
-int **str_to_int(char **data_points, int i, int j)
+int **str_to_int(char **data_points, int i)
 {
 	int height;
 	int **int_data;
-	int wordcount; // Can remove this after testing;
-//	int j; // Can remove this after testing;
-	int temp_wordcount; // Can remove this after testing;
-
-	wordcount = ft_wordcount(data_points[i], ' '); // Can remove this after testing;
-	temp_wordcount = wordcount; // Can remove this after testing;
 	i = 0;
 	height = ft_height((void **) data_points);
 	int_data = malloc(sizeof(int *) * (height));
@@ -199,9 +172,17 @@ int **str_to_int(char **data_points, int i, int j)
 		i++;
 		height--;
 	}
-//--------- Can delete the below after test;
+/*Insert the below code here to test if the str_to_int works properly*/
+	return(int_data);
+}
+/*
+** Below is to test str_to_int()
+*/
+/*
 	i = 0;
-	j = 0;
+	int j = 0;
+	int wordcount = ft_wordcount(data_points[i], ' ');
+	int temp_wordcount = wordcount;
 	height = ft_height((void **) data_points);
 	while(height)
 	{
@@ -216,9 +197,7 @@ int **str_to_int(char **data_points, int i, int j)
 		height--;
 		wordcount = temp_wordcount;
 	}
-//------------ Can delete the above ater test;
-	return(int_data);
-}
+*/
 
 int main(int argc, char **argv)
 {
@@ -237,7 +216,7 @@ int main(int argc, char **argv)
 	}
 	height = ft_valid(fd, height, argv[1]);
 	data_points = str_data(fd, height, argv[1]);
-	str_to_int(data_points, 0, 0);
+	str_to_int(data_points, 0);
 	close(fd);
 	return(0);
 }
