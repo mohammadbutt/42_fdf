@@ -8,5 +8,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 # Resources.
 1. [Mac Virtual Key Code](https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes)
 2. [FDF Cookbook for 42 students](https://forum.intra.42.fr/topics/19254/messages?page=1#93530)
-3. [Bresenham's line algorithm - Chooses just the color](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
-4. [Xiaolin Wu's line algorithm - Chooses the shade of each color](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
+3. [Wikipedia - Bresenham's line algorithm - Chooses just the color](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+4. [Wikipedia - Xiaolin Wu's line algorithm - Chooses the shade of each color](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
+5. [Youtube Video - Basic Intro to Vector](https://www.youtube.com/watch?v=1G5E_x0MgLc)
+6. [Youtube Video - Vectors with 3 dimensions](https://www.youtube.com/watch?v=fNk_zzaMoSs)
