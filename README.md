@@ -5,7 +5,7 @@
 
 Brainstorming - Draw simple things using minilibx library. Path to miniLibx library ```sources/minilibx/man```. In man directory, ```man1/mlx_pixel_put.1```, that has mlx_pixel_put and mlx_string_put functions.
 
-# Resources.
+# Resources
 ## Reading
 1. [Mac Virtual Key Code](https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes)
 2. [FDF Cookbook for 42 students](https://forum.intra.42.fr/topics/19254/messages?page=1#93530)
