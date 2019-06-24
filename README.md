@@ -11,4 +11,6 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 3. [Wikipedia - Bresenham's line algorithm - Chooses just the color](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 4. [Wikipedia - Xiaolin Wu's line algorithm - Chooses the shade of each color](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
 5. [Youtube Video - Basic Intro to Vector](https://www.youtube.com/watch?v=1G5E_x0MgLc)
-6. [Youtube Video - Vectors with 3 dimensions](https://www.youtube.com/watch?v=fNk_zzaMoSs)
+6. [Youtube Video - Vectors Chapter 1 by 3Blue1Brown](https://www.youtube.com/watch?v=fNk_zzaMoSs)
+7. [Youtube Video - Vectors Chapter 2 by 3Blue1Brown](https://www.youtube.com/watch?v=k7RM-ot2NWY)
+8. [Youtube Video - Vectors Chapter 3 by 3Blue1Brown](https://www.youtube.com/watch?v=kYB8IZa5AuE)
