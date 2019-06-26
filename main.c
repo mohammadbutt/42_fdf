@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/23 16:25:11 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/25 20:19:08 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,44 @@ int **str_to_int(char **data_points, int i)
 		wordcount = temp_wordcount;
 	}
 */
+
+/*
+** Bresenham's line algorithm takes coordinates of starting point(x1, y1) and
+** coordinates of ending point(x2, y2) to draw a line or slope.
+** x2 or ending point can't be smaller than starting point or x1.
+*/
+
+/*
+** Drawline function
+*/
+
+void drawline(int x0, int y0, int x1, int y1)
+{
+	int dx;
+	int dy;
+	int p;
+	int x;
+	int y;
+
+	x = x0;
+	y = y0;
+	p = 2*dy-x;
+	while(x < x1)
+	{
+		if(p >= 0)
+		{
+			putpixel(x, y, 7);
+			y = y + 1;
+			p = p + 2 * dy - 2 *dx;
+		}
+		else
+		{
+			putpixel(x, y, 7);
+			p = p + 2 * dy;
+		}
+		x = x + 1;
+	}
+}
 
 int main(int argc, char **argv)
 {
