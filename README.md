@@ -13,7 +13,5 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 4. [Wikipedia - Xiaolin Wu's line algorithm - Chooses the shade of each color](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
 
 ## Video Resources
-1. [Basic Intro to Vector](https://www.youtube.com/watch?v=1G5E_x0MgLc)
-2. [Vectors Chapter 1 by 3Blue1Brown](https://www.youtube.com/watch?v=fNk_zzaMoSs)
-3. [Vectors Chapter 2 by 3Blue1Brown](https://www.youtube.com/watch?v=k7RM-ot2NWY)
-4. [Vectors Chapter 3 by 3Blue1Brown](https://www.youtube.com/watch?v=kYB8IZa5AuE)
+1. [Brief Basic Intro to Vector](https://www.youtube.com/watch?v=1G5E_x0MgLc)
+2. [Essence of Linear Algebra 15 video series by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
