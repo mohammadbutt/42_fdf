@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 18:46:06 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/26 22:03:47 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/26 22:23:37 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*Freecodecamp and wikipedia*/
@@ -17,13 +17,6 @@
 ** Function drawline_base will be deleted and will not be used in the project
 ** because it is a barebone prototype
 */
-
-int ft_abs(int num)
-{
-	if(num < 0)
-		num = -1 * num;
-	return(num);
-}
 
 void drawline_base(int x0, int y0, int x1, int y1)
 {
@@ -48,6 +41,13 @@ void drawline_base(int x0, int y0, int x1, int y1)
 	}
 }
 
+int ft_abs(int num)
+{
+	if(num < 0)
+		num = -1 * num;
+	return(num);
+}
+
 void plot_low_line(int x0, int y0, int x1, int y1)
 {
 	int dx;
@@ -61,7 +61,7 @@ void plot_low_line(int x0, int y0, int x1, int y1)
 	if(dy < 0)
 	{
 		yi = -1;   // Can we do y0--? so in below if statement we can do y0++;?
-		dy = -dy;
+		dy = -1 * dy;
 	}
 	d = (2 * dy) - dx;
 	while(x0 < x1)
@@ -90,7 +90,7 @@ void plot_high_line(int x0, int y0, int x1, int y1)
 	if(dx < 0)
 	{
 		xi = -1; // Can we do x0--? so in below if statement we can do x0++;?
-		dx = -dx;
+		dx = -1 * dx;
 	}
 	d = (2 * dx) - dy;
 	while(y0 < y1)
