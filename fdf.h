@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/25 18:55:48 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/26 22:03:53 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,13 @@ void	ft_exit_success(char *str);
 int		ft_zero(int *a, int *b, int *c, int *d);
 int		ft_height(void **double_array);
 int		*ft_2d_atoi(char *str);
+
+/*
+** fcc_drawline.c
+*/
+int		ft_abs(int num);
+void	plot_low_line(int x0, int y0, int x1, int y1);
+void	plot_high_line(int x0, int y0, int x1, int y1);
+void	plot_any_line(int x0, int y0, int x1, int y1);
 
 #endif
