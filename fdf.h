@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/26 22:03:53 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/27 19:53:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,21 @@ typedef struct	s_data
 	struct s_data 	*next;
 }					t_data;
 
+typedef struct	s_mlx
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+}				t_mlx;
+
 /*
 ** main.c functions
 */
 //void	ft_read(int fd, char *argv); Not being used currently
 int		ft_valid(int fd, int height, char *argv);
 char	**str_data(int fd, int height, char *argv);
-int 	**str_to_int(char **data_points, int i);
+int		*ft_rows_columns(char **characters); /*This function might be deleted later*/
+int 	**str_to_int(char **characters, int i);
 
 /*
 ** maintain1.c functions
@@ -66,7 +74,8 @@ void 	ft_exit_dir(char *str);
 void	ft_exit(char *str);
 void	ft_exit_success(char *str);
 int		ft_zero(int *a, int *b, int *c, int *d);
-int		ft_height(void **double_array);
+int		ft_height(char **characters);
+int		ft_width(char **characters);
 int		*ft_2d_atoi(char *str);
 
 /*

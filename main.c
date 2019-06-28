@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/25 20:55:47 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/27 19:53:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,40 +135,62 @@ char **str_data(int fd, int height, char *argv)
 {
 	int i;
 	int width;
-	char **data_points;
+	char **characters;
 	char *line;
 
 	ft_zero(&fd, &i, &width, &width);
-	data_points = (char **)malloc(sizeof(char *) * (height+1));
-	if(data_points == NULL)
+	characters = (char **)malloc(sizeof(char *) * (height + 1));
+	if(characters == NULL)
 		return(NULL);
 	fd = open(argv, O_RDONLY);
 	while(get_next_line(fd, &line) == 1)
 	{
 		(width == 0) && (width = ft_strlen(line));
 		line[width] = '\0';
-		data_points[i] = ft_strdup(line);
+		characters[i] = ft_strdup(line);
 		ft_bzero(line, width);
 		free(line);
 		i++;
 	}
-	data_points[i] = NULL;
-	return(data_points);
+	characters[i] = NULL;
+	return(characters);
+}
+/*
+** Function that takes a 2D char array and calculates the numbers of
+** rows and columns.
+*/
+
+int *ft_rows_columns(char **characters)
+{
+	int rows;
+	int columns;
+	int *rows_columns;
+
+	rows_columns = malloc(sizeof(int) * (2));
+	rows = 0;
+	columns = 0;
+	if(characters)
+		while(characters[rows])
+			rows++;
+	columns = ft_wordcount(characters[0], ' ');
+	rows_columns[0] = rows;
+	rows_columns[1] = columns;
+	return(rows_columns);
 }
 /*
 ** str_to_int takes datapoints that were stored in a 2d char array, converts
 ** then into integers and stores them in a 2-Dimensional int array.
 */
-int **str_to_int(char **data_points, int i)
+int **str_to_int(char **characters, int i)
 {
 	int height;
 	int **int_data;
 	i = 0;
-	height = ft_height((void **) data_points);
+	height = ft_height(characters);
 	int_data = malloc(sizeof(int *) * (height));
 	while(height)
 	{
-		int_data[i] = ft_2d_atoi(data_points[i]);
+		int_data[i] = ft_2d_atoi(characters[i]);
 		i++;
 		height--;
 	}
@@ -208,7 +230,7 @@ int **str_to_int(char **data_points, int i)
 /*
 ** Drawline function
 */
-
+/*
 void drawline(int x0, int y0, int x1, int y1)
 {
 	int dx;
@@ -236,12 +258,12 @@ void drawline(int x0, int y0, int x1, int y1)
 		x = x + 1;
 	}
 }
-
+*/
 int main(int argc, char **argv)
 {
 	int fd;
 	int height;
-	char **data_points;
+	char **characters;
 
 	ft_zero(&height, &fd, &fd, &fd);
 	if(argc == 1)
@@ -253,8 +275,11 @@ int main(int argc, char **argv)
 //		ft_exit_dir(argv[1]);
 	}
 	height = ft_valid(fd, height, argv[1]);
-	data_points = str_data(fd, height, argv[1]);
-	str_to_int(data_points, 0);
+	characters = str_data(fd, height, argv[1]);
+	str_to_int(characters, 0);
+
+	printf("   rows:|%d|\n", ft_height(characters)); 
+	printf("columns:|%d|\n", ft_width(characters));
 	close(fd);
 	return(0);
 }

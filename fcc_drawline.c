@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 18:46:06 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/26 23:23:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/27 14:16:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*Freecodecamp and wikipedia*/
@@ -22,21 +22,21 @@ void drawline_base(int x0, int y0, int x1, int y1)
 {
 	int dx;
 	int dy;
-	int d;
+	int delta_error;
 
 	dx = x1 - x0;
 	dy = y1 - y0;
-	d = (2 * dy) - dx;
-	printf("FreeCodeCamp\np:|%d|\n", d);
+	delta_error = (2 * dy) - dx;
+	printf("FreeCodeCamp\np:|%d|\n", delta_error);
 	while(x0 < x1)
 	{
 		printf("x:|%d|y:|%d|\n", x0, y0);
-		if(d >= 0)
+		if(delta_error >= 0)
 		{
 			y0++;
-			d = d - (2 * dx); /* (2 * dx) can be optimized*/
+			delta_error = delta_error - (2 * dx); /* (2 * dx) can be optimized*/
 		}
-		d = d + (2 * dy); /* (2 * dy) can be optimized*/
+		delta_error = delta_error + (2 * dy); /* (2 * dy) can be optimized*/
 		x0++;
 	}
 }
@@ -52,7 +52,7 @@ void plot_low_line(int x0, int y0, int x1, int y1)
 {
 	int dx;
 	int dy;
-	int d;
+	int delta_error;
 	int yi;
 
 	dx = x1 - x0;
@@ -63,16 +63,16 @@ void plot_low_line(int x0, int y0, int x1, int y1)
 		yi = -1;   // Can we do y0--? so in below if statement we can do y0++;?
 		dy = -1 * dy;
 	}
-	d = (2 * dy) - dx;
+	delta_error = (2 * dy) - dx;
 	while(x0 < x1)
 	{
 		printf("x:|%d|y:|%d|\n", x0, y0);
-		if(d > 0)
+		if(delta_error > 0)
 		{
 			y0 = y0 + yi; //If we change the above, can we change this to y0++;?
-			d = d - (2 * dx); /* (2 * dx) can be optimized*/
+			delta_error = delta_error - (2 * dx); /* (2 * dx) can be optimized*/
 		}
-		d = d + (2 * dy); /*(2 * dy) can be optimized*/
+		delta_error = delta_error + (2 * dy); /*(2 * dy) can be optimized*/
 		x0++;
 	}
 }
@@ -81,7 +81,7 @@ void plot_high_line(int x0, int y0, int x1, int y1)
 {
 	int dx;
 	int dy;
-	int d;
+	int delta_error;
 	int xi;
 
 	dx = x1 - x0;
@@ -92,16 +92,16 @@ void plot_high_line(int x0, int y0, int x1, int y1)
 		xi = -1; // Can we do x0--? so in below if statement we can do x0++;?
 		dx = -1 * dx;
 	}
-	d = (2 * dx) - dy;
+	delta_error = (2 * dx) - dy;
 	while(y0 < y1)
 	{
 		printf("x:|%d|y:|%d|\n", x0, y0);
-		if(d > 0)
+		if(delta_error > 0)
 		{
 			x0 = x0 + xi;  // If we change the above, can we change it to x0++;?
-			d = d - (2 * dy); /* (2 * dy) can be optimized*/
+			delta_error = delta_error - (2 * dy); /* (2 * dy) can be optimized*/
 		}
-		d = d + (2 * dx); /*(2 * dx) can be optimized*/
+		delta_error = delta_error + (2 * dx); /*(2 * dx) can be optimized*/
 		y0++;
 	}
 }
