@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:52:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/27 19:53:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/27 21:44:53 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,11 +259,80 @@ void drawline(int x0, int y0, int x1, int y1)
 	}
 }
 */
+
+/*
+**Place linked list functions here
+*/
+
+t_fdf	*create(int *struct_coordinates)
+{
+	t_fdf *new_node;
+
+	new_node = (t_fdf *)malloc(sizeof(t_fdf));
+	if(new_node == NULL)
+		ft_exit("Unable to allocate memory\n");
+	new_node->struct_coordinates = struct_coordinates;
+	new_node->next = NULL;
+	return(new_node);
+}
+
+
+t_fdf	*append(t_fdf *head, int *struct_coordinates)
+{
+	t_fdf *cursor;
+	t_fdf *new_node;
+
+	cursor = head;
+	while(cursor->next != NULL)
+		cursor = cursor->next;
+	new_node = create(struct_coordinates);
+	cursor->next = new_node;
+	return(head);
+}
+
+t_fdf *int_data_to_struct(int **int_data, int height)
+{
+	t_fdf *pointer_2;
+	int i;
+
+	i = 1;
+	pointer_2 = create(int_data[0]);
+	while(i < height)
+	{
+		pointer_2 = append(pointer_2, int_data[i]);
+		i++;
+	}
+	return(pointer_2);
+}
+
+//int print_data_coord(t_fdf *struct_pointer)
+void print_data_coord(t_fdf *struct_pointer)
+{
+	int i;
+	int *pointer_2;
+
+	i = 0;
+	while(struct_pointer)
+	{
+		pointer_2 = struct_pointer->struct_coordinates;
+		while(i < 11)
+		{
+			printf("%d, ", pointer_2[i]);
+			i++;
+		}
+		i = 0;
+		struct_pointer = struct_pointer->next;
+	}
+//	return(0);
+}
+
 int main(int argc, char **argv)
 {
 	int fd;
 	int height;
 	char **characters;
+	t_fdf struct_pointer; //delete after testing
+	struct_pointer = struct_pointer.struct_coordinates; //delete after testing
 
 	ft_zero(&height, &fd, &fd, &fd);
 	if(argc == 1)
@@ -280,6 +349,11 @@ int main(int argc, char **argv)
 
 	printf("   rows:|%d|\n", ft_height(characters)); 
 	printf("columns:|%d|\n", ft_width(characters));
+	print_data_coord(&struct_pointer);
+
+//	printf("|%d|\n", t_fdf.struct_coordinates[0][2]);
+//	printf("|%d|\n", t_fdf->struct_coordinates[1][2]);
+
 	close(fd);
 	return(0);
 }

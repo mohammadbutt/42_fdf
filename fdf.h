@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/27 19:53:18 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/27 21:44:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ typedef struct s_image
 	int endian;
 }	t_image;
 */
+/*
 typedef struct	s_data
 {
+	int				**coordinates;
 	int				ft_return;
+
 	int				wcount;
 	int				temp_wcount;
 	char			*temp_line;
@@ -49,6 +52,18 @@ typedef struct	s_data
 	char 			*words;
 	struct s_data 	*next;
 }					t_data;
+*/
+typedef struct		s_fdf
+{
+	int				*struct_coordinates;
+	struct s_fdf	*next;
+}					t_fdf;
+
+t_fdf	*create(int *struct_coordinates);
+t_fdf	*append(t_fdf *head, int *struct_coordinates);
+t_fdf	*int_data_to_struct(int **int_data, int height_of_map);
+//int		print_data_coord(t_fdf *struct_pointer);
+void	print_data_coord(t_fdf *struct_pointer);
 
 typedef struct	s_mlx
 {
