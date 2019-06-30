@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/29 21:06:33 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/29 21:49:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct		s_fdf
 
 t_fdf	*create(int *struct_coordinates);
 t_fdf	*append(t_fdf *head, int *struct_coordinates);
-t_fdf	*int_data_to_struct(int **int_data, int height_of_map);
+t_fdf	*int_data_to_struct(int **int_data, int height);
 void	print_data_coord(t_fdf *struct_pointer, char **characters);
 
 typedef struct	s_mlx

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/29 21:06:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/29 21:49:45 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,15 +120,19 @@ int *ft_2d_atoi(char *str)
 int solve_driver1(int fd, int height, char *argv)
 {
 	char **characters;
-	t_fdf struct_pointer;	//Putting this here to print out data;
+	int **int_data;
+	t_fdf *pointer_2;	//To test print data stored in struct;
 
 	height = ft_valid(fd, height, argv);
 	characters = str_data(fd, height, argv);
-	str_to_int(characters);
+	int_data = str_to_int(characters);
 	
+
+// For testing	
 	printf("   rows:|%d|\n", ft_height(characters));
-	printf("columns:|%d|\n", ft_width(characters));
-	
+	printf("columns:|%d|\n\n", ft_width(characters));	
+	pointer_2 = int_data_to_struct(int_data, height);
+	print_data_coord(pointer_2, characters);
 
 	return(1);
 }

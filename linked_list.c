@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:15:46 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/29 20:31:13 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/29 21:49:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ t_fdf *int_data_to_struct(int **int_data, int height)
 	return(pointer_2);
 }
 
+/*
+** print_data_cood - prints data that's stored in a struct.
+** Only for testing.
+*/
 void print_data_coord(t_fdf *struct_pointer, char **characters)
 {
 	int i;
@@ -67,9 +71,14 @@ void print_data_coord(t_fdf *struct_pointer, char **characters)
 		pointer_2 = struct_pointer->struct_coordinates;
 		while(i < width)
 		{
-			printf("%d, ", pointer_2[i]);
+			ft_putnbr(pointer_2[i]);
+			if(pointer_2[i] == 10)
+				ft_putstr(" ");
+			if(pointer_2[i] == 0)
+				ft_putstr("  ");
 			i++;
 		}
+		ft_putstr("\n");
 		i = 0;
 		struct_pointer = struct_pointer->next;
 	}
