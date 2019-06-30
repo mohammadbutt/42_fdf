@@ -6,24 +6,24 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/27 21:45:01 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/29 21:06:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /*
-** Error messages:
-** ft_usage is only used if the user does not specfiy a file name.
-** ft_exit is used if the specified file does not exist or is invalid.
+** ft_usage is used if the user does not specfiy a file name.
 */
-
 void ft_usage(char *str)
 {
 	ft_putstr(str);
 	exit(EXIT_FAILURE);
 }
 
+/*
+** ft_exit_dir is used if the chosen file path is a directory
+*/
 void ft_exit_dir(char *str)
 {
 	ft_putstr("Error\n");
@@ -31,6 +31,9 @@ void ft_exit_dir(char *str)
 	exit(EXIT_FAILURE);
 }
 
+/*
+** ft_exit is used if the specified file does not exist or the file is invalid
+*/
 void ft_exit(char *str)
 {
 	ft_putstr(str);
@@ -60,7 +63,7 @@ int ft_zero(int *a, int *b, int *c, int *d)
 ** ft_height counts the number of elements/height/rows there are in a 2D-array.
 ** It will only work with strings. It will not work with int because in an int
 ** coming across 0 means that it was the end of the int array unless the length
-** was specifized.
+** was specified.
 */
 
 int ft_height(char **characters)
@@ -113,3 +116,20 @@ int *ft_2d_atoi(char *str)
 	free(words);
 	return(int_data);
 }
+
+int solve_driver1(int fd, int height, char *argv)
+{
+	char **characters;
+	t_fdf struct_pointer;	//Putting this here to print out data;
+
+	height = ft_valid(fd, height, argv);
+	characters = str_data(fd, height, argv);
+	str_to_int(characters);
+	
+	printf("   rows:|%d|\n", ft_height(characters));
+	printf("columns:|%d|\n", ft_width(characters));
+	
+
+	return(1);
+}
+

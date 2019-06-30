@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/27 21:44:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/29 21:06:33 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ typedef struct		s_fdf
 t_fdf	*create(int *struct_coordinates);
 t_fdf	*append(t_fdf *head, int *struct_coordinates);
 t_fdf	*int_data_to_struct(int **int_data, int height_of_map);
-//int		print_data_coord(t_fdf *struct_pointer);
-void	print_data_coord(t_fdf *struct_pointer);
+void	print_data_coord(t_fdf *struct_pointer, char **characters);
 
 typedef struct	s_mlx
 {
@@ -73,13 +72,13 @@ typedef struct	s_mlx
 }				t_mlx;
 
 /*
-** main.c functions
+** fdf.c functions
 */
 //void	ft_read(int fd, char *argv); Not being used currently
 int		ft_valid(int fd, int height, char *argv);
 char	**str_data(int fd, int height, char *argv);
 int		*ft_rows_columns(char **characters); /*This function might be deleted later*/
-int 	**str_to_int(char **characters, int i);
+int		**str_to_int(char **characters);
 
 /*
 ** maintain1.c functions
@@ -92,6 +91,7 @@ int		ft_zero(int *a, int *b, int *c, int *d);
 int		ft_height(char **characters);
 int		ft_width(char **characters);
 int		*ft_2d_atoi(char *str);
+int 	solve_driver1(int fd, int height, char *argv);
 
 /*
 ** fcc_drawline.c
