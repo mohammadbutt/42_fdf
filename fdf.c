@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/29 21:49:42 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/29 22:35:52 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,8 @@ char **str_data(int fd, int height, char *argv)
 	return(characters);
 }
 /*
+** Deprecated and will not be used because it uses malloc.
+** ft_height and ft_width were created instead.
 ** Function that takes a 2D char array and calculates the numbers of
 ** rows and columns.
 */
