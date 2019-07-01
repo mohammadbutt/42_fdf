@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/29 22:36:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/30 17:24:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_data
 */
 typedef struct		s_fdf
 {
+	int				**int_data_2;
 	int				*struct_coordinates;
 	struct s_fdf	*next;
 }					t_fdf;
@@ -79,6 +80,7 @@ int		ft_valid(int fd, int height, char *argv);
 char	**str_data(int fd, int height, char *argv);
 int		*ft_rows_columns(char **characters); /*This function might be deleted later*/
 int		**str_to_int(char **characters);
+int		**str_to_int_struct(char **characters);
 
 /*
 ** maintain1.c functions

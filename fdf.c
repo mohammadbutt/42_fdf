@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/29 22:35:52 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/30 17:57:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,9 +206,9 @@ int		**str_to_int(char **characters)
 /*
 	i = 0;
 	int j = 0;
-	int wordcount = ft_wordcount(data_points[i], ' ');
+	int wordcount = ft_wordcount(characters[i], ' ');
 	int temp_wordcount = wordcount;
-	height = ft_height((void **) data_points);
+	height = ft_height(characters);
 	while(height)
 	{
 		while(wordcount)

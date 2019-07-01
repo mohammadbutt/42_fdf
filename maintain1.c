@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/29 22:35:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/06/30 17:57:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,19 +121,21 @@ int solve_driver1(int fd, int height, char *argv)
 {
 	char **characters;
 	int **int_data;
+	int **int_data_2;
 	t_fdf *pointer_2;	//To test print data stored in struct;
 
 	height = ft_valid(fd, height, argv);
 	characters = str_data(fd, height, argv);
 	int_data = str_to_int(characters);
+	int_data_2 = str_to_int_struct(characters);
+//	pointer_2 = int_data_to_struct(int_data, height); Might delete this
 	
 
 // For testing	
-	printf("   rows:|%d|\n", ft_height(characters));
-	printf("columns:|%d|\n\n", ft_width(characters));	
-	pointer_2 = int_data_to_struct(int_data, height);
-	print_data_coord(pointer_2, characters);
-
+//	printf("   rows:|%d|\n", ft_height(characters));
+//	printf("columns:|%d|\n\n", ft_width(characters));	
+//	pointer_2 = int_data_to_struct(int_data, height);
+//	print_data_coord(pointer_2, characters);
 	return(1);
 }
 
