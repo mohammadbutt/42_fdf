@@ -14,6 +14,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 5. [Bresenham's Line Algorithm Free Code Camp](https://www.freecodecamp.org/news/how-to-code-your-first-algorithm-draw-a-line-ca121f9a1395/)
 6. [Bresenham's Line Algorithm in C](https://www.thecrazyprogrammer.com/2017/01/bresenhams-line-drawing-algorithm-c-c.html)
 7. [Programming Operators](https://www.programiz.com/c-programming/c-operators)
+8. [Ternary Operator](https://guide.freecodecamp.org/c/ternary-operator/)
 
 ## Video Resources
 1. [Brief Intro to Vectors](https://www.youtube.com/watch?v=1G5E_x0MgLc)
