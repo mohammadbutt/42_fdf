@@ -16,6 +16,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 7. [Isometric 2:1 Projections: Isometric Infographic Vectors](http://vectips.com/tutorials/isometric-infographic-vectors/)
 7. [Programming Operators](https://www.programiz.com/c-programming/c-operators)
 8. [Ternary Operator - Free Code Camp](https://guide.freecodecamp.org/c/ternary-operator/)
+9. [Data Type Ranges - Microsoft](https://docs.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=vs-2019)
 
 ## Video Resources
 1. [Brief Intro to Vectors](https://www.youtube.com/watch?v=1G5E_x0MgLc)
