@@ -25,3 +25,4 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 3. [Cartesian Coordinates in Three Dimensions](https://www.youtube.com/watch?v=VA5AmjhTA3A)
 4. [Rotation in R3 around the x-axis | Matrix transformations - Khan Academy](https://www.youtube.com/watch?v=gkyuLPzfDV0)
 5. [Rotating points using rotation Matrix](https://www.youtube.com/watch?v=OYuoPTRVzxY)
+6. [Rotation Matrix](https://www.youtube.com/watch?v=Ta8cKqltPfU)
