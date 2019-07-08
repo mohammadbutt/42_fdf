@@ -15,6 +15,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 6. [Bresenham's Line Algorithm in C](https://www.thecrazyprogrammer.com/2017/01/bresenhams-line-drawing-algorithm-c-c.html)
 7. [Isometric 2:1 Projections: Isometric Infographic Vectors](http://vectips.com/tutorials/isometric-infographic-vectors/)
 8. [Rotation in R3 around the x-axis | Matrix transformations - Khan Academy](https://www.youtube.com/watch?v=gkyuLPzfDV0)
+9. [Rotating points using rotation Matrix](https://www.youtube.com/watch?v=OYuoPTRVzxY)
 9. [Military(Oblique) projection - Wikipedia](https://en.wikipedia.org/wiki/Oblique_projection)
 10. [Programming Operators](https://www.programiz.com/c-programming/c-operators)
 11. [Ternary Operator - Free Code Camp](https://guide.freecodecamp.org/c/ternary-operator/)
