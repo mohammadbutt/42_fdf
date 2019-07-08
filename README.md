@@ -26,3 +26,4 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 4. [Rotation in R3 around the x-axis | Matrix transformations - Khan Academy](https://www.youtube.com/watch?v=gkyuLPzfDV0)
 5. [Rotating points using rotation Matrix](https://www.youtube.com/watch?v=OYuoPTRVzxY)
 6. [Rotation Matrix](https://www.youtube.com/watch?v=Ta8cKqltPfU)
+7. [Rotation in 3D](https://www.youtube.com/watch?v=wg9bI8-Qx2Q)
