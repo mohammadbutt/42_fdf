@@ -21,10 +21,11 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 11. [Data Type Ranges - Microsoft](https://docs.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=vs-2019)
 
 ## Video Resources
-1. [Brief Intro to Vectors](https://www.youtube.com/watch?v=1G5E_x0MgLc)
-2. [Essence of Linear Algebra 15 video series by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
-3. [Cartesian Coordinates in Three Dimensions](https://www.youtube.com/watch?v=VA5AmjhTA3A)
-4. [Rotation in R3 around the x-axis | Matrix transformations - Khan Academy](https://www.youtube.com/watch?v=gkyuLPzfDV0)
-5. [Rotating points using rotation Matrix](https://www.youtube.com/watch?v=OYuoPTRVzxY)
-6. [Rotation Matrix](https://www.youtube.com/watch?v=Ta8cKqltPfU)
-7. [Rotation in 3D](https://www.youtube.com/watch?v=wg9bI8-Qx2Q)
+1. [What are Radians](https://www.youtube.com/watch?v=cgPYLJ-s5II)
+2. [Brief Intro to Vectors](https://www.youtube.com/watch?v=1G5E_x0MgLc)
+3. [Essence of Linear Algebra 15 video series by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
+4. [Cartesian Coordinates in Three Dimensions](https://www.youtube.com/watch?v=VA5AmjhTA3A)
+5. [Rotation in R3 around the x-axis | Matrix transformations - Khan Academy](https://www.youtube.com/watch?v=gkyuLPzfDV0)
+6. [Rotating points using rotation Matrix](https://www.youtube.com/watch?v=OYuoPTRVzxY)
+7. [Rotation Matrix](https://www.youtube.com/watch?v=Ta8cKqltPfU)
+8. [Rotation in 3D](https://www.youtube.com/watch?v=wg9bI8-Qx2Q)
