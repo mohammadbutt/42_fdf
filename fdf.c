@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/30 17:57:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 10:44:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,8 @@ int *ft_rows_columns(char **characters)
 	int *rows_columns;
 
 	rows_columns = malloc(sizeof(int) * (2));
+	if(rows_columns == NULL)
+		ft_exit("fdf.c ft_rows_columns error: Unable to allocate memory.\n");
 	rows = 0;
 	columns = 0;
 	if(characters)
@@ -191,6 +193,8 @@ int		**str_to_int(char **characters)
 	i = 0;
 	height = ft_height(characters);
 	int_data = malloc(sizeof(int *) * (height));
+	if(int_data == NULL)
+		ft_exit("fdf.c str_to_int error: Unable to allocate memory.\n");
 	while(height)
 	{
 		int_data[i] = ft_2d_atoi(characters[i]);

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:35:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/30 17:57:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 13:39:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main(int argc, char **argv)
 {
+//	t_fdf *fdf;
 	int fd;
 	int height;
 	
@@ -27,8 +28,13 @@ int main(int argc, char **argv)
 		ft_exit("Main Error 1:\nFile does not exist\n");
 //		ft_exit_dir(argv[1]);
 	}
+//	fdf = malloc(sizeof(t_fdf));
+//	if(fdf == NULL)
+//		ft_exit("main.c main error: Unable to allocate memory.\n");
+//	fdf->mlx.mlx_ptr = mlx_init();
 	solve_driver1(fd, height, argv[1]);
-
+	
+//	mlx_loop(fdf->mlx.mlx_ptr);
 	close(fd);
 	return(0);
 }

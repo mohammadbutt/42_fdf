@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/30 17:57:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 15:36:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int *ft_2d_atoi(char *str)
 	i = 0;
 	wordcount = ft_wordcount(str, ' ');
 	int_data = (int *)malloc(sizeof(int) * (wordcount));
+	if(int_data == NULL)
+		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
 	words = ft_strsplit(str, ' ');
 	while(wordcount)
 	{
@@ -119,23 +121,39 @@ int *ft_2d_atoi(char *str)
 
 int solve_driver1(int fd, int height, char *argv)
 {
+	t_fdf *fdf; // Can also test print data stored in struct
 	char **characters;
 	int **int_data;
 	int **int_data_2;
-	t_fdf *pointer_2;	//To test print data stored in struct;
 
+	fdf = malloc(sizeof(t_fdf));
+	if(fdf == NULL)
+		ft_exit("maintain1.c solve_driver1() error: Unable to malloc.\n");
+	fdf->mlx.mlx_ptr = mlx_init();
+	fdf->mlx.win_ptr = mlx_new_window(fdf->mlx.mlx_ptr, P_HEIGHT, P_WIDTH, "ok");
+												printf("maintain1.c: cp1\n");
 	height = ft_valid(fd, height, argv);
+												printf("maintain1.c: cp2\n");
 	characters = str_data(fd, height, argv);
+												printf("maintain1.c: cp3\n");
 	int_data = str_to_int(characters);
-	int_data_2 = str_to_int_struct(characters);
-//	pointer_2 = int_data_to_struct(int_data, height); Might delete this
+												printf("maintain1.c: cp4\n");
+	fdf->int_data_2 = str_to_int_struct(characters);
+												printf("maintain1.c: cp5\n");
+	fdf->map_height = ft_height(characters);
+												printf("maintain1.c: cp6\n");
+	fdf->map_width = ft_width(characters);
+												printf("maintain1.c: cp7\n");
+	ft_render(fdf);
+												printf("maintain1.c: cp8\n");
+//	fdf = int_data_to_struct(int_data, height); Might delete this
 	
-
+	mlx_loop(fdf->mlx.mlx_ptr);
 // For testing	
 //	printf("   rows:|%d|\n", ft_height(characters));
 //	printf("columns:|%d|\n\n", ft_width(characters));	
-//	pointer_2 = int_data_to_struct(int_data, height);
-//	print_data_coord(pointer_2, characters);
+//	fdf = int_data_to_struct(int_data, height);
+//	print_data_coord(fdf, characters);
 	return(1);
 }
 

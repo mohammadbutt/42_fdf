@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:15:46 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/30 17:57:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 15:36:47 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_fdf	*create(int *struct_coordinates)
 
 	new_node = (t_fdf *)malloc(sizeof(t_fdf));
 	if(new_node == NULL)
-		ft_exit("Unable to allocate memory\n");
+		ft_exit("linked_list.c create() error: Unable to allocate memory.\n");
 	new_node->struct_coordinates = struct_coordinates;
 	new_node->next = NULL;
 	return(new_node);
@@ -61,25 +61,56 @@ t_fdf *int_data_to_struct(int **int_data, int height)
 	}
 	return(pointer_2);
 }
-
+/*
+** **str_to_int_struct takes in 2D array of string, converts them into 2D
+** int array.
+**
+** 2D string array that's taken in is stored as such:
+** "0  1  3  0"
+** "0 10 -5  0"
+**
+** This will look like this:
+** characters[0] = "7  1  3  0"
+** characters[1] = "4 10 -5  0"
+** When any of the elements in this string are accessed they are perceived
+** as characters, not numbers. chararcters [1][0] will be '4', characters[1][1]
+** will be ' ', a space, and characters[1][2] will be '1';
+**
+** After the string is converted to a 2d int array, it will be stored as such:
+** {7, 1, 3, 0}
+** {4, 10, -5, 0}
+** Now when any of the elements in this int array are accessed they are
+** perceived as numbers. int_array[1][0] will be 4. int_array[1][1] will be 10,
+** and int_array[1][2] will be -5.
+** 
+*/
 int **str_to_int_struct(char **characters)
 {
-	t_fdf *fdf;
+//	t_fdf *fdf;
 	int i;
 	int height;
+	int **int_data_2;
 
-	fdf = malloc(sizeof(fdf));
+//	fdf = malloc(sizeof(fdf));
+//	if(fdf == NULL)
+//		ft_exit("linked_list.c str_to_int_struct error1: Unable to malloc\n");
 	i = 0;
 	height = ft_height(characters);
-	fdf->int_data_2 = malloc(sizeof(int *) * (height));
+//	fdf->int_data_2 = malloc(sizeof(int *) * (height));
+	int_data_2 = malloc(sizeof(int *) * (height));
+	if(int_data_2 == NULL)
+		ft_exit("linked_list.c str_to_int_struct error: Unable to malloc\n");
+//	if(fdf->int_data_2 == NULL)
+//		ft_exit("linked_list.c str_to_int_struct error2: Unable to malloc\n");
 	while(height)
 	{
-		fdf->int_data_2[i] = ft_2d_atoi(characters[i]);
+//		fdf->int_data_2[i] = ft_2d_atoi(characters[i]);
+		int_data_2[i] = ft_2d_atoi(characters[i]);
 		i++;
 		height--;
 	}
 /*Insert the below code here to test if the str_to_int_struct works properly*/
-	return(fdf->int_data_2);
+	return(int_data_2);
 }
 /*
 ** Below is to test str_to_int_struct()

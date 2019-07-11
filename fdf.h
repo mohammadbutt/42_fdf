@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/06/30 17:24:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 15:36:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,34 +53,95 @@ typedef struct	s_data
 	struct s_data 	*next;
 }					t_data;
 */
-typedef struct		s_fdf
-{
-	int				**int_data_2;
-	int				*struct_coordinates;
-	struct s_fdf	*next;
-}					t_fdf;
 
-t_fdf	*create(int *struct_coordinates);
-t_fdf	*append(t_fdf *head, int *struct_coordinates);
-t_fdf	*int_data_to_struct(int **int_data, int height);
-void	print_data_coord(t_fdf *struct_pointer, char **characters);
+/*
+** Macros ----------------------------------------------------------------------
+*/
+
+/*
+** Key-Bindings: Below are the key codes to navigate the program
+*/
+
+# define UP_KEY 126
+# define DOWN_KEY 125
+# define LEFT_KEY 123
+# define RIGHT_KEY 124
+
+# define ZOOM_IN_Q 12
+# define ZOOM_OUT_A 0
+
+# define SPIKE_INCREASE_W 13
+# define SPIKE_DECREASE_S 1
+
+# define RANDOM_COLOR_R 15
+# define CHANGE_CAMERA_C 8
+# define ESCAPE_ESC 53
+
+/*
+** To get isometric and top_down values in below macros, we convert the angle
+** to a radian by performing the following calculation:
+** isometric radian = 30 * (π/180) --> isometric radian = 0.52;
+** top_down radian  = 90 * (𝜋/180) --> top_down radian  = 1.57; 
+*/
+
+# define P_HEIGHT 1280
+# define P_WIDTH 720
+
+# define ISOMETRIC 0.52
+# define TOPDOWN 1.57
+
+# define XY_ZOOM 0.25
+# define Z_ZOOM 0.25
+
+/*
+** Structs ---------------------------------------------------------------------
+*/
+
 
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	void		*img_ptr;
+//	void		*img_ptr; Not using it currently
 }				t_mlx;
 
+typedef struct		s_fdf
+{
+	t_mlx			mlx;
+	int				x0;
+	int				y0;
+	int				z0;
+	int				x1;
+	int				y1;
+	int				z1;
+	int				x_move;
+	int				y_move;
+	int				**int_data_2;
+	int				*struct_coordinates;
+	int				map_width; /*map_columns*/
+	int				map_height; /*map_rows*/
+	struct s_fdf	*next;
+}					t_fdf;
+
 /*
-** fdf.c functions
+** linked_list.c ---------------------------------------------------------------
+*/
+
+t_fdf	*create(int *struct_coordinates);
+t_fdf	*append(t_fdf *head, int *struct_coordinates);
+t_fdf	*int_data_to_struct(int **int_data, int height);
+int		**str_to_int_struct(char **characters);
+void	print_data_coord(t_fdf *struct_pointer, char **characters);
+
+/*
+** fdf.c 
 */
 //void	ft_read(int fd, char *argv); Not being used currently
 int		ft_valid(int fd, int height, char *argv);
 char	**str_data(int fd, int height, char *argv);
 int		*ft_rows_columns(char **characters); /*This function might be deleted later*/
 int		**str_to_int(char **characters);
-int		**str_to_int_struct(char **characters);
+//int		**str_to_int_struct(char **characters); function is commented.
 
 /*
 ** maintain1.c functions
@@ -98,9 +159,21 @@ int 	solve_driver1(int fd, int height, char *argv);
 /*
 ** fcc_drawline.c
 */
+int		find_min(int x, int y);
 int		ft_abs(int num);
-void	plot_low_line(int x0, int y0, int x1, int y1);
-void	plot_high_line(int x0, int y0, int x1, int y1);
-void	plot_any_line(int x0, int y0, int x1, int y1);
+void	plot_low_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
+void	plot_high_line(t_fdf * fdf, int x0, int y0, int x1, int y1);
+void	plot_any_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
+void	isometric_view(int *x, int *y, int z);
+void	topdown_view(int *x, int *y, int z);
+int		normalize_map(t_fdf *fdf);
+void	centeralize_map(t_fdf *fdf, int x, int y);
+void	place_z_on_horizontal(t_fdf *fdf, int x, int y, int normalize);
+void	place_z_on_vertical(t_fdf *fdf, int x, int y, int normalize);
+void	horizontal_x1_y1(t_fdf *fdf);
+void	vertical_x1_y1(t_fdf *fdf);
+void	horizontal_render(t_fdf *fdf, int x, int y);
+void	vertical_render(t_fdf *fdf, int x, int y);
+void	ft_render(t_fdf *fdf);
 
 #endif
