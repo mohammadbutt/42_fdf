@@ -17,11 +17,11 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 - [ ] 6. Keyboard integration - Change Color.
 
-- [ ] 6. Keyboard integration - Normalize/ standardize the map when zoom is applied.
+- [ ] 7. Keyboard integration - Normalize/ standardize the map when zoom is applied.
 
-- [ ] 7. Create a 3D cube from the square.
+- [ ] 8. Create a 3D cube from the square.
 
-- [ ] 8. Rotate the 3D cube with mouse.
+- [ ] 9. Rotate the 3D cube with mouse.
 
 # Resources
 ## Reading Resources
