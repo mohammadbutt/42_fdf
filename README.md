@@ -5,15 +5,15 @@
 
 Brainstorming - Draw simple things using minilibx library. Path to miniLibx library ```sources/minilibx/man```. In man directory, ```man1/mlx_pixel_put.1```, that has mlx_pixel_put and mlx_string_put functions.
 
-[x] 1. Create a function that draws a horizontal line and offset x. Optional, draw a vertical line and offset x.
+- [x] Create a function that draws a horizontal line and offset x. Optional, draw a vertical line and offset x.
 
-[x] 2. Draw a perfect square. To draw a perfect square, both x and y have to be offset.
+- [x] Draw a perfect square. To draw a perfect square, both x and y have to be offset.
 
-[ ] 3. Keyboard integration - End the program with escape button.
+- [ ] Keyboard integration - End the program with escape button.
 
-[ ] 4. Keyboard integration - Zoom in with Q button. Zoom out with A.
+- [ ] Keyboard integration - Zoom in with Q button. Zoom out with A.
 
-[ ] 5. Keyboard integration - Shift the square with up, down, left, right arrow keys.
+- [ ] Keyboard integration - Shift the square with up, down, left, right arrow keys.
 
 # Resources
 ## Reading Resources
