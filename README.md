@@ -9,7 +9,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 - [x] 2. Draw a perfect square. To draw a perfect square, both x and y have to be offset.
 
-- [ ] 3. Keyboard integration - End the program with escape button.
+- [x] 3. Keyboard integration - End the program with escape button.
 
 - [ ] 4. Keyboard integration - Zoom in with Q button. Zoom out with A.
 
