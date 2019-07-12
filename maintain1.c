@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/11 15:36:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 16:29:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,13 @@ int *ft_2d_atoi(char *str)
 	return(int_data);
 }
 
+int press_button(int key_code, t_fdf *fdf)
+{
+	if(key_code == ESCAPE_ESC)
+		exit(0);
+	return(0);
+}
+
 int solve_driver1(int fd, int height, char *argv)
 {
 	t_fdf *fdf; // Can also test print data stored in struct
@@ -148,6 +155,7 @@ int solve_driver1(int fd, int height, char *argv)
 												printf("maintain1.c: cp8\n");
 //	fdf = int_data_to_struct(int_data, height); Might delete this
 	
+//	mlx_hook(fdf->mlx.mlx_ptr, 2, 3, press_button, fdf); /*Create press_button function*/
 	mlx_loop(fdf->mlx.mlx_ptr);
 // For testing	
 //	printf("   rows:|%d|\n", ft_height(characters));

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 18:46:06 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/11 15:36:44 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 19:21:50 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*Freecodecamp and wikipedia*/
@@ -203,16 +203,16 @@ void	place_z_on_horizontal(t_fdf *fdf, int x, int y, int normalize)
 	printf("place z 1:\n");
 	printf("x:|%d|\n", x);
 	printf("y:|%d|\n", y);
-	fdf->z0 = (fdf->int_data_2[x][y]) * normalize;
+	fdf->z0 = (fdf->int_data_2[y][x]) * normalize;
 	printf("place z 2:\n");
-	fdf->z1 = (fdf->int_data_2[x][y+1]) * normalize;
+	fdf->z1 = (fdf->int_data_2[y][x+1]) * normalize;
 }
 void 	place_z_on_vertical(t_fdf *fdf, int x, int y, int normalize)
 {
-	fdf->z0 = fdf->int_data_2[x][y] * normalize;
+	fdf->z0 = fdf->int_data_2[y][x] * normalize;
 	printf("place z on vertical 1\n");
 	printf("x:|%d| y:|%d| |%d|\n", x, y, normalize);
-	fdf->z1 = fdf->int_data_2[x+1][y] * normalize;
+	fdf->z1 = fdf->int_data_2[y+1][x] * normalize;
 	printf("place z on vertical 2\n");
 
 }
@@ -276,12 +276,12 @@ void	ft_render(t_fdf *fdf)
 		while(x < fdf->map_width)
 		{
 												printf("cp fcc_drawline 4\n");
-			if(y+1 < fdf->map_width)
+			if(x+1 < fdf->map_width)
 			{
 												printf("cp fcc_drawline 5\n");
 				horizontal_render(fdf, x, y);
 			}
-			if(x+1 < fdf->map_height)
+			if(y+1 < fdf->map_height)
 			{
 												printf("cp fcc_drawline 6\n");
 				vertical_render(fdf, x, y);
