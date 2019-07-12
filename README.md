@@ -11,9 +11,9 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 - [x] 3. Keyboard integration - End the program with Escape key.
 
-- [x] 4. Keyboard integration - Zoom in with Q button. Zoom out with A.
+- [ ] 4. Keyboard integration - Zoom in with Q button. Zoom out with A.
 
-- [ ] 5. Keyboard integration - Shift the square with up, down, left, right arrow keys.
+- [x] 5. Keyboard integration - Shift the square with up, down, left, right arrow keys.
 
 # Resources
 ## Reading Resources
