@@ -15,7 +15,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 - [x] 5. Keyboard integration - Shift the square with up, down, left, right arrow keys.
 
-- [ ] 6. Keyboard integration - Change Color.
+- [x] 6. Keyboard integration - Change Colors.
 
 - [ ] 7. Keyboard integration - Normalize/ standardize the map when zoom is applied.
 
