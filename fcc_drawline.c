@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 18:46:06 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/11 19:21:50 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/11 20:24:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*Freecodecamp and wikipedia*/
@@ -230,9 +230,12 @@ void	vertical_x1_y1(t_fdf *fdf)
 //	printf("vertical_render 2\n");
 	fdf->y1 = fdf->y0 + 1;
 }
+/*
+void	horizontal_shift(t_fdf *fdf, int normalize)
+{
 
-//void change_view()
-
+}
+*/
 void	horizontal_render(t_fdf *fdf, int x, int y)
 {
 	int normalize;
@@ -247,13 +250,9 @@ void	vertical_render(t_fdf *fdf, int x, int y)
 {
 	int normalize;
 	
-	printf("vertical render1\n");
 	normalize = normalize_map(fdf);
-	printf("vertical render2\n");
 	centeralize_map(fdf, x, y);
-	printf("vertical render3\n");
 	place_z_on_vertical(fdf, x, y, normalize);
-	printf("vertical render4\n");
 	vertical_x1_y1(fdf);
 	plot_any_line(fdf, fdf->x0, fdf->y0, fdf->x1, fdf->y1);
 }

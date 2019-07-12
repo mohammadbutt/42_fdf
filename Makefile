@@ -6,15 +6,15 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/07/11 19:21:57 by mbutt            ###   ########.fr        #
+#    Updated: 2019/07/11 22:06:58 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= fdf
 CC		= gcc
 CFLAG	= -Wall -Wextra -Werror
-#SRC	= srcs/test_draw.c
-SRC		= fdf.c linked_list.c main.c maintain1.c fcc_drawline.c
+##SRC	= srcs/test_draw.c Dont use it
+SRC		= square_test.c #fdf.c linked_list.c main.c maintain1.c fcc_drawline.c
 OBJ		= $(SRC:.c=.o)
 
 #MLXLINK = -L resources/minilibx 				#uncomment it for linux
