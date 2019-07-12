@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/12 15:04:44 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/12 15:49:27 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct	s_mlx
 	int			x;
 	int			y;
 	int			size;
+	size_t		color;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
 

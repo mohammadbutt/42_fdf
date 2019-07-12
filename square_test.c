@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/12 15:04:41 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/12 15:49:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,37 @@ void menu(t_mlx **mlx)
 	ft_strcpy(str3, "Zoom in and out: Q A");
 	ft_strcpy(str4, "Reset map: E");
 	ft_strcpy(str5, "Random Colors: R");
-	printf("%s\n", str2);
 	mlx_string_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, 10, 10, 0x00d4ff, str1);
 	mlx_string_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, 10, 30, 0x00d4ff, str2);
 	mlx_string_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, 10, 50, 0x00d4ff, str3);
 	mlx_string_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, 10, 70, 0x00d4ff, str4);
 	mlx_string_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, 10, 90, 0x00d4ff, str5);
-
 }
+
+
 void draw_square(t_mlx **mlx, int x, int y, int size)
 {
 	int size_x;
 	int size_y;
 	int temp_x;
 	int temp_y;
+	size_t color;
 
 	size_x = size + x;
 	size_y = size + y;
 	temp_x = x;
 	temp_y = y;
+	color = (*mlx)->color;
 	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
 	menu(mlx);
 	while(x < size_x)
-		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x++, y, 0xff0000);
+		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x++, y, color);
 	while(y < size_y)
-		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x, y++, 0xff0000);
+		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x, y++, color);
 	while(x > temp_x)
-		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x--, y, 0xff0000);
+		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x--, y, color);
 	while(y > temp_y)
-		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x, y--, 0xff0000);
-
+		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x, y--, color);
 }
 
 void draw_horizontal_line(t_mlx **mlx, int x, int y, int size)
@@ -69,13 +70,6 @@ void draw_horizontal_line(t_mlx **mlx, int x, int y, int size)
 	while(x < size)
 		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x++, y, 0xffff00);
 }
-/*
-void zoom_program(t_mlx **mlx, int key)
-{
-	if(key == ZOOM_INT_Q)
-		
-}
-*/
 
 void shift_program(t_mlx **mlx, int key)
 {
@@ -110,12 +104,22 @@ void zoom_program(t_mlx **mlx, int key)
 	(*mlx)->size = size;
 	draw_square(mlx, x, y, size);
 }
+void random_color(t_mlx **mlx)
+{
+	size_t random_seed;
+
+	random_seed = 0xff;
+	random_seed = rand();
+	(*mlx)->color = rand() % random_seed;
+	draw_square(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
+}
 
 void get_struct_values(t_mlx **mlx)
 {
 	(*mlx)->x = 30;
 	(*mlx)->y = 30;
 	(*mlx)->size = 30;
+	(*mlx)->color = 0x7FFFD4;
 }
 
 void reset_program(t_mlx **mlx, int key)
@@ -123,6 +127,7 @@ void reset_program(t_mlx **mlx, int key)
 	(*mlx)->x = 30;
 	(*mlx)->y = 30;
 	(*mlx)->size = 30;
+	(*mlx)->color = 0x7FFFD4;
 	draw_square(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
 }
 
@@ -136,6 +141,8 @@ int program_keys(int key, t_mlx **mlx)
 		zoom_program(mlx, key);
 	else if(key == RESET_PROGRAM_E)
 		reset_program(mlx, RESET_PROGRAM_E);
+	else if(key == RANDOM_COLOR_R)
+		random_color(mlx);
 	return(0);
 
 }
