@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/11 22:07:01 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/12 15:04:44 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ typedef struct	s_data
 ** Key-Bindings: Below are the key codes to navigate the program
 */
 
-# define UP_KEY 126
-# define DOWN_KEY 125
-# define LEFT_KEY 123
-# define RIGHT_KEY 124
+# define UP_K 126
+# define DOWN_K 125
+# define LEFT_K 123
+# define RIGHT_K 124
 
 # define ZOOM_IN_Q 12
 # define ZOOM_OUT_A 0
@@ -74,6 +74,7 @@ typedef struct	s_data
 # define SPIKE_DECREASE_S 1
 
 # define RANDOM_COLOR_R 15
+# define RESET_PROGRAM_E 14
 # define CHANGE_CAMERA_C 8
 # define ESCAPE_ESC 53
 
@@ -102,6 +103,9 @@ typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	int			x;
+	int			y;
+	int			size;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
 
