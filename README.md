@@ -11,9 +11,17 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 - [x] 3. Keyboard integration - End the program with Escape key.
 
-- [ ] 4. Keyboard integration - Zoom in with Q button. Zoom out with A.
+- [x] 4. Keyboard integration - Zoom in with Q button. Zoom out with A.
 
 - [x] 5. Keyboard integration - Shift the square with up, down, left, right arrow keys.
+
+- [ ] 6. Keyboard integration - Change Color.
+
+- [ ] 6. Keyboard integration - Normalize/ standardize the map when zoom is applied.
+
+- [ ] 7. Create a 3D cube from the square.
+
+- [ ] 8. Rotate the 3D cube with mouse.
 
 # Resources
 ## Reading Resources
