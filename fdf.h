@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/12 15:49:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/12 21:15:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct	s_data
 ** top_down radian  = 90 * (𝜋/180) --> top_down radian  = 1.57; 
 */
 
-# define P_HEIGHT 1280
-# define P_WIDTH 720
+# define P_WIDTH 1280
+# define P_HEIGHT 720
 
 # define ISOMETRIC 0.52
 # define TOPDOWN 1.57
@@ -103,8 +103,8 @@ typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 	int			size;
 	size_t		color;
 //	void		*img_ptr; Not using it currently
