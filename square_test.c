@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/12 21:15:06 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/13 16:12:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ void menu(t_mlx **mlx)
 	mlx_string_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, 10, 90, 0x00d4ff, str5);
 }
 
+int ft_abs(int num)
+{
+	if(num < 1)
+		num = -1 * num;
+	return(num);
+}
+
 /*
 ** ft_hue generates different colors based on the height of the square.
 ** y and color are multiplied by 95 and 9, but they can be multiplied by some
@@ -52,11 +59,9 @@ int ft_hue(int y, int color)
 	int num2;
 	int final_color;
 
-	num1 = 95;
-	num2 = 9;
-	final_color = (num1*y % num2*color);
-
-	return(final_color);
+	color = 5 * color;
+	final_color =color + y;
+	return(ft_abs(final_color));
 }
 void draw_square(t_mlx **mlx, int x, int y, int size)
 {
@@ -71,7 +76,7 @@ void draw_square(t_mlx **mlx, int x, int y, int size)
 	temp_x = x;
 	temp_y = y;
 	hue = (*mlx)->color;
-//	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
+	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
 	menu(mlx);
 	while(x < size_x)
 		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x++, y, hue);
@@ -109,13 +114,20 @@ void zoom_program(t_mlx **mlx, int key)
 
 	size = (*mlx)->size;
 	if(key == ZOOM_IN_Q)
-		size = size / 0.95;
+		size = size + 30;
 	else if(key == ZOOM_OUT_A)
-		size = size * 0.95;
+		size = size - 30;
 
-	(*mlx)->x = (*mlx)->x - 5;
-	(*mlx)->y = (*mlx)->y - 5;
-
+	if(key == ZOOM_IN_Q)
+	{
+		(*mlx)->x = (*mlx)->x - 15;
+		(*mlx)->y = (*mlx)->y - 15;
+	}
+	else if(key == ZOOM_OUT_A)
+	{
+		(*mlx)->x = (*mlx)->x + 15;
+		(*mlx)->y = (*mlx)->y + 15;
+	}
 	(*mlx)->size = size;
 	draw_square(mlx, (*mlx)->x, (*mlx)->y, size);
 }
@@ -137,6 +149,7 @@ void get_struct_values(t_mlx **mlx)
 	(*mlx)->y = P_HEIGHT / 2;
 	(*mlx)->size = 30;
 	(*mlx)->color = 0x7FFFD4;
+//	(*mlx)->color = 0x00ffff;
 }
 
 void reset_program(t_mlx **mlx, int key)
@@ -181,8 +194,14 @@ int main(void)
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1280, 720, "test screen");
 	
 	draw_square(&mlx, x, y, size);
-	draw_square(&mlx, x, y, 60);
-	draw_horizontal_line(&mlx, x, 10, size);
+//	draw_square(&mlx, 625, 345, 60);
+//	draw_square(&mlx, 610, 330, 90);
+//	draw_square(&mlx, 595, 315, 120);
+//	draw_square(&mlx, 580, 300, 150);
+//	draw_square(&mlx, 565, 285, 180);
+
+
+//	draw_horizontal_line(&mlx, x, 10, size);
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, &mlx);
 
 	mlx_loop(mlx->mlx_ptr); /*Required to end the program*/
