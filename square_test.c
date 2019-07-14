@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/13 16:12:04 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/13 21:55:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ int program_keys(int key, t_mlx **mlx)
 	return(0);
 
 }
-
+/*
 int main(void)
 {
 	t_mlx *mlx;
@@ -184,7 +184,7 @@ int main(void)
 	int y;
 	int size;
 
-	mlx = malloc(sizeof(t_mlx)); /*Builds the connection between computer and display.*/
+	mlx = malloc(sizeof(t_mlx)); //Builds the connection between computer and display.
 
 	get_struct_values(&mlx);
 	x = mlx->x;
@@ -192,17 +192,72 @@ int main(void)
 	size = mlx->size;
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1280, 720, "test screen");
-	
 	draw_square(&mlx, x, y, size);
-//	draw_square(&mlx, 625, 345, 60);
-//	draw_square(&mlx, 610, 330, 90);
-//	draw_square(&mlx, 595, 315, 120);
-//	draw_square(&mlx, 580, 300, 150);
-//	draw_square(&mlx, 565, 285, 180);
-
-
-//	draw_horizontal_line(&mlx, x, 10, size);
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, &mlx);
 
-	mlx_loop(mlx->mlx_ptr); /*Required to end the program*/
+	mlx_loop(mlx->mlx_ptr); //Required to end the program
 }
+*/
+
+void draw_triangle(t_mlx **mlx, int x, int y, int size)
+{
+	int size_x;
+	int size_y;
+	int x1;
+	int y1;
+
+	size_x = size + x;
+	size_y = size + y;
+	x1 = x;
+	y1 = y;
+	while(x1 < size_x && y1 < size_y)
+		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x1++, y++, 0xffff);
+	while((x/3) < x1 && (y/3) < y1)
+		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x1--, y, 0xffff);
+	while(x1 < x )
+		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, x1++, y--, 0xffff);
+}
+
+int main(void)
+{
+	t_mlx *mlx;
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+//	int size;
+
+	x0 = 100;
+	y0 = 40;
+	x1 = 100;
+	y1 = 40;
+
+	mlx = malloc(sizeof(t_mlx));
+
+	get_struct_values(&mlx);
+//	x = mlx->x;
+//	y = mlx->y;
+//	size = mlx->size;
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1280, 720, "Draw a Triangle" );
+
+/*	
+	while(x1 < 150)
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x1++, y1++, 0xffff);
+	while((x0/2) < x1)
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x1--, y1, 0xffff);	
+	while(x1 < x0)	
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x1++, y1--, 0xffff);
+*/
+	int x;
+	int y;
+	int size;
+
+	x = 150;
+	y = 100;
+	size = 50;
+	draw_triangle(&mlx, x, y, size);
+	mlx_loop(mlx->mlx_ptr);
+}
+
+
