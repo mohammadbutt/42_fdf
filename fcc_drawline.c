@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 21:01:13 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 21:09:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,8 @@ void menu(t_mlx *mlx)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, 0x00d4ff, str5);
 }
 
-void ft_render(t_fdf *mlx)
+void ft_render(t_mlx *mlx)
 {
-
+	printf("%d\n", mlx->int_data[0][0]);
 }
 

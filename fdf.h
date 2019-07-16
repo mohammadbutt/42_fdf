@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 21:00:35 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 21:09:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,6 @@ void	vertical_x1_y1(t_fdf *fdf);
 void	horizontal_shift(t_fdf *fdf);
 void	horizontal_render(t_fdf *fdf, int x, int y);
 void	vertical_render(t_fdf *fdf, int x, int y);
-void	ft_render(t_fdf *fdf);
-
+//void	ft_render(t_fdf *fdf);
+void	ft_render(t_mlx *mlx);
 #endif

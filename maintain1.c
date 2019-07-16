@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 21:01:16 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 21:09:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int solve_driver1(int fd, int height, char *argv)
 	mlx->int_data = str_to_int(characters);
 	mlx->map_height = ft_height(characters); // Can we also do mlx->map_height = height;?
 	mlx->map_width = ft_width(characters);
-//	ft_render(mlx);
+	ft_render(mlx);
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, &mlx);	
 	mlx_loop(mlx->mlx_ptr);
 	return(1);
