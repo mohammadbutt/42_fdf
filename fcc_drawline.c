@@ -6,12 +6,25 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 18:48:22 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 20:53:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fdf.h"
+
+/*
+** ft_swap, swaps values of a and b
+*/
+
+int ft_swap(int *a, int *b)
+{
+	int temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
+	return(0);
+}
 
 /*
 ** Note: Function might not be used. But creating it in case its needed.
@@ -55,7 +68,7 @@ void plot_low_line(t_mlx *mlx)
 	if(mlx->dy < 0)
 	{
 		mlx->yi = -1;
-		mlx->dy = -1 * (mlx->dy);
+		mlx->dy = -1 * mlx->dy;
 	}
 	mlx->delta_error = (2 * mlx->dy) - mlx->dx;
 	while(mlx->x0 < mlx->x1)
@@ -119,3 +132,30 @@ void plot_any_line(t_mlx *mlx)
 			plot_high_line(mlx);
 	}
 }
+
+void menu(t_mlx *mlx)
+{
+	char *str1;
+	char *str2;
+	char *str3;
+	char *str4;
+	char *str5;
+
+	str1 = "Menu Controls";
+	str2 = "Shift: Arrow Keys: < ^ v >";
+	str3 = "Zoom in and out: Q A";
+	str4 = "Reset map: E";
+	str5 = "Random Colors: R";
+
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, 0x00d4ff, str1);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 30, 0x00d4ff, str2);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 50, 0x00d4ff, str3);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 70, 0x00d4ff, str4);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, 0x00d4ff, str5);
+}
+/*
+void ft_render(t_fdf *mlx)
+{
+
+}
+*/

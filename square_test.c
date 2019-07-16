@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 16:32:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 19:16:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,8 @@ void zoom_program(t_mlx **mlx, int key)
 		size = size + 30;
 	else if(key == ZOOM_OUT_A)
 		size = size - 30;
+
+// Centeralizes map
 
 	if(key == ZOOM_IN_Q)
 	{

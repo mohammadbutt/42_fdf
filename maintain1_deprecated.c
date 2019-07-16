@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 20:55:10 by mbutt            ###   ########.fr       */
+/*   Created: 2019/06/20 20:52:23 by mbutt             #+#    #+#             */
+/*   Updated: 2019/07/15 20:11:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int ft_zero(int *a, int *b, int *c, int *d)
 	return(0);
 }
 
-
 /*
 ** ft_height counts the number of elements/height/rows there are in a 2D-array.
 ** It will only work with strings. It will not work with int because in an int
@@ -78,9 +77,8 @@ int ft_height(char **characters)
 	return(i);
 }
 
-
 /*
-** ft_width counts the number of columns/width of a 2D-char array.
+** ft_width counts the number of columns/width of a 2D-char array. 
 */
 int ft_width(char **characters)
 {
@@ -89,7 +87,6 @@ int ft_width(char **characters)
 	width = ft_wordcount(characters[0], ' ');
 	return(width);
 }
-
 
 /*
 ** ft_2d_atoi takes a string and converts all of the numbers in string format
@@ -121,33 +118,43 @@ int *ft_2d_atoi(char *str)
 	free(words);
 	return(int_data);
 }
-/*
-int program_keys(int key, t_mlx *mlx)
-{
-	if(key == ESCAPE_ESC)
-		exit(0); //When preogram works fine, replace it with ft_exit_success();
 
+int press_button(int key_code, t_fdf *fdf)
+{
+	if(key_code == ESCAPE_ESC)
+		exit(0);
 	return(0);
 }
-*/
+
 int solve_driver1(int fd, int height, char *argv)
 {
-	t_mlx *mlx;
+	t_fdf *fdf; // Can also test print data stored in struct
 	char **characters;
 	int **int_data;
+	int **int_data_2;
 
-	mlx = malloc(sizeof(t_mlx));
-	if(mlx == NULL)
+	fdf = malloc(sizeof(t_fdf));
+	if(fdf == NULL)
 		ft_exit("maintain1.c solve_driver1() error: Unable to malloc.\n");
-	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, P_WIDTH, P_HEIGHT, "ok");
+	fdf->mlx.mlx_ptr = mlx_init();
+	fdf->mlx.win_ptr = mlx_new_window(fdf->mlx.mlx_ptr, P_HEIGHT, P_WIDTH, "ok");
+
 	height = ft_valid(fd, height, argv);
 	characters = str_data(fd, height, argv);
-	mlx->int_data = str_to_int(characters);
-	mlx->map_height = ft_height(characters); // Can we also do mlx->map_height = height;?
-	mlx->map_width = ft_width(characters);
-//	ft_render(mlx);
+	int_data = str_to_int(characters);
+	fdf->int_data_2 = str_to_int_struct(characters);
+	fdf->map_height = ft_height(characters);
+	fdf->map_width = ft_width(characters);
+	ft_render(fdf);
+//	fdf = int_data_to_struct(int_data, height); Might delete this
 	
-	mlx_loop(mlx->mlx_ptr);
+//	mlx_hook(fdf->mlx.mlx_ptr, 2, 3, press_button, fdf); /*Create press_button function*/
+	mlx_loop(fdf->mlx.mlx_ptr);
+// For testing	
+//	printf("   rows:|%d|\n", ft_height(characters));
+//	printf("columns:|%d|\n\n", ft_width(characters));	
+//	fdf = int_data_to_struct(int_data, height);
+//	print_data_coord(fdf, characters);
 	return(1);
 }
+

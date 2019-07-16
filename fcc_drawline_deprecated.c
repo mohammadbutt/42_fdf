@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 18:46:06 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/11 20:24:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 19:44:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*Freecodecamp and wikipedia*/
@@ -266,28 +266,20 @@ void	ft_render(t_fdf *fdf)
 	x = 0;
 	y = 0;
 
-												printf("cp fcc_drawline 1\n");
 //	mlx_clear_window(fdf->mlx.mlx_ptr, fdf->mlx.win_ptr);
-												printf("cp fcc_drawline 2\n");
 	while(y < fdf->map_height)
 	{
-												printf("cp fcc_drawline 3\n");
 		while(x < fdf->map_width)
 		{
-												printf("cp fcc_drawline 4\n");
 			if(x+1 < fdf->map_width)
 			{
-												printf("cp fcc_drawline 5\n");
 				horizontal_render(fdf, x, y);
 			}
 			if(y+1 < fdf->map_height)
 			{
-												printf("cp fcc_drawline 6\n");
 				vertical_render(fdf, x, y);
 			}
-												printf("cp fcc_drawline 7\n");
 			x++;
-												printf("cp fcc_drawline 8\n");
 		}
 		x = 0;
 		y++;
