@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/14 19:33:03 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 16:32:37 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,17 @@ typedef struct	s_mlx
 	double		y;
 	int			size;
 	size_t		color;
+	int			x0;
+	int			y0;
+	int			z0;
+	int			x1;
+	int			y1;
+	int			z1;
+	int			dx;
+	int			dy;
+	int			delta_error;
+	int			xi;
+	int			yi;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
 
@@ -166,9 +177,12 @@ int 	solve_driver1(int fd, int height, char *argv);
 */
 int		find_min(int x, int y);
 int		ft_abs(int num);
-void	plot_low_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
-void	plot_high_line(t_fdf * fdf, int x0, int y0, int x1, int y1);
-void	plot_any_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
+void	plot_low_line(t_mlx **mlx);
+void	plot_high_line(t_mlx **mlx);
+void	plot_any_line(t_mlx **mlx);
+//void	plot_low_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
+//void	plot_high_line(t_fdf * fdf, int x0, int y0, int x1, int y1);
+//void	plot_any_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
 void	isometric_view(int *x, int *y, int z);
 void	topdown_view(int *x, int *y, int z);
 int		normalize_map(t_fdf *fdf);
