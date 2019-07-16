@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 21:09:11 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/16 10:01:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,48 @@ void menu(t_mlx *mlx)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, 0x00d4ff, str5);
 }
 
+/*
+**
+*/
+
+/*
 void ft_render(t_mlx *mlx)
 {
 	printf("%d\n", mlx->int_data[0][0]);
+	printf("map_width:|%d|\n", mlx->map_width);
+	printf("map_height:|%d|\n", mlx->map_height);
 }
+*/
+/*
+** ft_print_data prints the data that is stored in t_mlx struct.
+** Formats data perfectly for 42.fdf, for other maps spaces would
+** hve to be adjusted.
+*/
+void ft_print_data(t_mlx *mlx)
+{
+	int i;
+	int j;
+	int width;
+	int height;
 
+	i = 0;
+	j = 0;
+	width = mlx->map_width;
+	height = mlx->map_height;
+	while(height)
+	{
+		while(j < width)
+		{
+			ft_putnbr(mlx->int_data[i][j]);
+			if(mlx->int_data[i][j+1] == 0 && j+1 != width)
+				ft_putstr("  ");
+			else if(mlx->int_data[i][j+1] == 10)
+				ft_putstr(" ");
+			j++;
+		}
+		ft_putstr("\n");
+		j = 0;
+		i++;
+		height--;
+	}
+}
