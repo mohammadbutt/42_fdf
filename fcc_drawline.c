@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/16 10:01:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/16 13:24:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void plot_any_line(t_mlx *mlx)
 	}
 }
 
-void menu(t_mlx *mlx)
+void ft_menu(t_mlx *mlx)
 {
 	char *str1;
 	char *str2;
@@ -153,23 +153,58 @@ void menu(t_mlx *mlx)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 70, 0x00d4ff, str4);
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, 0x00d4ff, str5);
 }
-
 /*
-**
+** get_struct_values: sets values of several variables for struct t_mlx;
 */
 
+void get_struct_values(t_mlx *mlx)
+{
+	mlx->x0 = 0;
+	mlx->y0 = 0;
+}
+
 /*
+** ft_render: Renders takes a map and renders it onto a screen.
+*/
+
+
 void ft_render(t_mlx *mlx)
 {
-	printf("%d\n", mlx->int_data[0][0]);
-	printf("map_width:|%d|\n", mlx->map_width);
-	printf("map_height:|%d|\n", mlx->map_height);
+	int x;
+	int y;
+	int height;
+	int width;
+
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	height = mlx->map_height;
+	width = mlx->map_width;
+	
+	x = mlx->x0;
+	y = mlx->y0;
+	printf("width:|%d|\n", width);
+	printf("height:|%d|\n", height);
+	while(height)
+	{
+		while(width)
+		{
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, y, 0xff);
+			x = x + 15;
+			width--;
+//			printf("width:|%d|\n", width);
+		}
+		width = mlx->map_width;
+		x = mlx->x0;
+		y = y + 15;
+		height--;
+	}
+//	printf("%d\n", mlx->int_data[0][0]);
+//	printf("map_width:|%d|\n", mlx->map_width);
+//	printf("map_height:|%d|\n", mlx->map_height);
 }
-*/
+
 /*
-** ft_print_data prints the data that is stored in t_mlx struct.
-** Formats data perfectly for 42.fdf, for other maps spaces would
-** hve to be adjusted.
+** ft_print_data prints the data that is stored in t_mlx struct. Formats data
+** perfectly for 42.fdf, for all other maps space would have to be adjusted.
 */
 void ft_print_data(t_mlx *mlx)
 {

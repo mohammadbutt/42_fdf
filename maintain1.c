@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/16 10:02:02 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/16 13:24:27 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,25 @@ int *ft_2d_atoi(char *str)
 	return(int_data);
 }
 
+void shift_program(t_mlx *mlx, int key)
+{
+	if(key == UP_K)
+		mlx->y0 = mlx->y0 - 5;
+	else if(key == DOWN_K)
+		mlx->y0 = mlx->y0 + 5;
+	else if(key == RIGHT_K)
+		mlx->x0 = mlx->x0 + 5;
+	else if(key == LEFT_K)
+		mlx->x0 = mlx->x0 - 5;
+	ft_render(mlx);
+}
+
 int program_keys(int key, t_mlx *mlx)
 {
 	if(key == ESCAPE_ESC)
 		exit(0); //When preogram works fine, replace it with ft_exit_success();
-
+	else if(key == UP_K || key == DOWN_K || key == LEFT_K || key == RIGHT_K)
+		shift_program(mlx, key);
 	return(0);
 }
 
@@ -143,11 +157,13 @@ int solve_driver1(int fd, int height, char *argv)
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, P_WIDTH, P_HEIGHT, "ok");
 	height = ft_valid(fd, height, argv);
 	characters = str_data(fd, height, argv);
+	get_struct_values(mlx);
 	mlx->int_data = str_to_int(characters);
 	mlx->map_height = ft_height(characters); // Can we also do mlx->map_height = height;?
 	mlx->map_width = ft_width(characters);
 	ft_render(mlx);
-	mlx_hook(mlx->win_ptr, 2, 5, program_keys, &mlx);	
+//	ft_print_data(mlx);
+	mlx_hook(mlx->win_ptr, 2, 5, program_keys, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return(1);
 }

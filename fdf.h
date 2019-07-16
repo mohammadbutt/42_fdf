@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/16 10:01:55 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/16 13:24:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ int		ft_zero(int *a, int *b, int *c, int *d);
 int		ft_height(char **characters);
 int		ft_width(char **characters);
 int		*ft_2d_atoi(char *str);
+void	shift_program(t_mlx *mlx, int key);
 //int		program_keys(int key, t_mlx **mlx);
 int		program_keys(int key, t_mlx *mlx);
 int 	solve_driver1(int fd, int height, char *argv);
@@ -192,6 +193,7 @@ void	plot_any_line(t_mlx *mlx);
 //void	plot_low_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
 //void	plot_high_line(t_fdf * fdf, int x0, int y0, int x1, int y1);
 //void	plot_any_line(t_fdf *fdf, int x0, int y0, int x1, int y1);
+void	get_struct_values(t_mlx *mlx);
 void	isometric_view(int *x, int *y, int z);
 void	topdown_view(int *x, int *y, int z);
 int		normalize_map(t_fdf *fdf);
