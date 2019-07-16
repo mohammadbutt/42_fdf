@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/15 20:55:01 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/15 21:00:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ int		ft_zero(int *a, int *b, int *c, int *d);
 int		ft_height(char **characters);
 int		ft_width(char **characters);
 int		*ft_2d_atoi(char *str);
-int		program_keys(int key, t_mlx **mlx);
+//int		program_keys(int key, t_mlx **mlx);
+int		program_keys(int key, t_mlx *mlx);
 int 	solve_driver1(int fd, int height, char *argv);
 
 /*
