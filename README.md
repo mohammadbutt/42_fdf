@@ -17,11 +17,13 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 - [x] 6. Keyboard integration - Change Colors.
 
-- [ ] 7. Keyboard integration - Normalize/ standardize the map when zoom is applied.
+- [X] 7. Keyboard integration - Normalize/ standardize the map when zoom is applied.
 
-- [ ] 8. Create a 3D cube from the square.
+- [X] 8. Create a 3D cube from the square.
 
 - [ ] 9. Rotate the 3D cube with mouse.
+
+- [ ] 10. Implement 3D cube methadology to fdf.
 
 # Resources
 ## Reading Resources
