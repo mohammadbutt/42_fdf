@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/16 13:24:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/16 19:14:33 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,8 @@ int		ft_zero(int *a, int *b, int *c, int *d);
 int		ft_height(char **characters);
 int		ft_width(char **characters);
 int		*ft_2d_atoi(char *str);
+void	centeralize_with_zoom(t_mlx *mlx, int key);
+void	zoom_program(t_mlx *mlx, int key);
 void	shift_program(t_mlx *mlx, int key);
 //int		program_keys(int key, t_mlx **mlx);
 int		program_keys(int key, t_mlx *mlx);
@@ -205,7 +207,8 @@ void	vertical_x1_y1(t_fdf *fdf);
 void	horizontal_shift(t_fdf *fdf);
 void	horizontal_render(t_fdf *fdf, int x, int y);
 void	vertical_render(t_fdf *fdf, int x, int y);
-//void	ft_render(t_fdf *fdf);
+void	ft_dots(t_mlx *mlx);
+void	struct_copy(t_mlx *source, t_mlx *dest);
 void	ft_render(t_mlx *mlx);
 void	ft_print_data(t_mlx *mlx);
 #endif
