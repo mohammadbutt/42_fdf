@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/17 15:29:09 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/17 18:42:08 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,14 +167,14 @@ void get_struct_values(t_mlx *mlx)
 	mlx->x1 = mlx->x0 + 15;
 	mlx->y0 = 50;
 	mlx->y1 = mlx->y0;
+//	mlx->y0 = 50;
+//	mlx->y1 = mlx->y0;
+	
 	mlx->color = 0xff;
 //	mlx->color = 0xff;
 //	mlx->x0 = 50;
 //	mlx->y0 = 50;
 //	mlx->x1 = 100;
-//	mlx->y1 = mlx->y0;
-//	mlx->y1 = mlx->y0 + 15;
-//	mlx->y1 = mlx->y0;
 }
 
 /*
@@ -270,8 +270,8 @@ void ft_render(t_mlx *mlx)
 			printf("x0:|%d|, x1:|%d|\n y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 			temp.map_width--;
 */
-			
-/* Works, but we are drawing horizontal first and then vertical
+/*
+// Works, Vertical first then Horizontal
 			mlx->x0 = mlx->x0 + 15;
 			mlx->y0 = mlx->y0 - 15;
 			printf("V: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
@@ -285,15 +285,27 @@ void ft_render(t_mlx *mlx)
 			mlx->x1 = mlx->x1 + 15;
 			temp.map_width--;
 */
+//Horizontal first, then vertical
+			printf("H: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+			plot_any_line(mlx);
+			mlx->x0 = mlx->x0 - 15;
+			mlx->x1 = mlx->x1 - 15;
+			mlx->y0 = mlx->y1 - 15;
+			printf("V: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+			plot_any_line(mlx);
+			printf("   x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+			
+			mlx->x0 = mlx->x0 + 15;
+			mlx->x1 = mlx->x0 + 15;
+			temp.map_width--;
+//			ft_exit("Exiting\n");
 		}
 		temp.map_width = mlx->map_width;
 		temp.map_height--;
 		mlx->x0 = temp.x0;
 		mlx->x1 = temp.x1;
-//		mlx->x1 = temp.x1 + 30;
 		mlx->y0 = mlx->y0 + 15;
 		mlx->y1 = mlx->y1 + 15;
-//		mlx->y1 = mlx->y1 + 15;
 	}
 
 //	printf("x0:|%d|, x1:|%d|\n y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
