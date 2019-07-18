@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/17 18:42:08 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:24:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,11 +290,14 @@ void ft_render(t_mlx *mlx)
 			plot_any_line(mlx);
 			mlx->x0 = mlx->x0 - 15;
 			mlx->x1 = mlx->x1 - 15;
-			mlx->y0 = mlx->y1 - 15;
+//			mlx->y1 = mlx->y1 - 15; // commenting for a quick test
+			mlx->y1 = mlx->y1 + 15; // Adding for test 0.1
 			printf("V: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 			plot_any_line(mlx);
 			printf("   x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-			
+	
+			mlx->y1 = mlx->y1 - 15;
+			mlx->y0 = mlx->y0 - 15;
 			mlx->x0 = mlx->x0 + 15;
 			mlx->x1 = mlx->x0 + 15;
 			temp.map_width--;
