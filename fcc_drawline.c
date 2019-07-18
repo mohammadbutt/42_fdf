@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/17 20:23:00 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:52:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,8 +163,10 @@ void get_struct_values(t_mlx *mlx)
 {
 //	mlx->x0 = (P_WIDTH / 2) - (P_WIDTH/150 * mlx->map_width);   //Works - Put it back on after
 //	mlx->y0 = (P_HEIGHT / 2) - (P_HEIGHT/100 * mlx->map_height); //Works - Put it back on after
+	mlx->size = 15;
 	mlx->x0 = 50;
-	mlx->x1 = mlx->x0 + 15;
+//	mlx->x1 = mlx->x0 + 15;
+	mlx->x1 = mlx->x0 + mlx->size;
 	mlx->y0 = 50;
 	mlx->y1 = mlx->y0;
 //	mlx->y0 = 50;
@@ -201,12 +203,12 @@ void ft_dots(t_mlx *mlx)
 		while(width)
 		{
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, y, 0xff);
-			x = x + 15;
+			x = x + mlx->size;
 			width--;
 		}
 		width = mlx->map_width;
 		x = mlx->x0;
-		y = y + 15;
+		y = y + mlx->size;
 		height--;
 	}
 }
@@ -225,7 +227,37 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 	dest->x1 = source->x1;
 	dest->y1 = source->y1;
 }
+void ft_render_horizontal(t_mlx *mlx)
+{
+	plot_any_line(mlx);
+	mlx->x0 = mlx->x0 - mlx->size;
+	mlx->x1 = mlx->x1 - mlx->size;
+	mlx->y1 = mlx->y1 + mlx->size;
+}
 
+void ft_render_vertical(t_mlx *mlx)
+{
+	plot_any_line(mlx);
+	mlx->y1 = mlx->y1 - mlx->size;
+	mlx->y0 = mlx->y0 - mlx->size;
+	mlx->x0 = mlx->x0 + mlx->size;
+	mlx->x1 = mlx->x0 + mlx->size;
+}
+
+void ft_render_horizontal_vertical(t_mlx *mlx)
+{
+	ft_render_horizontal(mlx);
+	ft_render_vertical(mlx);
+}
+
+void ft_render_edges(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->x0 = temp->x0;
+	mlx->x1 = mlx->x1 - mlx->size;
+	plot_any_line(mlx);
+	mlx->y0 = temp->y0;
+	plot_any_line(mlx);
+}
 /*
 ** For ft_render values of x0 and y0 get modified because the line algorithm
 ** increments x0 and y0.
@@ -237,79 +269,26 @@ void ft_render(t_mlx *mlx)
 
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	struct_copy(mlx, &temp);
-	temp.x0 = mlx->x0;
-	temp.x1 = mlx->x1;
-	temp.y0 = mlx->y0;
-	temp.y1 = mlx->y1;
-	
-	printf("x0:|%d|, x1:|%d|\n y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-	printf("temp.map_height:|%d|\n", temp.map_height);
-	printf("temp.map_width:|%d|\n", temp.map_width);
-//	printf("mlx->x0:|%d|\n", mlx->x0);
-//	printf("mlx->y0:|%d|\n", mlx->y0);
-//	printf("mlx->x1:|%d|\n", mlx->x1);
-//	printf("mlx->y1:|%d|\n\n", mlx->y1);
 	while(temp.map_height)
 	{
 		while(temp.map_width)
 		{
-//Horizontal first, then vertical
-			printf("H: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-			plot_any_line(mlx);
-			mlx->x0 = mlx->x0 - 15;
-			mlx->x1 = mlx->x1 - 15;
-			mlx->y1 = mlx->y1 + 15; // Adding for test 0.1
-			printf("V: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-			plot_any_line(mlx);
-			printf("   x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-			mlx->y1 = mlx->y1 - 15;
-			mlx->y0 = mlx->y0 - 15;
-			mlx->x0 = mlx->x0 + 15;
-			mlx->x1 = mlx->x0 + 15;
+			ft_render_horizontal_vertical(mlx);
 			temp.map_width--;
-//			ft_exit("Exiting\n");
 		}
 		temp.map_width = mlx->map_width;
 		temp.map_height--;
-		printf("x0: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-		mlx->y0 = mlx->y0 + 15;
-		mlx->y1 = mlx->y1 + 15;	
-		printf("y0: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-
+		mlx->y0 = mlx->y0 + mlx->size;
+		mlx->y1 = mlx->y1 + mlx->size;
 		if(temp.map_height == 0)
-		{
-			printf("mlx->x0, mlx->y0, mlx->x1, mlx->y1:\n");
-			printf("x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-			printf("temp.x0, temp.y0, temp.x1, temp.y1:\n");
-			printf("x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", temp.x0, temp.x1, temp.y0, temp.y1);
-			mlx->x0 = temp.x0;
-			mlx->x1 = mlx->x1 - 15;
-			plot_any_line(mlx);
-			mlx->y0 = temp.y0;
-			plot_any_line(mlx);
-		}
+			ft_render_edges(mlx, &temp);
 		mlx->x0 = temp.x0;
 		mlx->x1 = temp.x1;
 	}
-
-//	printf("x0:|%d|, x1:|%d|\n y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
-//	plot_any_line(mlx);
-
 	mlx->x0 = temp.x0;
 	mlx->y0 = temp.y0;
 	mlx->x1 = temp.x1;
 	mlx->y1 = temp.y1;
-	printf("temp.map_height:|%d|\n", temp.map_height);
-	printf("temp.map_width:|%d|\n", temp.map_width);
-//	printf("mlx->x0:|%d|\n", mlx->x0);
-//	printf("mlx->y0:|%d|\n", mlx->y0);
-//	printf("mlx->x1:|%d|\n", mlx->x1);
-//	printf("mlx->y1:|%d|\n", mlx->y1);
-
-
-//	mlx->x0 = mlx->x1;
-//	mlx->y0 = mlx->y1;
-//	mlx->x1 = mlx->x1 + 15;
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/17 20:23:04 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:52:34 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct	s_mlx
 	int			**int_data;
 	int			map_width;
 	int			map_height;
+//	int			size;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
 
@@ -209,6 +210,10 @@ void	horizontal_render(t_fdf *fdf, int x, int y);
 void	vertical_render(t_fdf *fdf, int x, int y);
 void	ft_dots(t_mlx *mlx);
 void	struct_copy(t_mlx *source, t_mlx *dest);
+void	ft_render_horizontal(t_mlx *mlx);
+void	ft_render_vertical(t_mlx *mlx);
+void	ft_render_horizontal_vertical(t_mlx *mlx);
+void	ft_render_edges(t_mlx *mlx, t_mlx *temp);
 void	ft_render(t_mlx *mlx);
 void	ft_print_data(t_mlx *mlx);
 #endif
