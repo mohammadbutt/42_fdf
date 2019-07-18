@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/17 20:55:43 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/18 12:49:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,18 +165,11 @@ void get_struct_values(t_mlx *mlx)
 //	mlx->y0 = (P_HEIGHT / 2) - (P_HEIGHT/100 * mlx->map_height); //Works - Put it back on after
 	mlx->size = 15;
 	mlx->x0 = 50;
-//	mlx->x1 = mlx->x0 + 15;
 	mlx->x1 = mlx->x0 + mlx->size;
 	mlx->y0 = 50;
 	mlx->y1 = mlx->y0;
-//	mlx->y0 = 50;
-//	mlx->y1 = mlx->y0;
 	
 	mlx->color = 0xff;
-//	mlx->color = 0xff;
-//	mlx->x0 = 50;
-//	mlx->y0 = 50;
-//	mlx->x1 = 100;
 }
 
 /*
@@ -227,6 +220,21 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 	dest->x1 = source->x1;
 	dest->y1 = source->y1;
 }
+
+/*
+** ft_render_horizontal and ft_render_vertical create a flat map.
+** There is a lot of addition and subtraction, so I will try my best to
+** explain a few points.
+** plot_any_line(mlx) simply draws a straight horizontal line from x0 to x1,
+** going left to right ⇨ . In doing so, x0 becomes x1.
+** size is subtracted from x0 and x1, so when the vertical straight line is
+** drawn, it would start at the tail, instead of the head.
+** size is added to y1, so a vertical line can be drawn in the downwards
+** direction ⇩ .
+*/
+
+// Both functions work, just
+// Method 1
 void ft_render_horizontal(t_mlx *mlx)
 {
 	plot_any_line(mlx);
@@ -235,6 +243,15 @@ void ft_render_horizontal(t_mlx *mlx)
 	mlx->y1 = mlx->y1 + mlx->size;
 }
 
+/*
+** for ft_render_vertical, x0 = x1, but y1 is greater than y0, which allows us
+** to draw vertical line in the downwards direction ⇩ .
+** In the next 2 lines, size is subtracted from the y1 and y0, to bring y1 and
+** y0 back to the tail, also y1 and y0 are equal to each other.
+** size is added to x0 and x1, but x1 is greater x0 allowing us to create a
+** striaght horizontal line next time.
+*/
+
 void ft_render_vertical(t_mlx *mlx)
 {
 	plot_any_line(mlx);
@@ -242,6 +259,64 @@ void ft_render_vertical(t_mlx *mlx)
 	mlx->y0 = mlx->y0 - mlx->size;
 	mlx->x0 = mlx->x0 + mlx->size;
 	mlx->x1 = mlx->x0 + mlx->size;
+}
+
+/*
+** ft_render_horizontal_vertical just calls onto ft_render_horizontal and
+** ft_render_vertical to render lines. Below is how lines are being created.
+** ↱ ↱ ↱ ↱  
+** ↱ ↱ ↱ ↱
+** Which looks like such:
+**  _ _ _ _ _ _ _
+** |_|_|_|_|_|_|_
+** |_|_|_|_|_|_|_
+** | | | | | | |
+** 
+** The map is rendered fine, except, there are no enclosed lines rendered at the
+** end and the bottom, ft_render_edges takes care of that.
+*/
+
+void ft_render_horizontal_vertical(t_mlx *mlx)
+{
+	ft_render_horizontal(mlx);
+	ft_render_vertical(mlx);
+}
+
+/*
+** ft_render_edges creates the bottom borderline for the map,a horizontal line
+** from left to right and then the right borderline, a vertical line from top to
+** bottom. Below is how the rendered map would look like now:
+**  _ _ _ _ _ _ _
+** |_|_|_|_|_|_|_|
+** |_|_|_|_|_|_|_|
+** |_|_|_|_|_|_|_|
+*/
+
+
+void ft_render_edges(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->x0 = temp->x0;
+	mlx->x1 = mlx->x1 - mlx->size;
+	plot_any_line(mlx);
+	mlx->y0 = temp->y0;
+	plot_any_line(mlx);
+}
+
+
+/*
+// Method 2
+void ft_render_horizontal(t_mlx *mlx)
+{
+	plot_any_line(mlx);
+}
+
+void ft_render_vertical(t_mlx *mlx)
+{
+	mlx->y1 = mlx->y1 + mlx->size;
+	plot_any_line(mlx);
+	mlx->y0 = mlx->y0 - mlx->size;
+	mlx->y1 = mlx->y0;
+	mlx->x1 = mlx->x1 + mlx->size;
 }
 
 void ft_render_horizontal_vertical(t_mlx *mlx)
@@ -255,9 +330,13 @@ void ft_render_edges(t_mlx *mlx, t_mlx *temp)
 	mlx->x0 = temp->x0;
 	mlx->x1 = mlx->x1 - mlx->size;
 	plot_any_line(mlx);
+	mlx->x0 = temp->x0;
+	mlx->x1 = temp->x0;
 	mlx->y0 = temp->y0;
 	plot_any_line(mlx);
 }
+*/
+
 /*
 ** For ft_render values of x0 and y0 get modified because the line algorithm
 ** increments x0 and y0.
