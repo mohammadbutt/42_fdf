@@ -33,6 +33,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 4. [Wikipedia - Xiaolin Wu's line algorithm - Chooses the shade of each color](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
 5. [Bresenham's Line Algorithm - Free Code Camp](https://www.freecodecamp.org/news/how-to-code-your-first-algorithm-draw-a-line-ca121f9a1395/)
 6. [Bresenham's Line Algorithm in C](https://www.thecrazyprogrammer.com/2017/01/bresenhams-line-drawing-algorithm-c-c.html)
+7. [Color Gradient - Color Theory - Wikipedia](https://en.wikibooks.org/wiki/Color_Theory/Color_gradient)
 7. [Isometric 2:1 Projections: Isometric Infographic Vectors](http://vectips.com/tutorials/isometric-infographic-vectors/)
 8. [Military(Oblique) projection - Wikipedia](https://en.wikipedia.org/wiki/Oblique_projection)
 9. [Mnemonics in trigonometry - Wikipedia](https://en.wikipedia.org/wiki/Mnemonics_in_trigonometry)
