@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/18 12:49:05 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/18 19:13:32 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void calculate_delta_xy(t_mlx *mlx)
 
 void plot_low_line(t_mlx *mlx)
 {
+	size_t hue;
+
+	hue = mlx->color;
 	calculate_delta_xy(mlx);
 	mlx->yi = 1;
 	if(mlx->dy < 0)
@@ -73,7 +76,8 @@ void plot_low_line(t_mlx *mlx)
 	mlx->delta_error = (2 * mlx->dy) - mlx->dx;
 	while(mlx->x0 < mlx->x1)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, mlx->x0, mlx->y0, mlx->color);
+//		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, mlx->x0, mlx->y0, mlx->color);
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, mlx->x0, mlx->y0, ft_hue(mlx->y0, hue));
 		if(mlx->delta_error > 0)
 		{
 			mlx->y0 = mlx->y0 + mlx->yi;
@@ -86,6 +90,9 @@ void plot_low_line(t_mlx *mlx)
 
 void plot_high_line(t_mlx *mlx)
 {
+	size_t hue;
+
+	hue = mlx->color;
 	calculate_delta_xy(mlx);
 	mlx->xi = 1;
 	if(mlx->dx < 0)
@@ -96,7 +103,8 @@ void plot_high_line(t_mlx *mlx)
 	mlx->delta_error = (2 * mlx->dx) - mlx->dy;
 	while(mlx->y0 < mlx->y1)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, mlx->x0, mlx->y0, mlx->color);
+//		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, mlx->x0, mlx->y0, mlx->color);
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, mlx->x0, mlx->y0, ft_hue(mlx->y0, hue));
 		if(mlx->delta_error > 0)
 		{
 			mlx->x0 = mlx->x0 + mlx->xi;
@@ -158,7 +166,7 @@ void ft_menu(t_mlx *mlx)
 ** P_WIDTH is divided by 150 and P_HEIGHT is divided by 100 and multiplied
 ** by the width and height of the map to centeralize it by off setting.
 */
-
+/*
 void get_struct_values(t_mlx *mlx)
 {
 //	mlx->x0 = (P_WIDTH / 2) - (P_WIDTH/150 * mlx->map_width);   //Works - Put it back on after
@@ -171,7 +179,7 @@ void get_struct_values(t_mlx *mlx)
 	
 	mlx->color = 0xff;
 }
-
+*/
 /*
 ** ft_dots: prints dots on the screen for a map.
 ** A dot is placed wherever there is a value.
@@ -210,7 +218,7 @@ void ft_dots(t_mlx *mlx)
 ** struct_copy: Copies values of source struct to destination struct:
 ** destination values are temporary values;
 */
-
+/*
 void struct_copy(t_mlx *source, t_mlx *dest)
 {
 	dest->map_height = source->map_height;
@@ -220,7 +228,7 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 	dest->x1 = source->x1;
 	dest->y1 = source->y1;
 }
-
+*/
 /*
 ** ft_render_horizontal and ft_render_vertical create a flat map.
 ** There is a lot of addition and subtraction, so I will try my best to
@@ -235,12 +243,17 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 
 // Both functions work, just
 // Method 1
+
 void ft_render_horizontal(t_mlx *mlx)
 {
+//	if(temp->map_width < 5)
+//	printf("x0: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+	mlx->x1 = mlx->x0 + mlx->size;
 	plot_any_line(mlx);
 	mlx->x0 = mlx->x0 - mlx->size;
 	mlx->x1 = mlx->x1 - mlx->size;
 	mlx->y1 = mlx->y1 + mlx->size;
+//	ft_exit()
 }
 
 /*
@@ -336,6 +349,42 @@ void ft_render_edges(t_mlx *mlx, t_mlx *temp)
 	plot_any_line(mlx);
 }
 */
+/*
+** struct_copy: Copies values of source struct to destination struct:
+** destination values are temporary values;
+*/
+
+void struct_copy(t_mlx *source, t_mlx *dest)
+{
+	dest->map_height = source->map_height;
+	dest->map_width = source->map_width;
+	dest->x0 = source->x0;
+	dest->y0 = source->y0;
+	dest->x1 = source->x1;
+	dest->y1 = source->y1;
+}
+
+void get_struct_values(t_mlx *mlx)
+{
+	t_mlx temp;
+	size_t hue;
+	mlx->size = 15;
+	mlx->x0 = (P_WIDTH / 2) - (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
+	mlx->y0 = (P_HEIGHT / 2) - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
+	mlx->x1 = mlx->x0;
+	mlx->y1 = mlx->y0;
+	
+//	t_mlx temp;	
+//	mlx->size = 15;
+//	mlx->x0 = mlx->size;
+//	mlx->x1 = mlx->size;
+//	mlx->y0 = mlx->size;
+//	mlx->y1 = mlx->size;
+
+	mlx->color = 0xff000;
+//	hue = 0xff;
+//	mlx->color = ft_hue(mlx->y0, hue);
+}
 
 /*
 ** For ft_render values of x0 and y0 get modified because the line algorithm
@@ -345,8 +394,9 @@ void ft_render_edges(t_mlx *mlx, t_mlx *temp)
 void ft_render(t_mlx *mlx)
 {
 	t_mlx temp;
-
+	
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+//	ft_menu(mlx);
 	struct_copy(mlx, &temp);
 	while(temp.map_height)
 	{

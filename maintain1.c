@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/17 20:52:37 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/18 19:15:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,49 +121,61 @@ int *ft_2d_atoi(char *str)
 	free(words);
 	return(int_data);
 }
+int ft_hue(int y, int color)
+{
+	int final_color;
+
+	final_color = color + ft_abs(y);
+	return(final_color);
+}
+void random_color(t_mlx *mlx, int key)
+{
+	size_t random_seed;
+
+	random_seed = mlx->y0;
+	random_seed = rand();
+	mlx->color = rand() % random_seed;
+//	mlx->color = rand();
+	ft_render(mlx);
+}
 /*
 ** Map does not offset when the map is zoomed in or out.
 ** Centeralize_with_zoom helps offset when zoom is applied to
 ** centeralize the map.
 */
+
 void centeralize_with_zoom(t_mlx *mlx, int key)
 {
-/*
-** Note: Leave th values at 9 and 5.5 for now. But need to find a formula	
-** that computes the center better.
-*/
 	if(key == ZOOM_IN_Q)
 	{
-		mlx->x0 = mlx->x0 - 9;
-		mlx->x1 = mlx->x1 - 9;
-		mlx->y0 = mlx->y0 - 5.5;
-		mlx->y1 = mlx->y1 - 5.5;
+		mlx->x0 = mlx->x0 - (P_WIDTH/160 * mlx->map_width);
+		mlx->x1 = mlx->x0;
+		mlx->y0 = mlx->y0 - (P_HEIGHT/95 * mlx->map_height);
+		mlx->y1 = mlx->y0;
 	}
 	else if(key == ZOOM_OUT_A)
 	{
-		mlx->x0 = mlx->x0 + 9;
-		mlx->x1 = mlx->x1 + 9;
-		mlx->y0 = mlx->y0 + 5.5;
-		mlx->y1 = mlx->y1 + 5.5;
+		mlx->x0 = mlx->x0 + (P_WIDTH/160 * mlx->map_width);
+		mlx->x1 = mlx->x0;
+		mlx->y0 = mlx->y0 + (P_HEIGHT/95 * mlx->map_height);
+		mlx->y1 = mlx->y0;
 	}
 }
 void zoom_program(t_mlx *mlx, int key)
 {
+	int i;
+
+	i = 1;
 	if(key == ZOOM_IN_Q)
 	{
-		mlx->x0 = mlx->x0 * 1.02;
-		mlx->x1 = mlx->x1 * 1.02;
-		mlx->y0 = mlx->y0 * 1.02;
-		mlx->y1 = mlx->y1 * 1.02;
+		mlx->size = mlx->size + 15;
+		centeralize_with_zoom(mlx, key);
 	}
-	else if(key == ZOOM_OUT_A)
+	if(key == ZOOM_OUT_A && mlx->size != 15)
 	{
-		mlx->x0 = mlx->x0 / 1.02;
-		mlx->x1 = mlx->x1 / 1.02;
-		mlx->y0 = mlx->y0 / 1.02;
-		mlx->y1 = mlx->y1 / 1.02;
+		mlx->size = mlx->size -15;
+		centeralize_with_zoom(mlx, key);
 	}
-	centeralize_with_zoom(mlx, key);
 	ft_render(mlx);
 }
 
@@ -200,6 +212,8 @@ int program_keys(int key, t_mlx *mlx)
 		shift_program(mlx, key);
 	else if(key == ZOOM_IN_Q || key == ZOOM_OUT_A)
 		zoom_program(mlx, key);
+	else if(key == RANDOM_COLOR_R)
+		random_color(mlx, key);
 
 	return(0);
 }
@@ -207,6 +221,7 @@ int program_keys(int key, t_mlx *mlx)
 int solve_driver1(int fd, int height, char *argv)
 {
 	t_mlx *mlx;
+//	t_mlx temp;
 	char **characters;
 	int **int_data;
 
