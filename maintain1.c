@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/18 19:15:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/18 20:29:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ int *ft_2d_atoi(char *str)
 int ft_hue(int y, int color)
 {
 	int final_color;
+	final_color = color + ft_abs(y / 2);
 
-	final_color = color + ft_abs(y);
 	return(final_color);
 }
 void random_color(t_mlx *mlx, int key)
@@ -135,7 +135,6 @@ void random_color(t_mlx *mlx, int key)
 	random_seed = mlx->y0;
 	random_seed = rand();
 	mlx->color = rand() % random_seed;
-//	mlx->color = rand();
 	ft_render(mlx);
 }
 /*
@@ -148,32 +147,29 @@ void centeralize_with_zoom(t_mlx *mlx, int key)
 {
 	if(key == ZOOM_IN_Q)
 	{
-		mlx->x0 = mlx->x0 - (P_WIDTH/160 * mlx->map_width);
+		mlx->x0 = mlx->x0 - 9; //(P_WIDTH/160 * mlx->map_width);
 		mlx->x1 = mlx->x0;
-		mlx->y0 = mlx->y0 - (P_HEIGHT/95 * mlx->map_height);
+		mlx->y0 = mlx->y0 - 6;//(P_HEIGHT/95 * mlx->map_height);
 		mlx->y1 = mlx->y0;
 	}
 	else if(key == ZOOM_OUT_A)
 	{
-		mlx->x0 = mlx->x0 + (P_WIDTH/160 * mlx->map_width);
+		mlx->x0 = mlx->x0 + 9;//(P_WIDTH/160 * mlx->map_width);
 		mlx->x1 = mlx->x0;
-		mlx->y0 = mlx->y0 + (P_HEIGHT/95 * mlx->map_height);
+		mlx->y0 = mlx->y0 + 6;//(P_HEIGHT/95 * mlx->map_height);
 		mlx->y1 = mlx->y0;
 	}
 }
 void zoom_program(t_mlx *mlx, int key)
 {
-	int i;
-
-	i = 1;
 	if(key == ZOOM_IN_Q)
 	{
-		mlx->size = mlx->size + 15;
+		mlx->size = mlx->size + 1;
 		centeralize_with_zoom(mlx, key);
 	}
-	if(key == ZOOM_OUT_A && mlx->size != 15)
+	if(key == ZOOM_OUT_A && mlx->size != 1)
 	{
-		mlx->size = mlx->size -15;
+		mlx->size = mlx->size - 1;
 		centeralize_with_zoom(mlx, key);
 	}
 	ft_render(mlx);
