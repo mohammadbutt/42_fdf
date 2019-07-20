@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/18 20:30:02 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/20 16:15:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,8 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 // Both functions work, just
 // Method 1
 
+//void get_z_value(t_mlx *mlx)
+
 void ft_render_horizontal(t_mlx *mlx)
 {
 //	if(temp->map_width < 5)
@@ -276,10 +278,7 @@ void ft_render_vertical(t_mlx *mlx)
 
 /*
 ** ft_render_horizontal_vertical just calls onto ft_render_horizontal and
-** ft_render_vertical to render lines. Below is how lines are being created.
-** ↱ ↱ ↱ ↱  
-** ↱ ↱ ↱ ↱
-** Which looks like such:
+** ft_render_vertical to render lines. Below is how the lines would appear:
 **  _ _ _ _ _ _ _
 ** |_|_|_|_|_|_|_
 ** |_|_|_|_|_|_|_
@@ -369,10 +368,15 @@ void get_struct_values(t_mlx *mlx)
 	t_mlx temp;
 	size_t hue;
 	mlx->size = 15;
-	mlx->x0 = (P_WIDTH / 2) - (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
-	mlx->y0 = (P_HEIGHT / 2) - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
+	mlx->x = 0;
+	mlx->y = 0;
+	mlx->x0 = 0;
+	mlx->y0 = 0;
+//	mlx->x0 = (P_WIDTH / 2) - (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
+//	mlx->y0 = (P_HEIGHT / 2) - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
 	mlx->x1 = mlx->x0;
 	mlx->y1 = mlx->y0;
+	mlx->camera = 0;
 	
 //	t_mlx temp;	
 //	mlx->size = 15;
@@ -390,7 +394,7 @@ void get_struct_values(t_mlx *mlx)
 ** For ft_render values of x0 and y0 get modified because the line algorithm
 ** increments x0 and y0.
 */
-
+/*
 void ft_render(t_mlx *mlx)
 {
 	t_mlx temp;
@@ -419,6 +423,37 @@ void ft_render(t_mlx *mlx)
 	mlx->x1 = temp.x1;
 	mlx->y1 = temp.y1;
 }
+*/
+void ft_render(t_mlx *mlx)
+{
+	t_mlx temp;
+
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	struct_copy(mlx, &temp);
+	while(mlx->y < temp.map_height)
+	{
+		while(mlx->x < temp.map_width)
+		{
+			ft_render_horizontal_vertical(mlx);
+			mlx->x++;
+		}
+		mlx->x = 0;
+		mlx->y++;
+		mlx->y0 = mlx->y0 + mlx->size;
+		mlx->y1 = mlx->y1 + mlx->size;
+		if(mlx->y == temp.map_height)
+			ft_render_edges(mlx, &temp);
+		mlx->x0 = temp.x0;
+		mlx->x1 = temp.x1;
+	}
+	mlx->x0 = temp.x0;
+	mlx->y0 = temp.y0;
+	mlx->x1 = temp.x1;
+	mlx->y1 = temp.y1;
+	mlx->y = 0;
+}
+
+
 
 /*
 ** ft_print_data prints the data that is stored in t_mlx struct. Formats data
@@ -452,3 +487,4 @@ void ft_print_data(t_mlx *mlx)
 		height--;
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/18 20:47:15 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/20 16:15:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,8 @@ void shift_program(t_mlx *mlx, int key)
 	else if(key == RIGHT_K)
 	{
 		mlx->x0 = mlx->x0 + 5;
-		mlx->x1 = mlx->x1 + 5;
+	//	mlx->x1 = mlx->x1 + 5;
+		mlx->x1 = mlx->x0;
 	}
 	else if(key == LEFT_K)
 	{
@@ -201,6 +202,28 @@ void shift_program(t_mlx *mlx, int key)
 	ft_render(mlx);
 }
 
+void iso_projection(t_mlx *mlx)
+{
+//	mlx->x1 = (mlx->x0 * cos(0.52)) - (mlx->y0 * sin(0.52));
+//	mlx->y1 = (mlx->x0 * sin(0.52)) + (mlx->y0 * cos(0.52));
+//	mlx->x1 = mlx->x0;
+//	mlx->y1 = mlx->y0;
+	
+//	mlx->x1 = (mlx->x0 - mlx->y0) * cos(0.52399);
+//	mlx->y1 = (mlx->x0 + mlx->y0) * cos(0.52399);
+	
+	ft_render(mlx);
+}
+/*
+void change_camera(t_mlx *mlx)
+{
+	if(mlx->camera == 0)
+		mlx->camera == 1;
+	else if(mlx->camera == 1)
+		mlx->camera == 0;
+	ft_render(mlx);
+}
+*/
 int program_keys(int key, t_mlx *mlx)
 {
 	if(key == ESCAPE_ESC)
@@ -211,7 +234,8 @@ int program_keys(int key, t_mlx *mlx)
 		zoom_program(mlx, key);
 	else if(key == RANDOM_COLOR_R)
 		random_color(mlx, key);
-
+//	else if(key == CHANGE_CAMERA_C)
+//		iso_projection(mlx);
 	return(0);
 }
 

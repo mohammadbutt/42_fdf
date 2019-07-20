@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/18 20:46:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/20 16:15:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct	s_mlx
 	int			**int_data;
 	int			map_width;
 	int			map_height;
+	int			camera;
 //	int			size;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
@@ -180,6 +181,7 @@ void	centeralize_with_zoom(t_mlx *mlx, int key);
 void	zoom_program(t_mlx *mlx, int key);
 void	shift_program(t_mlx *mlx, int key);
 //int		program_keys(int key, t_mlx **mlx);
+void	iso_projection(t_mlx *mlx);
 int		program_keys(int key, t_mlx *mlx);
 int 	solve_driver1(int fd, int height, char *argv);
 
