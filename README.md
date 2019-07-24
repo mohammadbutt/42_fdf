@@ -53,4 +53,4 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 8. [Rotation in 3D](https://www.youtube.com/watch?v=wg9bI8-Qx2Q)
 
 ## Tools
-1. [Online Graph Calculator](https://www.desmos.com/calculatorhttps://www.desmos.com/calculator)
+1. [Online Graph Calculator](https://www.desmos.com/calculator)
