@@ -51,6 +51,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 6. [Rotating points using rotation Matrix](https://www.youtube.com/watch?v=OYuoPTRVzxY)
 7. [Rotation Matrix](https://www.youtube.com/watch?v=Ta8cKqltPfU)
 8. [Rotation in 3D](https://www.youtube.com/watch?v=wg9bI8-Qx2Q)
+9. [Linear Transformation - Khan Academy](https://www.khanacademy.org/math/linear-algebra/matrix-transformations/lin-trans-examples/v/linear-transformation-examples-rotations-in-r2)
 
 ## Tools
 1. [Online Graph Calculator](https://www.desmos.com/calculator)
