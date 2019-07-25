@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 20:10:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/24 20:38:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -767,6 +767,30 @@ void find_max_xy(t_mlx **mlx, t_mlx *temp)
 	}
 }
 
+void find_min_xy(t_mlx **mlx, t_mlx *temp)
+{
+	if(temp->x0 < temp->x1)
+	{
+		(*mlx)->x0 = temp->x0;
+		(*mlx)->x1 = temp->x0;
+	}
+	else
+	{
+		(*mlx)->x0 = temp->x1;
+		(*mlx)->x1 = temp->x1;
+	}
+	if(temp->y0 < temp->y1)
+	{
+		(*mlx)->y0 = temp->y0;
+		(*mlx)->y1 = temp->y0;
+	}
+	else
+	{
+		(*mlx)->y0 = temp->y1;
+		(*mlx)->y1 = temp->y1;
+	}
+}
+
 void mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
 {
 	temp->x0 = (*mlx)->x0;
@@ -855,7 +879,7 @@ void subtract_x0y0_from_x1y1(t_mlx **mlx)
 	(*mlx)->y1 = (*mlx)->y1 - (*mlx)->y0;
 }
 
-void	add_rotated_x0y0_to_x1y1(t_mlx **mlx)
+void 	add_rotated_x1y1_to_x0y0(t_mlx **mlx)
 {
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->x0;
 	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y0;
@@ -880,7 +904,7 @@ void top_horizontal(t_mlx **mlx)
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
 	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
-	add_rotated_x0y0_to_x1y1(mlx);
+	add_rotated_x1y1_to_x0y0(mlx);
 	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
 	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
 	plot_any_line(mlx);
@@ -901,7 +925,32 @@ void right_vertical(t_mlx **mlx)
 
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 
-	add_rotated_x0y0_to_x1y1(mlx);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+}
+
+void bottom_horizontal(t_mlx **mlx)
+{
+	t_mlx temp;
+	double degree_angle;
+
+	degree_angle = -150;
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+
+	mlx_xy_to_temp_xy(mlx, &temp);
+	plot_any_line(mlx);
+	find_min_xy(mlx, &temp);
+}
+
+void left_vertical(t_mlx **mlx)
+{
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y1 = (*mlx)->y;
+
 	plot_any_line(mlx);
 }
 
@@ -949,12 +998,12 @@ int main(void)
 //	printf("4. left_bottom_diagonal\n");
 //	left_bottom_diagonal(&mlx);
 
-//	ft_diamond(&mlx);
+	ft_diamond(&mlx);
 	
-	printf("top_horizontal:\n");
-	top_horizontal(&mlx);
-	printf("right_vertical:\n");
-	right_vertical(&mlx);
+//	printf("top_horizontal:\n");
+//	top_horizontal(&mlx);
+//	printf("right_vertical:\n");
+//	right_vertical(&mlx);
 //	printf("bottom_horizontal:\n");
 //	bottom_horizontal(&mlx);
 //	printf("left_vertical:\n");
