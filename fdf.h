@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/20 16:15:15 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/21 19:00:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	double		x;
-	double		y;
+//	double		x;
+//	double		y;
+	int			x;
+	int			y;
 	int			size;
 	size_t		color;
 	int			x0;
@@ -122,6 +124,8 @@ typedef struct	s_mlx
 	int			map_width;
 	int			map_height;
 	int			camera;
+	double		angle_y;
+	double		angle_z;
 //	int			size;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
@@ -214,9 +218,10 @@ void	horizontal_render(t_fdf *fdf, int x, int y);
 void	vertical_render(t_fdf *fdf, int x, int y);
 void	ft_dots(t_mlx *mlx);
 void	struct_copy(t_mlx *source, t_mlx *dest);
-void	ft_render_horizontal(t_mlx *mlx);
-void	ft_render_vertical(t_mlx *mlx);
-void	ft_render_horizontal_vertical(t_mlx *mlx);
+void	get_z_value(t_mlx *mlx, t_mlx *temp);
+void	ft_render_horizontal(t_mlx *mlx, t_mlx *temp);
+void	ft_render_vertical(t_mlx *mlx, t_mlx *temp);
+void	ft_render_horizontal_vertical(t_mlx *mlx, t_mlx *temp);
 void	ft_render_edges(t_mlx *mlx, t_mlx *temp);
 void	ft_render(t_mlx *mlx);
 void	ft_print_data(t_mlx *mlx);

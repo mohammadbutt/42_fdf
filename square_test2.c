@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 20:10:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/21 15:54:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void plot_low_line(t_mlx **mlx)
 	(*mlx)->delta_error = (2 * (*mlx)->dy) - (*mlx)->dx;
 	while((*mlx)->x0 < (*mlx)->x1)
 	{
-//		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
 		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, (*mlx)->x0,
 				(*mlx)->y0, (*mlx)->color);
 		if((*mlx)->delta_error > 0)
@@ -81,7 +80,6 @@ void plot_high_line(t_mlx **mlx)
 	(*mlx)->delta_error = (2 * (*mlx)->dx) - (*mlx)->dy;
 	while((*mlx)->y0 < (*mlx)->y1)
 	{
-//		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
 		mlx_pixel_put((*mlx)->mlx_ptr, (*mlx)->win_ptr, (*mlx)->x0,
 				(*mlx)->y0, (*mlx)->color);
 		if((*mlx)->delta_error > 0)
@@ -334,13 +332,8 @@ void shift_program(t_mlx **mlx, int key)
 		(*mlx)->x = (*mlx)->x + 5;
 	else if(key == LEFT_K)
 		(*mlx)->x = (*mlx)->x - 5;
-//	top_horizontal(mlx);
-//	right_vertical(mlx);
-//	bottom_horizontal(mlx);
-//	left_vertical(mlx);
 //	draw_square(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
-//	draw_cube(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
-//	ft_diamond(mlx);
+	draw_cube(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
 }
 
 void zoom_program(t_mlx **mlx, int key)
@@ -386,12 +379,10 @@ void get_struct_values(t_mlx **mlx)
 {
 	(*mlx)->x = P_WIDTH / 2;
 	(*mlx)->y = P_HEIGHT / 2;
-	(*mlx)->size = 100;
+	(*mlx)->size = 30;
 	(*mlx)->color = 0x7FFFD4;
 	(*mlx)->angle_y = 0.5;
 	(*mlx)->angle_z = 0.25;
-	(*mlx)->ro_x = 0;
-	(*mlx)->ro_y = 0;
 //	(*mlx)->color = 0x00ffff;
 }
 
@@ -421,490 +412,48 @@ int program_keys(int key, t_mlx **mlx)
 
 }
 
-/*
-void horizontal_down(t_mlx **mlx)
-{
-	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->y0 = (*mlx)->y;
-
-	(*mlx)->x1 = (*mlx)->x0 + 100;
-	(*mlx)->y1 = (*mlx)->y0;
-//	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y1 * 0.5;
-	plot_any_line(mlx);
-}
-
-
-
-void right_top_diagonal(t_mlx **mlx)
-{
-	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->y0 = (*mlx)->y;
-	
-	(*mlx)->y1 = (*mlx)->y0;
-	(*mlx)->x1 = (*mlx)->x0 + 100;
-	(*mlx)->y1 = (*mlx)->y0;
-//	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y1 * 0.28;
-	plot_any_line(mlx);
-}
-
-void right_bottom_diagonal(t_mlx **mlx)
-{	
-	(*mlx)->y1 = (*mlx)->y1 + 100;
-//	(*mlx)->x1 = (*mlx)->x1 - (*mlx)->x1 * 0.156;
-	plot_any_line(mlx);	
-}
-
-void left_top_diagonal(t_mlx **mlx)
-{
-
- 	(*mlx)->x0 = (*mlx)->x;
- 	(*mlx)->y0 = (*mlx)->y;
-	
-	(*mlx)->x1 = (*mlx)->x0 - 100;
-	(*mlx)->y1 = (*mlx)->y0;
-//	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y1 * 0.28;
-	plot_any_line(mlx);
-}
-
-void left_bottom_diagonal(t_mlx **mlx)
-{
-	(*mlx)->y1 = (*mlx)->y1 + 100;
-//	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->x1 * 0.156;
-	plot_any_line(mlx);
-}
-*/
-
-/*
-void after_rotation(t_mlx **mlx)
-{
-	t_mlx temp;
-
-	radian = 0.785;
-	temp.x1 = ((*mlx)->x1 * cos(radian)) - ((*mlx)->y1 * sin(radian));
-	temp.y1 = ((*mlx)->x1 * sin(radian)) + ((*mlx)->y1 * cos(radian));
-
-	(*mlx)->x1 = temp.x1;
-	(*mlx)->y1 = temp.y1;
-}
-*/
-/*
-void calculate_rotation_matrix_xy(t_mlx **mlx)
-{
-	(*mlx)->ro_x = (*mlx)->x1 - (*mlx)->x0;
-	(*mlx)->ro_y = (*mlx)->y1 - (*mlx)->y0;
-}
-double degrees_to_radian(double degrees)
-{
-	double radian;
-
-	radian = degrees * (M_PI/180);
-	return(radian);
-}
-
-void apply_rotation(t_mlx **mlx, double degrees)
-{
-	t_mlx temp;
-	double radian;
-	
-	radian = degrees_to_radian(degrees);
-	printf("radians:|%f|\n", radian);
-	calculate_rotation_matrix_xy(mlx);	
-	temp.x1 = ((*mlx)->ro_x * cos(radian)) - ((*mlx)->ro_y * sin(radian));
-	temp.y1 = ((*mlx)->ro_x * sin(radian)) + ((*mlx)->ro_y * cos(radian));
-	
-//	(*mlx)->x1 = (*mlx)->x1 + temp.x1;
-//	(*mlx)->y1 = (*mlx)->y1 + temp.y1;
-	(*mlx)->x0 = (*mlx)->x0 + temp.x1;
-	(*mlx)->y0 = (*mlx)->y0 + temp.y1;
-}
-*/
-/*
-void after_rotation(t_mlx **mlx, double degrees)
-{
-	t_mlx temp;
-	double radian;
-
-//	temp.x0 = (*mlx)->x0;
-//	temp.x1 = (*mlx)->x1;
-//	temp.y0 = (*mlx)->y0;
-//	temp.y1 = (*mlx)->y1;
-//	temp.x = (*mlx)->x;
-//	temp.y = (*mlx)->y;
-	
-
-	temp.x = (*mlx)->x1 - (*mlx)->x0;
-	temp.y = (*mlx)->y1 - (*mlx)->y0;
-
-}
-*/
-/*
-void right_top_diagonal(t_mlx **mlx)
-{
-	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->y0 = (*mlx)->y;
-
-	(*mlx)->y1 = (*mlx)->y0;
-	(*mlx)->x1 = (*mlx)->x0 + 50;
-
-	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y1 * 0.28;
-	plot_any_line(mlx);
-}
-*/
-/*
-void right_top_diagonal(t_mlx **mlx)
-{
-	(*mlx)->size = 100;
-	double degrees_angle;
-	
-	degrees_angle = 45;
-	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->y0 = (*mlx)->y;
-
-	(*mlx)->y1 = (*mlx)->y0;
-	(*mlx)->x1 = (*mlx)->x0 + (*mlx)->size;
-
-	apply_rotation(mlx, degrees_angle);
-	plot_any_line(mlx);
-}
-*/
-/*
-void right_bottom_diagonal(t_mlx **mlx)
-{	
-	(*mlx)->x0 = (*mlx)->x;
-
-	(*mlx)->y0 = (*mlx)->y0 + 50;
-	plot_any_line(mlx);	
-}
-*/
-/*
-void adjust_length(t_mlx **mlx)
-{
-	t_mlx temp;
-
-	temp.x1 = (*mlx)->x1;
-	temp.x1 = (*mlx)->x1 + (*mlx)->size;
-	
-}
-
-void right_bottom_diagonal(t_mlx **mlx)
-{
-
-}
-
-void left_top_diagonal(t_mlx **mlx)
-{
-
- 	(*mlx)->x0 = (*mlx)->x;
- 	(*mlx)->y0 = (*mlx)->y;
-	
-	(*mlx)->y1 = (*mlx)->y0;
-	(*mlx)->x1 = (*mlx)->x0 - 50;
-	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y1 * 0.28;
-	plot_any_line(mlx);
-}
-*/
-/*
-void left_bottom_diagonal(t_mlx **mlx)
-{
-	printf("1:\n");
-	printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
-
-	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->y0 = (*mlx)->y0 + 50;
-//	if((*mlx)->x0 == (*mlx)->x1)
-//		(*mlx)->x0 = (*mlx)->x0 + 50;
-//	(*mlx)->x1 = (*mlx)->x;
-//	(*mlx)->y1 = (*mlx)->y1 + 50;
-//	if()
-	printf("2:\n");
-	printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
-
-	plot_any_line(mlx);
-}
-*/
-/*
-void right_top_diagonal(t_mlx **mlx)
-{
-	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->y0 = (*mlx)->y;
-
-	
-}
-*/
-/*
-void vertical_left(t_mlx **mlx)
-{
-	t_mlx temp;
-	(*mlx)->y1 = (*mlx)->y0;
-	(*mlx)->y1 = (*mlx)->y1 + 100;
-	printf("(*mlx)->y0:|%d|\n", (*mlx)->y0);
-	printf("(*mlx)->y1:|%d|\n", (*mlx)->y1);
-	printf("(*mlx)->x0:|%d|\n", (*mlx)->x0);
-	printf("(*mlx)->x1:|%d|\n\n", (*mlx)->x1);
-	(*mlx)->x1 = (*mlx)->x0;
-//	(*mlx)->x1 = (*mlx)->x1 - (*mlx)->x1 * 0.5;// Alternate
-//	(*mlx)->x1 = (*mlx)->x1 * 0.25;
-	(*mlx)->x1 = (*mlx)->x1 - (*mlx)->x1 * 0.25;
-	printf("(*mlx)->x0:|%d|\n", (*mlx)->x0);
-	printf("(*mlx)->x1:|%d|\n\n", (*mlx)->x1);
-	temp.x1 = (*mlx)->x1;
-	temp.y1 = (*mlx)->y1;
-	plot_any_line(mlx);
-
-	(*mlx)->x0 = temp.x1;
-	(*mlx)->x1 = temp.x1;
-	(*mlx)->y1 = temp.y1;
-	(*mlx)->y0 = temp.y1;
-
-	printf("vertical_left (*mlx)->x0:|%d|\n", (*mlx)->x0);
-	printf("vertical_left (*mlx)->x1:|%d|\n", (*mlx)->x1);
-	printf("vertical_left (*mlx)->y0:|%d|\n", (*mlx)->y0);
-	printf("vertical_left (*mlx)->y1:|%d|\n", (*mlx)->y1);
-}
-*/
-/*
 void horizontal_up(t_mlx **mlx)
 {
-//	(*mlx)->x0 = (*mlx)->x;
-//	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
 
-	(*mlx)->x1 = (*mlx)->x1 - 100;
-//	(*mlx)->y1 = (*mlx)->y1 - (*mlx)->y1 * 0.25;
+
+	(*mlx)->x1 = (*mlx)->x0 + 200;
 	(*mlx)->y1 = (*mlx)->y0;
-//	(*mlx)->y1 = (*mlx)->y1 - (*mlx)->y1 * 0.5;
-
-
-//	ft_swap(&(*mlx)->x1, &(*mlx)->x0);
-//	(*mlx)->y1 = (*mlx)->y1 * 0.5;
+	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y1 * 0.5;
 	plot_any_line(mlx);
 }
-*/
-/*
 void vertical_right(t_mlx **mlx)
 {
 	(*mlx)->x0 = (*mlx)->x;
 	(*mlx)->y0 = (*mlx)->y;
 
-	(*mlx)->y1 = (*mlx)->y0 + 100;
+	(*mlx)->y1 = (*mlx)->y0 + 200;
 	(*mlx)->x1 = (*mlx)->x0;
-//	(*mlx)->x1 = (*mlx)->x1 - (*mlx)->x1 * 0.25;
-//	(*mlx)->x1 = (*mlx)->x1 * 0.25;
+	(*mlx)->x1 = (*mlx)->x1 * 0.5;
 	plot_any_line(mlx);
 }
-*/
-/*
-void ft_diamond(t_mlx **mlx)
+void horizontal_down(t_mlx **mlx)
 {
-	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-	menu(mlx);
-	right_top_diagonal(mlx);
-	right_bottom_diagonal(mlx);
-	left_top_diagonal(mlx);
-	left_bottom_diagonal(mlx);
-}
-*/
-/*
-void draw_straight_line(t_mlx ** mlx)
-{
-	(*mlx)->x0 = 50;
-	(*mlx)->x1 = 100;
-	(*mlx)->y0 = 50;
-	(*mlx)->y1 = 50;
-
-	plot_any_line(mlx);
-}
-*/
-
-double degree_to_radian(double degrees)
-{
-	double radian;
-
-	radian = degrees * (M_PI/180);
-	return(radian);
-}
-
-void rotation_matrix(t_mlx **mlx, int *x, int *y, double degree_angle)
-{
-	t_mlx temp;
-	double radian;
-
-	radian = degree_to_radian(degree_angle);
-	temp.x = (*x * cos(radian)) - (*y * sin(radian));
-	temp.y = (*x * sin(radian)) + (*y * cos(radian));
-
-	*x = temp.x;
-	*y = temp.y;
-
-}
-
-void apply_rotation(t_mlx **mlx, double degree_angle)
-{
-	rotation_matrix(mlx, &(*mlx)->x0, &(*mlx)->y0, degree_angle);
-	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
-}
-
-void find_max_xy(t_mlx **mlx, t_mlx *temp)
-{
-	if(temp->x0 > temp->x1)
-	{
-		(*mlx)->x0 = temp->x0;
-		(*mlx)->x1 = temp->x0;
-	}
-	else
-	{
-		(*mlx)->x0 = temp->x1;
-		(*mlx)->x1 = temp->x1;
-	}
-	if(temp->y0 > temp->y1)
-	{
-		(*mlx)->y0 = temp->y0;
-		(*mlx)->y1 = temp->y0;
-	}
-	else
-	{
-		(*mlx)->y0 = temp->y1;
-		(*mlx)->y1 = temp->y1;
-	}
-}
-
-void mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
-{
-	temp->x0 = (*mlx)->x0;
-	temp->x1 = (*mlx)->x1;
-	temp->y0 = (*mlx)->y0;
-	temp->y1 = (*mlx)->y1;
-}
-
-/*
-void top_horizontal(t_mlx **mlx)
-{
-	t_mlx temp;
-	
-	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-
 	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->x1 = (*mlx)->x;
 	(*mlx)->y0 = (*mlx)->y;
-	(*mlx)->y1 = (*mlx)->y;
 
-	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
-	
-//	temp.x0 = (*mlx)->x0;
-//	temp.x1 = (*mlx)->x1;
-//	temp.y0 = (*mlx)->y0;
-//	temp.y1 = (*mlx)->y1;
-	
-	mlx_xy_to_temp_xy(mlx, &temp);
-
-	apply_rotation(mlx);
+	(*mlx)->x1 = (*mlx)->x0 + 200;
+	(*mlx)->y1 = (*mlx)->y0;
+	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y1 * 0.5;
 	plot_any_line(mlx);
-
-	find_max_xy(mlx, &temp);
 }
 
-void right_vertical(t_mlx **mlx)
+void vertical_left(t_mlx **mlx)
 {
-	t_mlx temp;
-	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->size;
-	
-//	temp.x0 = (*mlx)->x0;
-//	temp.x1 = (*mlx)->x1;
-//	temp.y0 = (*mlx)->y0;
-//	temp.y1 = (*mlx)->y1;
-	
-	mlx_xy_to_temp_xy(mlx, &temp);
-
-	apply_rotation(mlx);
-	plot_any_line(mlx);
-	find_max_xy(mlx, &temp);
-}
-
-void bottom_horizontal(t_mlx **mlx)
-{
-	t_mlx temp;
-	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-	(*mlx)->x1 = (*mlx)->x1 - (*mlx)->size;
-
-	mlx_xy_to_temp_xy(mlx, &temp);
-	apply_rotation(mlx);
-	plot_any_line(mlx);
-	find_max_xy(mlx, &temp);
-}
-
-void left_vertical(t_mlx **mlx)
-{
-	t_mlx temp;
-	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-	(*mlx)->x0 = (*mlx)->x0 - (*mlx)->size;
-	(*mlx)->x1 = (*mlx)->x1 - (*mlx)->size;
-	(*mlx)->y1 = (*mlx)->y1 - (*mlx)->size;
-	
-	mlx_xy_to_temp_xy(mlx, &temp);
-	apply_rotation(mlx);
-	plot_any_line(mlx);
-	find_max_xy(mlx, &temp);
-
-
-}
-*/
-
-void subtract_x0y0_from_x1y1(t_mlx **mlx)
-{
-	(*mlx)->x1 = (*mlx)->x1 - (*mlx)->x0;
-	(*mlx)->y1 = (*mlx)->y1 - (*mlx)->y0;
-}
-
-void	add_rotated_x0y0_to_x1y1(t_mlx **mlx)
-{
-	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->x0;
-	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y0;
-}
-
-void top_horizontal(t_mlx **mlx)
-{
-	t_mlx temp;
-	double degree_angle;
-
-	degree_angle = 30;
-
 	(*mlx)->x0 = (*mlx)->x;
-	(*mlx)->x1 = (*mlx)->x;
 	(*mlx)->y0 = (*mlx)->y;
-	(*mlx)->y1 = (*mlx)->y;
 
-	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
-	mlx_xy_to_temp_xy(mlx, &temp);
-	subtract_x0y0_from_x1y1(mlx);
-
-	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
-	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
-	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
-	add_rotated_x0y0_to_x1y1(mlx);
-	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
-	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
-	plot_any_line(mlx);
-	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
-	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
-
-}
-
-void right_vertical(t_mlx **mlx)
-{
-	t_mlx temp;
-	double degree_angle;
-
-	degree_angle = -30;
-
-	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
-	subtract_x0y0_from_x1y1(mlx);
-
-	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
-
-	add_rotated_x0y0_to_x1y1(mlx);
+	(*mlx)->y1 = (*mlx)->y0 + 200;
+	(*mlx)->x1 = (*mlx)->x0;
+	(*mlx)->x1 = (*mlx)->x1 * 0.5;
 	plot_any_line(mlx);
 }
-
 
 int main(void)
 {
@@ -931,37 +480,11 @@ int main(void)
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1280, 720, "test screen");
 //	draw_square(&mlx, x, y, size);
 //	draw_cube(&mlx, x, y, size);
-//	printf("1. horizontal_down");
-//	horizontal_down(&mlx);
-//	printf("2. vertical left\n");
-//	vertical_left(&mlx);
-//	printf("3. horizontal up\n");
+	horizontal_down(&mlx);
+	vertical_left(&mlx);
 //	horizontal_up(&mlx);
-//	printf("4. vertical_right\n");
 //	vertical_right(&mlx);
-
-//	printf("1. right_top_diagonal\n");
-//	right_top_diagonal(&mlx);
-//	printf("2. right_bottom_diagonal\n");
-//	right_bottom_diagonal(&mlx);
-//	printf("3. left_top_diagonal\n");
-//	left_top_diagonal(&mlx);
-//	printf("4. left_bottom_diagonal\n");
-//	left_bottom_diagonal(&mlx);
-
-//	ft_diamond(&mlx);
-	
-	printf("top_horizontal:\n");
-	top_horizontal(&mlx);
-	printf("right_vertical:\n");
-	right_vertical(&mlx);
-//	printf("bottom_horizontal:\n");
-//	bottom_horizontal(&mlx);
-//	printf("left_vertical:\n");
-//	left_vertical(&mlx);
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, &mlx);
 	mlx_loop(mlx->mlx_ptr); //Required to end the program
-
-
 }
 

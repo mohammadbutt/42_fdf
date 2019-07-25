@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 19:31:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/19 19:41:15 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/24 16:45:49 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	double		ro_x;
+	double		ro_y;
 	double		x;
 	double		y;
 	int			size;
@@ -75,6 +77,8 @@ typedef struct	s_mlx
 	int			map_width;
 	int			map_height;
 	int			camera;
+	double		angle_y;
+	double		angle_z;
 //	int			size;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
@@ -95,6 +99,15 @@ void shift_program(t_mlx **mlx, int key);
 void zoom_program(t_mlx **mlx, int key);
 void random_color(t_mlx **mlx);
 void get_struct_values(t_mlx **mlx);
+void top_horizontal(t_mlx **mlx);
+void right_vertical(t_mlx **mlx);
+void bottom_horizontal(t_mlx **mlx);
+void left_vertical(t_mlx **mlx);
+void right_top_diagonal(t_mlx **mlx);
+void right_bottom_diagonal(t_mlx **mlx);
+void left_top_diagonal(t_mlx **mlx);
+void left_bottom_diagonal(t_mlx **mlx);
+void ft_diamond(t_mlx **mlx);
 void reset_program(t_mlx **mlx, int key);
 int program_keys(int key, t_mlx **mlx);
 

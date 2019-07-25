@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/20 16:15:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/20 18:44:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,13 +244,25 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 // Both functions work, just
 // Method 1
 
-//void get_z_value(t_mlx *mlx)
 
-void ft_render_horizontal(t_mlx *mlx)
+
+void get_z_value(t_mlx *mlx, t_mlx *temp)
+{
+	if((mlx->x +1) < temp->map_width)
+	{
+		mlx->z0 = mlx->int_data[mlx->y][mlx->x];
+		mlx->z1 = mlx->int_data[mlx->y][mlx->x + 1];
+	}
+	mlx->x0 = mlx->z0;
+	mlx->x1 = mlx->z1;
+}
+
+void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
 //	if(temp->map_width < 5)
 //	printf("x0: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 	mlx->x1 = mlx->x0 + mlx->size;
+//	get_z_value(mlx, temp);
 	plot_any_line(mlx);
 	mlx->x0 = mlx->x0 - mlx->size;
 	mlx->x1 = mlx->x1 - mlx->size;
@@ -267,13 +279,15 @@ void ft_render_horizontal(t_mlx *mlx)
 ** striaght horizontal line next time.
 */
 
-void ft_render_vertical(t_mlx *mlx)
+void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
+//	get_z_value(mlx, temp);
 	plot_any_line(mlx);
 	mlx->y1 = mlx->y1 - mlx->size;
 	mlx->y0 = mlx->y0 - mlx->size;
 	mlx->x0 = mlx->x0 + mlx->size;
 	mlx->x1 = mlx->x0 + mlx->size;
+//	get_z_value(mlx, temp);
 }
 
 /*
@@ -288,10 +302,10 @@ void ft_render_vertical(t_mlx *mlx)
 ** end and the bottom, ft_render_edges takes care of that.
 */
 
-void ft_render_horizontal_vertical(t_mlx *mlx)
+void ft_render_horizontal_vertical(t_mlx *mlx, t_mlx *temp)
 {
-	ft_render_horizontal(mlx);
-	ft_render_vertical(mlx);
+	ft_render_horizontal(mlx, temp);
+	ft_render_vertical(mlx, temp);
 }
 
 /*
@@ -377,7 +391,8 @@ void get_struct_values(t_mlx *mlx)
 	mlx->x1 = mlx->x0;
 	mlx->y1 = mlx->y0;
 	mlx->camera = 0;
-	
+	mlx->angle_y = 0.5;
+	mlx->angle_z = 0.25;
 //	t_mlx temp;	
 //	mlx->size = 15;
 //	mlx->x0 = mlx->size;
@@ -434,7 +449,7 @@ void ft_render(t_mlx *mlx)
 	{
 		while(mlx->x < temp.map_width)
 		{
-			ft_render_horizontal_vertical(mlx);
+			ft_render_horizontal_vertical(mlx, &temp);
 			mlx->x++;
 		}
 		mlx->x = 0;
