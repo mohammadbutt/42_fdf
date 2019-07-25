@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 22:33:51 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/25 12:48:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,11 +256,10 @@ void get_z_value(t_mlx *mlx, t_mlx *temp)
 	mlx->x0 = mlx->z0;
 	mlx->x1 = mlx->z1;
 }
-
+/*
+// Works - making slight changes
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
-//	if(temp->map_width < 5)
-//	printf("x0: x0:|%d|, x1:|%d|\n   y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 	mlx->x1 = mlx->x0 + mlx->size;
 //	get_z_value(mlx, temp);
 	plot_any_line(mlx);
@@ -269,6 +268,24 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 	mlx->y1 = mlx->y1 + mlx->size;
 //	ft_exit()
 }
+*/
+void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->x1 = mlx->x0 + mlx->size;
+//	get_z_value(mlx, temp);
+//	printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+	if(mlx->x < temp->map_width)
+		plot_any_line(mlx);
+//	printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+	if(mlx->y != temp->map_height)
+	{
+		mlx->x0 = mlx->x0 - mlx->size;
+		mlx->x1 = mlx->x1 - mlx->size;
+		mlx->y1 = mlx->y1 + mlx->size;
+	}
+//	ft_exit()
+}
+
 
 /*
 ** for ft_render_vertical, x0 = x1, but y1 is greater than y0, which allows us
@@ -282,6 +299,8 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
 //	get_z_value(mlx, temp);
+	if(mlx->x == temp->map_width) 			//Added for border edges.
+		mlx->x0 = mlx->x0 + mlx->size;		//Added for border edges.
 	plot_any_line(mlx);
 	mlx->y1 = mlx->y1 - mlx->size;
 	mlx->y0 = mlx->y0 - mlx->size;
@@ -463,7 +482,37 @@ void reset_y0y1(t_mlx *mlx, t_mlx *temp)
 	mlx->y1 = temp->y1;
 	mlx->y = 0;
 }
+void ft_render(t_mlx *mlx)
+{
+	t_mlx temp;
 
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	struct_copy(mlx, &temp);
+	while(mlx->y <= temp.map_height)
+	{
+		while(mlx->x <= temp.map_width)
+		{
+			if(mlx->y < temp.map_height)
+				ft_render_horizontal_vertical(mlx, &temp);
+			else if(mlx->y == temp.map_height)
+				ft_render_horizontal(mlx, &temp);
+			mlx->x++;
+		}
+//		if(mlx->x == temp.map_width)
+//			ft_render_vertical(mlx, &temp);
+		mlx->x = 0;
+		mlx->y++;
+		mlx->y0 = mlx->y0 + mlx->size;
+		mlx->y1 = mlx->y1 + mlx->size;
+		reset_x0x1(mlx, &temp);
+	}
+	reset_y0y1(mlx, &temp);
+//	mlx->y = 0;
+}
+
+
+/*
+// Works, trying to fix borderline edges.
 void ft_render(t_mlx *mlx)
 {
 	t_mlx temp;
@@ -488,7 +537,7 @@ void ft_render(t_mlx *mlx)
 	reset_y0y1(mlx, &temp);
 //	mlx->y = 0;
 }
-
+*/
 
 
 /*
