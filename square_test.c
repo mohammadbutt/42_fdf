@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 21:36:45 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/24 22:25:43 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,24 +349,27 @@ void zoom_program(t_mlx **mlx, int key)
 
 	size = (*mlx)->size;
 	if(key == ZOOM_IN_Q)
-		size = size + 30;
+//		size = size + 30;
+		size = size + 1;
 	else if(key == ZOOM_OUT_A)
-		size = size - 30;
-
+//		size = size - 30;
+		size = size - 1;
 // Centeralizes map
 
 	if(key == ZOOM_IN_Q)
 	{
-		(*mlx)->x = (*mlx)->x - 15;
-		(*mlx)->y = (*mlx)->y - 15;
+		(*mlx)->x = (*mlx)->x - 0.5;
+		(*mlx)->y = (*mlx)->y - 0.5;
 	}
 	else if(key == ZOOM_OUT_A)
 	{
-		(*mlx)->x = (*mlx)->x + 15;
-		(*mlx)->y = (*mlx)->y + 15;
+		(*mlx)->x = (*mlx)->x + 0.5;
+		(*mlx)->y = (*mlx)->y + 0.5;
 	}
+
 	(*mlx)->size = size;
-	draw_square(mlx, (*mlx)->x, (*mlx)->y, size);
+//	draw_square(mlx, (*mlx)->x, (*mlx)->y, size);
+	ft_diamond(mlx);
 //	draw_cube(mlx, (*mlx)->x, (*mlx)->y, size);
 }
 void random_color(t_mlx **mlx)

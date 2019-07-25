@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/21 19:00:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/24 22:07:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ void	ft_render_horizontal(t_mlx *mlx, t_mlx *temp);
 void	ft_render_vertical(t_mlx *mlx, t_mlx *temp);
 void	ft_render_horizontal_vertical(t_mlx *mlx, t_mlx *temp);
 void	ft_render_edges(t_mlx *mlx, t_mlx *temp);
+void	reset_xy_values(t_mlx *mlx, t_mlx *temp);
 void	ft_render(t_mlx *mlx);
 void	ft_print_data(t_mlx *mlx);
 #endif

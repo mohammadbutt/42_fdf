@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/20 18:44:56 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/24 22:33:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -439,6 +439,31 @@ void ft_render(t_mlx *mlx)
 	mlx->y1 = temp.y1;
 }
 */
+
+/*
+** Once x0 and x1
+*/
+
+void reset_x0x1(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->x0 = temp->x0;
+	mlx->x1 = temp->x1;
+}
+
+/*
+** reset_y0y1 is used in ft_render to reset values for y0, and y1. Because
+** y0 and y1 get changed in the while loop. It is important to reset y0 and y1
+** back to it's original values if we want to integrate keyboard into the
+** program allowing us to shift the program in any direction and change zoom.
+*/
+
+void reset_y0y1(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->y0 = temp->y0;
+	mlx->y1 = temp->y1;
+	mlx->y = 0;
+}
+
 void ft_render(t_mlx *mlx)
 {
 	t_mlx temp;
@@ -458,14 +483,10 @@ void ft_render(t_mlx *mlx)
 		mlx->y1 = mlx->y1 + mlx->size;
 		if(mlx->y == temp.map_height)
 			ft_render_edges(mlx, &temp);
-		mlx->x0 = temp.x0;
-		mlx->x1 = temp.x1;
+		reset_x0x1(mlx, &temp);
 	}
-	mlx->x0 = temp.x0;
-	mlx->y0 = temp.y0;
-	mlx->x1 = temp.x1;
-	mlx->y1 = temp.y1;
-	mlx->y = 0;
+	reset_y0y1(mlx, &temp);
+//	mlx->y = 0;
 }
 
 
