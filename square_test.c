@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 20:38:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/24 21:36:45 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -340,7 +340,7 @@ void shift_program(t_mlx **mlx, int key)
 //	left_vertical(mlx);
 //	draw_square(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
 //	draw_cube(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
-//	ft_diamond(mlx);
+	ft_diamond(mlx);
 }
 
 void zoom_program(t_mlx **mlx, int key)
@@ -884,7 +884,8 @@ void 	add_rotated_x1y1_to_x0y0(t_mlx **mlx)
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->x0;
 	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->y0;
 }
-
+/*
+// Works
 void top_horizontal(t_mlx **mlx)
 {
 	t_mlx temp;
@@ -902,16 +903,10 @@ void top_horizontal(t_mlx **mlx)
 	subtract_x0y0_from_x1y1(mlx);
 
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
-	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
-	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
 	add_rotated_x1y1_to_x0y0(mlx);
-	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
-	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
 	plot_any_line(mlx);
-	printf("x0:|%d|, y0:|%d|\n", (*mlx)->x0, (*mlx)->y0);
-	printf("x1:|%d|, y1:|%d|\n\n", (*mlx)->x1, (*mlx)->y1);
-
 }
+
 
 void right_vertical(t_mlx **mlx)
 {
@@ -953,7 +948,81 @@ void left_vertical(t_mlx **mlx)
 
 	plot_any_line(mlx);
 }
+*/
+void top_horizontal(t_mlx **mlx)
+{
+//	t_mlx temp;
+	double degree_angle;
 
+	degree_angle = -30;
+
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->y1 = (*mlx)->y;
+
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+//	mlx_xy_to_temp_xy(mlx, &temp);
+	subtract_x0y0_from_x1y1(mlx);
+
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+}
+void left_vertical(t_mlx **mlx)
+{
+	t_mlx temp;
+	double degree_angle;
+
+	degree_angle = 30;
+
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->y1 = (*mlx)->y;
+
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+}
+
+void bottom_horizontal(t_mlx **mlx)
+{
+//	t_mlx temp;
+	double degree_angle;
+	
+	degree_angle = -30;
+
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+}
+
+void right_vertical(t_mlx **mlx)
+{
+//	t_mlx temp;
+	double degree_angle;
+	
+	degree_angle = -150;
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+}
+
+void ft_diamond(t_mlx **mlx)
+{
+	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
+	top_horizontal(mlx);
+	left_vertical(mlx);
+	bottom_horizontal(mlx);
+	right_vertical(mlx);
+}
 
 int main(void)
 {
@@ -999,15 +1068,26 @@ int main(void)
 //	left_bottom_diagonal(&mlx);
 
 	ft_diamond(&mlx);
-	
-//	printf("top_horizontal:\n");
-//	top_horizontal(&mlx);
-//	printf("right_vertical:\n");
-//	right_vertical(&mlx);
-//	printf("bottom_horizontal:\n");
-//	bottom_horizontal(&mlx);
-//	printf("left_vertical:\n");
-//	left_vertical(&mlx);
+/*	
+	printf("top_horizontal:\n");
+	top_horizontal(&mlx);
+	printf("right_vertical:\n");
+	right_vertical(&mlx);
+	printf("bottom_horizontal:\n");
+	bottom_horizontal(&mlx);
+	printf("left_vertical:\n");
+	left_vertical(&mlx);
+*/
+/*	
+	printf("top_horizontal:\n");
+	top_horizontal(&mlx);
+	printf("left_vertical:\n");
+	left_vertical(&mlx);
+	printf("bottom_horizontal:\n");
+	bottom_horizontal(&mlx);
+	printf("right_vertical:\n");
+	right_vertical(&mlx);
+*/
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, &mlx);
 	mlx_loop(mlx->mlx_ptr); //Required to end the program
 
