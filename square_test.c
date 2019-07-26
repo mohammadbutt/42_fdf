@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 22:25:43 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/25 19:53:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -793,6 +793,33 @@ void find_min_xy(t_mlx **mlx, t_mlx *temp)
 		(*mlx)->y1 = temp->y1;
 	}
 }
+void find_min_x(t_mlx **mlx, t_mlx *temp)
+{
+	if(temp->x0 < temp->x1)
+	{
+		(*mlx)->x0 = temp->x0;
+		(*mlx)->x1 = temp->x0;
+	}
+	else if(temp->x1 < temp->x0)
+	{
+		(*mlx)->x0 = temp->x1;
+		(*mlx)->x1 = temp->x1;
+	}
+}
+
+void find_max_y(t_mlx **mlx, t_mlx *temp)
+{
+	if(temp->y0 > temp->y1)
+	{
+		(*mlx)->y0 = temp->y0;
+		(*mlx)->y1 = temp->y0;
+	}
+	else if(temp->y1 > temp->y0)
+	{
+		(*mlx)->y0 = temp->y1;
+		(*mlx)->y1 = temp->y1;
+	}
+}
 
 void mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
 {
@@ -957,7 +984,7 @@ void top_horizontal(t_mlx **mlx)
 //	t_mlx temp;
 	double degree_angle;
 
-	degree_angle = -30;
+	degree_angle = 30;
 
 	(*mlx)->x0 = (*mlx)->x;
 	(*mlx)->x1 = (*mlx)->x;
@@ -972,12 +999,31 @@ void top_horizontal(t_mlx **mlx)
 	add_rotated_x1y1_to_x0y0(mlx);
 	plot_any_line(mlx);
 }
+
+void copy_mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
+{
+	temp->x0 = (*mlx)->x0;
+	temp->x1 = (*mlx)->x1;
+	temp->y0 = (*mlx)->y0;
+	temp->y1 = (*mlx)->y1;
+}
+
+void copy_temp_xy_to_mlx_xy(t_mlx **mlx, t_mlx *temp)
+{
+	(*mlx)->x0 = temp->x0;
+	(*mlx)->x1 = temp->x1;
+	(*mlx)->y0 = temp->y0;
+	(*mlx)->y1 = temp->y1;
+}
+
 void left_vertical(t_mlx **mlx)
 {
 	t_mlx temp;
 	double degree_angle;
 
-	degree_angle = 30;
+	degree_angle = 150; // angle of -210 also works
+//degree_angle = -210;  // we can do x1 + size
+//	degree_angle = -60; // we can do y1 + size
 
 	(*mlx)->x0 = (*mlx)->x;
 	(*mlx)->x1 = (*mlx)->x;
@@ -985,18 +1031,21 @@ void left_vertical(t_mlx **mlx)
 	(*mlx)->y1 = (*mlx)->y;
 
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+//	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->size;
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
+	copy_mlx_xy_to_temp_xy(mlx, &temp);
 	plot_any_line(mlx);
+	find_min_x(mlx, &temp);
+	find_max_y(mlx, &temp);
 }
 
 void bottom_horizontal(t_mlx **mlx)
 {
-//	t_mlx temp;
 	double degree_angle;
 	
-	degree_angle = -30;
+	degree_angle = 30;
 
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
 	subtract_x0y0_from_x1y1(mlx);
@@ -1007,10 +1056,9 @@ void bottom_horizontal(t_mlx **mlx)
 
 void right_vertical(t_mlx **mlx)
 {
-//	t_mlx temp;
 	double degree_angle;
 	
-	degree_angle = -150;
+	degree_angle = -30;
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
@@ -1071,6 +1119,23 @@ int main(void)
 //	left_bottom_diagonal(&mlx);
 
 	ft_diamond(&mlx);
+	mlx->x = mlx->x +  85; //+ &mlx->size;
+	mlx->y = mlx->y +  49; //+ &mlx->size;	
+	ft_diamond(&mlx);
+//	mlx->x = mlx->x + 85;
+//	mlx->y = mlx->y + 50;
+/*	
+	ft_diamond(&mlx);
+	mlx->x = mlx->x - (85 + 85 + 85);
+	mlx->y = mlx->y - (50);
+	ft_diamond(&mlx);
+	mlx->x = mlx->x + 85;
+	mlx->y = mlx->y + 50;
+	ft_diamond(&mlx);
+	mlx->x = mlx->x + 85;
+	mlx->y = mlx->y + 50;
+	ft_diamond(&mlx);
+*/
 /*	
 	printf("top_horizontal:\n");
 	top_horizontal(&mlx);

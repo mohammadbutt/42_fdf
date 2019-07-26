@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 19:31:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 16:45:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/25 15:56:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ typedef struct	s_mlx
 	double		ro_y;
 	double		x;
 	double		y;
-	int			size;
+//	int			size;
+	double		size;
 	size_t		color;
 	int			x0;
 	int			y0;

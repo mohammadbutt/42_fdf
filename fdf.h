@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 22:07:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/25 15:32:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,4 +226,18 @@ void	ft_render_edges(t_mlx *mlx, t_mlx *temp);
 void	reset_xy_values(t_mlx *mlx, t_mlx *temp);
 void	ft_render(t_mlx *mlx);
 void	ft_print_data(t_mlx *mlx);
+
+/*
+** rotation_matrix.c
+*/
+
+double 	degree_to_radian(double degrees);
+void 	rotation_matrix(t_mlx *mlx, int *x, int *y, double degree_angle);
+void	subtract_x0y0_from_x1y1(t_mlx *mlx);
+void	add_rotated_x1y1_to_x0y0(t_mlx *mlx);
+void	copy_mlx_xy_temp_xy(t_mlx *mlx, t_mlx *temp);
+void	copy_temp_xy_to_mlx_xy(t_mlx *mlx, t_mlx *temp);
+void	rotate_horizontal_line(t_mlx *mlx, t_mlx *temp);
+void	rotate_vertical_line(t_mlx *mlx, t_mlx *temp);
+
 #endif

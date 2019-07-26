@@ -5,43 +5,88 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 15:42:47 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/24 16:46:00 by mbutt            ###   ########.fr       */
+/*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
+/*   Updated: 2019/07/25 15:41:42 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <math.h>
+#include "fdf.h"
 
-double degrees_to_radians(double degrees)
+double degree_to_radian(double degrees)
 {
-	double radians;
+	double radian;
 
-	radians = degrees * (M_PI/180);
-
-	return(radians);
+	radian = degrees * (M_PI/180);
+	return(radian);
 }
 
-int main(void)
+void rotation_matrix(t_mlx *mlx, int *x, int *y, double degree_angle)
 {
-	double x;
-	double y;
-	double temp_x;
-	double temp_y;
-	double degrees;
-	double radians;
+	t_mlx temp;
+	double radian;
 
-	degrees = 30;
-	radians = degrees_to_radians(degrees);
+	radian = degree_to_radian(degree_angle);
+	temp.x = (*x * cos(radian)) - (*y * sin(radian));
+	temp.y = (*x * sin(radian)) + (*y * cos(radian));
 
-	x = 10;
-	y = 0;
+	*x = temp.x;
+	*y = temp.y;
+}
 
-	temp_x = (x * cos(radians)) - (y * sin(radians));
-	temp_y = (x * sin(radians)) + (y * cos(radians));
+void subtract_x0y0_from_x1y1(t_mlx *mlx)
+{
+	mlx->x1 = mlx->x1 - mlx->x0;
+	mlx->y1 = mlx->y1 - mlx->y0;
+}
+
+void add_rotated_x1y1_to_x0y0(t_mlx *mlx)
+{
+	mlx->x1 = mlx->x1 + mlx->x0;
+	mlx->y1 = mlx->y1 + mlx->y0;
+}
+
+void copy_mlx_xy_to_temp_xy(t_mlx *mlx, t_mlx *temp)
+{
+	temp->x0 = mlx->x0;
+	temp->x1 = mlx->x1;
+	temp->y0 = mlx->y0;
+	temp->y1 = mlx->y1;
+}
+
+void copy_temp_xy_to_mlx_xy(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->x0 = temp->x0;
+	mlx->x1 = temp->x1;
+	mlx->y0 = temp->y0;
+	mlx->y1 = temp->y1;
+}
+
+void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
+{
+//	t_mlx temp;
+	double degree_angle;
+
+//	degree_angle = -30;
+	degree_angle = 30;
+	copy_mlx_xy_to_temp_xy(mlx, temp);
 	
-	x = temp_x;
-	y = temp_y;
+	mlx->x1 = mlx->x1 + mlx->size;	
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+}
 
-	printf("x:|%f|, y:|%f|\n", x, y);
+void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
+{
+//	t_mlx temp;
+	double degree_angle;
+
+//	degree_angle = 30;
+	degree_angle = 150;
+	copy_mlx_xy_to_temp_xy(mlx, temp);
+	
+	mlx->x1 = mlx->x1 + mlx->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
 }

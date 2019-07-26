@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/25 12:48:51 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/26 09:53:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,23 +269,42 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 //	ft_exit()
 }
 */
+/*
+// Works and creates borderlines. Making changes to implement angles
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
 	mlx->x1 = mlx->x0 + mlx->size;
-//	get_z_value(mlx, temp);
-//	printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 	if(mlx->x < temp->map_width)
 		plot_any_line(mlx);
-//	printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 	if(mlx->y != temp->map_height)
 	{
 		mlx->x0 = mlx->x0 - mlx->size;
 		mlx->x1 = mlx->x1 - mlx->size;
 		mlx->y1 = mlx->y1 + mlx->size;
 	}
-//	ft_exit()
 }
+*/
+void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->x1 = mlx->x0 + mlx->size;
 
+//	rotate_horizontal_line(mlx, temp);
+	if(mlx->x+1 < temp->map_width)
+		plot_any_line(mlx);
+//	if(mlx->y != temp->map_height)
+//	{
+//		copy_temp_xy_to_mlx_xy(mlx, temp);
+//		mlx->y1 = mlx->y1 + mlx->size;
+//	}
+//	if(mlx->y != temp->map_height)
+
+	if(mlx->y+1 < temp->map_height)
+	{
+		mlx->x0 = mlx->x0 - mlx->size;
+		mlx->x1 = mlx->x1 - mlx->size;
+		mlx->y1 = mlx->y1 + mlx->size;
+	}
+}
 
 /*
 ** for ft_render_vertical, x0 = x1, but y1 is greater than y0, which allows us
@@ -295,7 +314,8 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 ** size is added to x0 and x1, but x1 is greater x0 allowing us to create a
 ** striaght horizontal line next time.
 */
-
+/*
+// Works and creates borderlines. Making changes to implement angles.
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
 //	get_z_value(mlx, temp);
@@ -308,6 +328,24 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 	mlx->x1 = mlx->x0 + mlx->size;
 //	get_z_value(mlx, temp);
 }
+*/
+void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
+{
+//	get_z_value(mlx, temp);
+	if(mlx->x+1 == temp->map_width) 			//Added for border edges.
+		mlx->x0 = mlx->x0 + mlx->size;		//Added for border edges.
+//	rotate_vertical_line(mlx, temp); 
+	plot_any_line(mlx);
+//	copy_temp_xy_to_mlx_xy(mlx, temp);
+	mlx->x0 = mlx->x0 + mlx->size;
+	mlx->x1 = mlx->x1 + mlx->size;
+	mlx->y1 = mlx->y1 - mlx->size;
+	mlx->y0 = mlx->y0 - mlx->size;
+//	mlx->x0 = mlx->x0 + mlx->size;
+//	mlx->x1 = mlx->x0 + mlx->size;
+//	get_z_value(mlx, temp);
+}
+
 
 /*
 ** ft_render_horizontal_vertical just calls onto ft_render_horizontal and
@@ -481,6 +519,7 @@ void reset_y0y1(t_mlx *mlx, t_mlx *temp)
 	mlx->y0 = temp->y0;
 	mlx->y1 = temp->y1;
 	mlx->y = 0;
+//	mlx->y = 1;
 }
 void ft_render(t_mlx *mlx)
 {
@@ -488,19 +527,25 @@ void ft_render(t_mlx *mlx)
 
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	struct_copy(mlx, &temp);
-	while(mlx->y <= temp.map_height)
+
+//	mlx->x = 1;
+//	mlx->y = 1;
+	mlx->x = 0;
+	mlx->y = 0;
+	while(mlx->y+1 <= temp.map_height)
 	{
-		while(mlx->x <= temp.map_width)
+		while(mlx->x+1 <= temp.map_width)
 		{
-			if(mlx->y < temp.map_height)
+			if(mlx->y+1 < temp.map_height)
 				ft_render_horizontal_vertical(mlx, &temp);
-			else if(mlx->y == temp.map_height)
+			else if(mlx->y+1 == temp.map_height)
 				ft_render_horizontal(mlx, &temp);
 			mlx->x++;
 		}
 //		if(mlx->x == temp.map_width)
 //			ft_render_vertical(mlx, &temp);
 		mlx->x = 0;
+//		mlx->x = 1;
 		mlx->y++;
 		mlx->y0 = mlx->y0 + mlx->size;
 		mlx->y1 = mlx->y1 + mlx->size;
