@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/26 09:53:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/26 10:12:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,7 +289,7 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 	mlx->x1 = mlx->x0 + mlx->size;
 
 //	rotate_horizontal_line(mlx, temp);
-	if(mlx->x+1 < temp->map_width)
+	if(mlx->x < temp->map_width)
 		plot_any_line(mlx);
 //	if(mlx->y != temp->map_height)
 //	{
@@ -298,7 +298,7 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 //	}
 //	if(mlx->y != temp->map_height)
 
-	if(mlx->y+1 < temp->map_height)
+	if(mlx->y < temp->map_height)
 	{
 		mlx->x0 = mlx->x0 - mlx->size;
 		mlx->x1 = mlx->x1 - mlx->size;
@@ -332,7 +332,7 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
 //	get_z_value(mlx, temp);
-	if(mlx->x+1 == temp->map_width) 			//Added for border edges.
+	if(mlx->x == temp->map_width) 			//Added for border edges.
 		mlx->x0 = mlx->x0 + mlx->size;		//Added for border edges.
 //	rotate_vertical_line(mlx, temp); 
 	plot_any_line(mlx);
@@ -428,6 +428,8 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 {
 	dest->map_height = source->map_height;
 	dest->map_width = source->map_width;
+	dest->map_height--;
+	dest->map_width--;
 	dest->x0 = source->x0;
 	dest->y0 = source->y0;
 	dest->x1 = source->x1;
@@ -519,7 +521,6 @@ void reset_y0y1(t_mlx *mlx, t_mlx *temp)
 	mlx->y0 = temp->y0;
 	mlx->y1 = temp->y1;
 	mlx->y = 0;
-//	mlx->y = 1;
 }
 void ft_render(t_mlx *mlx)
 {
@@ -528,24 +529,19 @@ void ft_render(t_mlx *mlx)
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	struct_copy(mlx, &temp);
 
-//	mlx->x = 1;
-//	mlx->y = 1;
-	mlx->x = 0;
-	mlx->y = 0;
-	while(mlx->y+1 <= temp.map_height)
+	while(mlx->y <= temp.map_height)
 	{
-		while(mlx->x+1 <= temp.map_width)
+		while(mlx->x <= temp.map_width)
 		{
-			if(mlx->y+1 < temp.map_height)
+			if(mlx->y < temp.map_height)
 				ft_render_horizontal_vertical(mlx, &temp);
-			else if(mlx->y+1 == temp.map_height)
+			else if(mlx->y == temp.map_height)
 				ft_render_horizontal(mlx, &temp);
 			mlx->x++;
 		}
 //		if(mlx->x == temp.map_width)
 //			ft_render_vertical(mlx, &temp);
 		mlx->x = 0;
-//		mlx->x = 1;
 		mlx->y++;
 		mlx->y0 = mlx->y0 + mlx->size;
 		mlx->y1 = mlx->y1 + mlx->size;
