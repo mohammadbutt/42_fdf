@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/25 19:53:51 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/26 12:08:55 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -979,6 +979,25 @@ void left_vertical(t_mlx **mlx)
 	plot_any_line(mlx);
 }
 */
+
+
+void copy_mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
+{
+	temp->x0 = (*mlx)->x0;
+	temp->x1 = (*mlx)->x1;
+	temp->y0 = (*mlx)->y0;
+	temp->y1 = (*mlx)->y1;
+}
+
+void copy_temp_xy_to_mlx_xy(t_mlx **mlx, t_mlx *temp)
+{
+	(*mlx)->x0 = temp->x0;
+	(*mlx)->x1 = temp->x1;
+	(*mlx)->y0 = temp->y0;
+	(*mlx)->y1 = temp->y1;
+}
+
+
 void top_horizontal(t_mlx **mlx)
 {
 //	t_mlx temp;
@@ -998,22 +1017,6 @@ void top_horizontal(t_mlx **mlx)
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
 	plot_any_line(mlx);
-}
-
-void copy_mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
-{
-	temp->x0 = (*mlx)->x0;
-	temp->x1 = (*mlx)->x1;
-	temp->y0 = (*mlx)->y0;
-	temp->y1 = (*mlx)->y1;
-}
-
-void copy_temp_xy_to_mlx_xy(t_mlx **mlx, t_mlx *temp)
-{
-	(*mlx)->x0 = temp->x0;
-	(*mlx)->x1 = temp->x1;
-	(*mlx)->y0 = temp->y0;
-	(*mlx)->y1 = temp->y1;
 }
 
 void left_vertical(t_mlx **mlx)
@@ -1069,10 +1072,17 @@ void right_vertical(t_mlx **mlx)
 void ft_diamond(t_mlx **mlx)
 {
 	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
+	(*mlx)->color = 0xff0000; //Red Color
 	top_horizontal(mlx);
+
+	(*mlx)->color = 0x00ff00; //Green Color
 	left_vertical(mlx);
-	bottom_horizontal(mlx);
-	right_vertical(mlx);
+
+//	(*mlx)->color = 0x0000ff; //Blue Color
+//	bottom_horizontal(mlx);
+
+//	(*mlx)->color = 0xffff00; //Yellow Color
+//	right_vertical(mlx);
 }
 
 int main(void)
@@ -1119,8 +1129,14 @@ int main(void)
 //	left_bottom_diagonal(&mlx);
 
 	ft_diamond(&mlx);
-	mlx->x = mlx->x +  85; //+ &mlx->size;
-	mlx->y = mlx->y +  49; //+ &mlx->size;	
+//	mlx->x = mlx->x +  85; //+ &mlx->size;
+//	mlx->y = mlx->y +  49; //+ &mlx->size;	
+	mlx->x = mlx->x + (mlx->size *  0.87);
+	mlx->y = mlx->y + (mlx->size *  0.49) ;
+	ft_diamond(&mlx);
+
+	mlx->x = mlx->x + (mlx->size *  0.87);
+	mlx->y = mlx->y + (mlx->size *  0.49) ;
 	ft_diamond(&mlx);
 //	mlx->x = mlx->x + 85;
 //	mlx->y = mlx->y + 50;
