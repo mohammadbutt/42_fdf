@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/27 21:07:23 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/27 21:38:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1034,8 +1034,6 @@ void top_horizontal(t_mlx **mlx)
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
 	plot_any_line(mlx);
-//	(*mlx)->x = (*mlx)->x0; //or (*mlx)->x = (*mlx)->x1, it's the same thing
-//	(*mlx)->y = (*mlx)->y0; //or (*mlx)->y = (*mlx)->y1, it's the same thing
 }
 /*
 // Works, but we are going to do left_vertical first and then top_horizontal

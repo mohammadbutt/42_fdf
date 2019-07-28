@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/26 10:36:50 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/27 21:50:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,7 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 }
 */
 /*
+// Deprecated.
 // Works and creates borderlines. Making changes to implement angles
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
@@ -284,6 +285,27 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 	}
 }
 */
+
+void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->y1 = mlx->y1 + mlx->size;
+	plot_any_line(mlx);
+	mlx->y0 = mlx->y0 - mlx->size;
+	mlx->y1 = mlx->y1 - mlx->size;
+}
+
+void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
+{
+	mlx->x1 = mlx->x1 + mlx->size;
+
+	if(mlx->x < temp->map_width)
+		plot_any_line(mlx);
+}
+
+/*
+// Works, but changing order. ft_render_vertical will be done first and then
+// ft_render_horizontal will be done, so ft_render_horizontal can bring us back to the
+// default starting point for the next cube.
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
 	mlx->x1 = mlx->x0 + mlx->size;
@@ -306,29 +328,6 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 	}
 }
 
-/*
-** for ft_render_vertical, x0 = x1, but y1 is greater than y0, which allows us
-** to draw vertical line in the downwards direction ⇩ .
-** In the next 2 lines, size is subtracted from the y1 and y0, to bring y1 and
-** y0 back to the tail, also y1 and y0 are equal to each other.
-** size is added to x0 and x1, but x1 is greater x0 allowing us to create a
-** striaght horizontal line next time.
-*/
-/*
-// Works and creates borderlines. Making changes to implement angles.
-void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
-{
-//	get_z_value(mlx, temp);
-	if(mlx->x == temp->map_width) 			//Added for border edges.
-		mlx->x0 = mlx->x0 + mlx->size;		//Added for border edges.
-	plot_any_line(mlx);
-	mlx->y1 = mlx->y1 - mlx->size;
-	mlx->y0 = mlx->y0 - mlx->size;
-	mlx->x0 = mlx->x0 + mlx->size;
-	mlx->x1 = mlx->x0 + mlx->size;
-//	get_z_value(mlx, temp);
-}
-*/
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
 //	get_z_value(mlx, temp);
@@ -345,7 +344,31 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 //	mlx->x1 = mlx->x0 + mlx->size;
 //	get_z_value(mlx, temp);
 }
-
+*/
+/*
+** for ft_render_vertical, x0 = x1, but y1 is greater than y0, which allows us
+** to draw vertical line in the downwards direction ⇩ .
+** In the next 2 lines, size is subtracted from the y1 and y0, to bring y1 and
+** y0 back to the tail, also y1 and y0 are equal to each other.
+** size is added to x0 and x1, but x1 is greater x0 allowing us to create a
+** striaght horizontal line next time.
+*/
+/*
+// Deprecated
+// Works and creates borderlines. Making changes to implement angles.
+void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
+{
+//	get_z_value(mlx, temp);
+	if(mlx->x == temp->map_width) 			//Added for border edges.
+		mlx->x0 = mlx->x0 + mlx->size;		//Added for border edges.
+	plot_any_line(mlx);
+	mlx->y1 = mlx->y1 - mlx->size;
+	mlx->y0 = mlx->y0 - mlx->size;
+	mlx->x0 = mlx->x0 + mlx->size;
+	mlx->x1 = mlx->x0 + mlx->size;
+//	get_z_value(mlx, temp);
+}
+*/
 
 /*
 ** ft_render_horizontal_vertical just calls onto ft_render_horizontal and
@@ -361,8 +384,9 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 
 void ft_render_horizontal_vertical(t_mlx *mlx, t_mlx *temp)
 {
-	ft_render_horizontal(mlx, temp);
 	ft_render_vertical(mlx, temp);
+	ft_render_horizontal(mlx, temp);
+//	ft_render_vertical(mlx, temp);
 }
 
 /*
