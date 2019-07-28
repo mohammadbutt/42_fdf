@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/26 12:08:55 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/27 21:07:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -997,7 +997,48 @@ void copy_temp_xy_to_mlx_xy(t_mlx **mlx, t_mlx *temp)
 	(*mlx)->y1 = temp->y1;
 }
 
+void left_vertical(t_mlx **mlx)
+{
+	t_mlx temp;
+	double degree_angle;
 
+	degree_angle = 150;
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->y1 = (*mlx)->y;
+
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	copy_mlx_xy_to_temp_xy(mlx, &temp);
+	plot_any_line(mlx);
+	find_min_x(mlx, &temp);
+	find_max_y(mlx, &temp);
+}
+
+void top_horizontal(t_mlx **mlx)
+{
+	double degree_angle;
+
+	degree_angle = 30;
+
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->y1 = (*mlx)->y;
+
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+//	(*mlx)->x = (*mlx)->x0; //or (*mlx)->x = (*mlx)->x1, it's the same thing
+//	(*mlx)->y = (*mlx)->y0; //or (*mlx)->y = (*mlx)->y1, it's the same thing
+}
+/*
+// Works, but we are going to do left_vertical first and then top_horizontal
 void top_horizontal(t_mlx **mlx)
 {
 //	t_mlx temp;
@@ -1016,7 +1057,9 @@ void top_horizontal(t_mlx **mlx)
 
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
+	printf("x0:|%d| x1:|%d| y0:|%d| y1:|%d|\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
 	plot_any_line(mlx);
+	printf("x0:|%d| x1:|%d| y0:|%d| y1:|%d|\n\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
 }
 
 void left_vertical(t_mlx **mlx)
@@ -1039,11 +1082,13 @@ void left_vertical(t_mlx **mlx)
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
 	copy_mlx_xy_to_temp_xy(mlx, &temp);
+	printf("x0:|%d| x1:|%d| y0:|%d| y1:|%d|\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
 	plot_any_line(mlx);
+	printf("x0:|%d| x1:|%d| y0:|%d| y1:|%d|\n\n", (*mlx)->x0, (*mlx)->x1, (*mlx)->y0, (*mlx)->y1);
 	find_min_x(mlx, &temp);
 	find_max_y(mlx, &temp);
 }
-
+*/
 void bottom_horizontal(t_mlx **mlx)
 {
 	double degree_angle;
@@ -1072,11 +1117,17 @@ void right_vertical(t_mlx **mlx)
 void ft_diamond(t_mlx **mlx)
 {
 	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-	(*mlx)->color = 0xff0000; //Red Color
-	top_horizontal(mlx);
+//	printf("top_horizontal in Red:\n");
+//	(*mlx)->color = 0xff0000; //Red Color
+//	top_horizontal(mlx);
 
+	printf("left_vertical in Green:\n");
 	(*mlx)->color = 0x00ff00; //Green Color
 	left_vertical(mlx);
+
+	printf("top_horizontal in Red:\n");
+	(*mlx)->color = 0xff0000; // Red Color;
+	top_horizontal(mlx);
 
 //	(*mlx)->color = 0x0000ff; //Blue Color
 //	bottom_horizontal(mlx);
@@ -1129,8 +1180,16 @@ int main(void)
 //	left_bottom_diagonal(&mlx);
 
 	ft_diamond(&mlx);
-//	mlx->x = mlx->x +  85; //+ &mlx->size;
-//	mlx->y = mlx->y +  49; //+ &mlx->size;	
+	mlx->x = mlx->x0;
+	mlx->y = mlx->y0;
+	ft_diamond(&mlx);
+	mlx->x = mlx->x0;
+	mlx->y = mlx->y0;
+	ft_diamond(&mlx);
+	mlx->x = mlx->x0;
+	mlx->y = mlx->y0;
+	ft_diamond(&mlx);
+/*	
 	mlx->x = mlx->x + (mlx->size *  0.87);
 	mlx->y = mlx->y + (mlx->size *  0.49) ;
 	ft_diamond(&mlx);
@@ -1138,8 +1197,7 @@ int main(void)
 	mlx->x = mlx->x + (mlx->size *  0.87);
 	mlx->y = mlx->y + (mlx->size *  0.49) ;
 	ft_diamond(&mlx);
-//	mlx->x = mlx->x + 85;
-//	mlx->y = mlx->y + 50;
+*/
 /*	
 	ft_diamond(&mlx);
 	mlx->x = mlx->x - (85 + 85 + 85);
