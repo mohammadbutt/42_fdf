@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/27 21:50:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/27 23:39:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,47 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 }
 */
 
+//Working on it - Need to add angles
+void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
+{
+	double degree_angle;
+
+	degree_angle = 150;
+
+	copy_mlx_xy_to_temp_xy(mlx, temp);
+//	mlx->y1 = mlx->y1 + mlx->size;
+	mlx->x1 = mlx->x1 + mlx->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+//	copy_mlx_xy_to_temp_xy(mlx, temp);
+	plot_any_line(mlx);
+//	mlx->y0 = mlx->y0 - mlx->size;
+//	mlx->y1 = mlx->y1 - mlx->size;
+//	find_min_x(mlx, temp);
+	find_max_y(mlx);
+	find_min_x(mlx);
+}
+
+void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
+{
+	double degree_angle;
+
+	degree_angle = 30;
+
+// Need to bring back x0y0 to whatever it was when we first started
+	copy_temp_xy_to_mlx_xy(mlx, temp);
+	mlx->x1 = mlx->x1 + mlx->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	if(mlx->x < temp->map_width)
+		plot_any_line(mlx);
+}
+
+
+/*
+// Works - Adding rotation to this.
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
 	mlx->y1 = mlx->y1 + mlx->size;
@@ -301,8 +342,9 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 	if(mlx->x < temp->map_width)
 		plot_any_line(mlx);
 }
-
+*/
 /*
+// Deprecated 2
 // Works, but changing order. ft_render_vertical will be done first and then
 // ft_render_horizontal will be done, so ft_render_horizontal can bring us back to the
 // default starting point for the next cube.
@@ -546,6 +588,9 @@ void reset_y0y1(t_mlx *mlx, t_mlx *temp)
 	mlx->y1 = temp->y1;
 	mlx->y = 0;
 }
+
+
+//Working on it - Need to make rotation work
 void ft_render(t_mlx *mlx)
 {
 	t_mlx temp;
@@ -563,12 +608,14 @@ void ft_render(t_mlx *mlx)
 				ft_render_horizontal(mlx, &temp);
 			mlx->x++;
 		}
-//		if(mlx->x == temp.map_width)
-//			ft_render_vertical(mlx, &temp);
-		mlx->x = 0;
+//		mlx->x = 0;
+		mlx->x0 = mlx->x;
+		mlx->x1 = mlx->x;
 		mlx->y++;
-		mlx->y0 = mlx->y0 + mlx->size;
-		mlx->y1 = mlx->y1 + mlx->size;
+//		mlx->y0 = mlx->y0 + mlx->size; // Commenting for a quick test
+//		mlx->y1 = mlx->y1 + mlx->size; // Commenting for a quick test
+		mlx->y0 = mlx->y; // Adding experimental
+		mlx->y1 = mlx->y; // Adding experimental
 		reset_x0x1(mlx, &temp);
 	}
 	reset_y0y1(mlx, &temp);
@@ -577,6 +624,36 @@ void ft_render(t_mlx *mlx)
 
 
 /*
+// Works - Adding rotation
+void ft_render(t_mlx *mlx)
+{
+	t_mlx temp;
+
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	struct_copy(mlx, &temp);
+
+	while(mlx->y <= temp.map_height)
+	{
+		while(mlx->x <= temp.map_width)
+		{
+			if(mlx->y < temp.map_height)
+				ft_render_horizontal_vertical(mlx, &temp);
+			else if(mlx->y == temp.map_height)
+				ft_render_horizontal(mlx, &temp);
+			mlx->x++;
+		}
+		mlx->x = 0;
+		mlx->y++;
+		mlx->y0 = mlx->y0 + mlx->size;
+		mlx->y1 = mlx->y1 + mlx->size;
+		reset_x0x1(mlx, &temp);
+	}
+	reset_y0y1(mlx, &temp);
+}
+*/
+
+/*
+// Deprecated
 // Works, trying to fix borderline edges.
 void ft_render(t_mlx *mlx)
 {

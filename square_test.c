@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/27 21:38:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/27 23:39:33 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1012,10 +1012,10 @@ void left_vertical(t_mlx **mlx)
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
-	copy_mlx_xy_to_temp_xy(mlx, &temp);
+//	copy_mlx_xy_to_temp_xy(mlx, &temp); Dont need this either
 	plot_any_line(mlx);
-	find_min_x(mlx, &temp);
-	find_max_y(mlx, &temp);
+//	find_min_x(mlx, &temp); Dont need this
+//	find_max_y(mlx, &temp); Dont need this
 }
 
 void top_horizontal(t_mlx **mlx)

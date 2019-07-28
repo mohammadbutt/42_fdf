@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/25 15:41:42 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/27 23:36:44 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,3 +90,53 @@ void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
 }
+/*
+void	find_min_x(t_mlx *mlx, t_mlx *temp)
+{
+	if(temp->x0 < temp->x1)
+	{
+		mlx->x0 = temp->x0;
+		mlx->x1 = temp->x0;
+	}
+	else if(temp->x1 < temp->x0)
+	{
+		mlx->x0 = temp->x1;
+		mlx->x1 = temp->x1;
+	}
+}
+*/
+/*
+void find_max_y(t_mlx *mlx, t_mlx *temp)
+{
+	if(temp->y0 > temp->y1)
+	{
+		mlx->y0 = temp->y0;
+		mlx->y1 = temp->y0;
+	}
+	else if(temp->y1 > temp->y0)
+	{
+		mlx->y0 = temp->y1;
+		mlx->y1 = temp->y1;
+	}
+}
+*/
+
+void find_max_y(t_mlx *mlx)
+{
+	if(mlx->y0 > mlx->y1)
+		mlx->y = mlx->y0;
+	else if(mlx->y1 > mlx->y0)
+		mlx->y = mlx->y1;
+}
+
+void find_min_x(t_mlx *mlx)
+{
+	if(mlx->x0 < mlx->x1)
+		mlx->x = mlx->x0;
+	else if(mlx->x1 < mlx->x0)
+		mlx->x = mlx->x1;
+}
+
+
+
+
