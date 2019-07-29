@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/27 23:39:33 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/29 15:34:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -793,32 +793,28 @@ void find_min_xy(t_mlx **mlx, t_mlx *temp)
 		(*mlx)->y1 = temp->y1;
 	}
 }
+
+
 void find_min_x(t_mlx **mlx, t_mlx *temp)
 {
-	if(temp->x0 < temp->x1)
-	{
-		(*mlx)->x0 = temp->x0;
-		(*mlx)->x1 = temp->x0;
-	}
-	else if(temp->x1 < temp->x0)
-	{
-		(*mlx)->x0 = temp->x1;
-		(*mlx)->x1 = temp->x1;
-	}
+	temp->x = 0;
+	if((*mlx)->x0 < (*mlx)->x1)
+		temp->x = (*mlx)->x0;
+	else if((*mlx)->x1 < (*mlx)->x0)
+		temp->x = (*mlx)->x1;
+
+	printf("find_min_x: temp_x in function:|%d|\n", temp->x);
 }
 
 void find_max_y(t_mlx **mlx, t_mlx *temp)
 {
-	if(temp->y0 > temp->y1)
-	{
-		(*mlx)->y0 = temp->y0;
-		(*mlx)->y1 = temp->y0;
-	}
-	else if(temp->y1 > temp->y0)
-	{
-		(*mlx)->y0 = temp->y1;
-		(*mlx)->y1 = temp->y1;
-	}
+	temp->y = 0;
+	if((*mlx)->y0 > (*mlx)->y1)
+		temp->y = (*mlx)->y0;
+	else if((*mlx)->y1 > (*mlx)->y0)
+		temp->y = (*mlx)->y1;
+
+	printf("find_max_y: temp_y in function:|%d|\n", temp->y);
 }
 
 void mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
@@ -980,26 +976,8 @@ void left_vertical(t_mlx **mlx)
 }
 */
 
-
-void copy_mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
+void left_vertical(t_mlx **mlx, t_mlx *temp)
 {
-	temp->x0 = (*mlx)->x0;
-	temp->x1 = (*mlx)->x1;
-	temp->y0 = (*mlx)->y0;
-	temp->y1 = (*mlx)->y1;
-}
-
-void copy_temp_xy_to_mlx_xy(t_mlx **mlx, t_mlx *temp)
-{
-	(*mlx)->x0 = temp->x0;
-	(*mlx)->x1 = temp->x1;
-	(*mlx)->y0 = temp->y0;
-	(*mlx)->y1 = temp->y1;
-}
-
-void left_vertical(t_mlx **mlx)
-{
-	t_mlx temp;
 	double degree_angle;
 
 	degree_angle = 150;
@@ -1007,28 +985,42 @@ void left_vertical(t_mlx **mlx)
 	(*mlx)->x1 = (*mlx)->x;
 	(*mlx)->y0 = (*mlx)->y;
 	(*mlx)->y1 = (*mlx)->y;
-
+	if((*mlx)->test_index == 1)
+	{
+		(*mlx)->x0 = temp->x;
+		(*mlx)->x1 = temp->x;
+		(*mlx)->y0 = temp->y;
+		(*mlx)->y1 = temp->y;
+	}
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
-//	copy_mlx_xy_to_temp_xy(mlx, &temp); Dont need this either
+	if((*mlx)->test_index == 0)
+	{
+	find_min_x(mlx, temp);
+	find_max_y(mlx, temp);
+	}
 	plot_any_line(mlx);
-//	find_min_x(mlx, &temp); Dont need this
-//	find_max_y(mlx, &temp); Dont need this
+	(*mlx)->test_index++;
 }
 
-void top_horizontal(t_mlx **mlx)
+void top_horizontal(t_mlx **mlx, t_mlx *temp)
 {
 	double degree_angle;
 
 	degree_angle = 30;
-
 	(*mlx)->x0 = (*mlx)->x;
 	(*mlx)->x1 = (*mlx)->x;
 	(*mlx)->y0 = (*mlx)->y;
 	(*mlx)->y1 = (*mlx)->y;
-
+	if((*mlx)->test_index == 2)
+	{
+		(*mlx)->x0 = temp->x;
+		(*mlx)->x1 = temp->x;
+		(*mlx)->y0 = temp->y;
+		(*mlx)->y1 = temp->y;
+	}
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
@@ -1112,26 +1104,42 @@ void right_vertical(t_mlx **mlx)
 	plot_any_line(mlx);
 }
 
+void copy_xy_to_x0y0x1y1(t_mlx **mlx)
+{
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->y1 = (*mlx)->y;
+}
+
 void ft_diamond(t_mlx **mlx)
 {
-	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-//	printf("top_horizontal in Red:\n");
-//	(*mlx)->color = 0xff0000; //Red Color
-//	top_horizontal(mlx);
+	t_mlx temp;
 
+	(*mlx)->test_index = 0;
+	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
+	
+//	copy_xy_to_x0y0x1y1(mlx);
 	printf("left_vertical in Green:\n");
 	(*mlx)->color = 0x00ff00; //Green Color
-	left_vertical(mlx);
+	left_vertical(mlx, &temp);
 
+//	copy_xy_to_x0y0x1y1(mlx);
 	printf("top_horizontal in Red:\n");
 	(*mlx)->color = 0xff0000; // Red Color;
-	top_horizontal(mlx);
+	top_horizontal(mlx, &temp);
 
-//	(*mlx)->color = 0x0000ff; //Blue Color
-//	bottom_horizontal(mlx);
+//	(*mlx)->x = temp.x;
+//	(*mlx)->y = temp.y;
 
-//	(*mlx)->color = 0xffff00; //Yellow Color
-//	right_vertical(mlx);
+//	copy_xy_to_x0y0x1y1(mlx);
+	printf("left_vertical:\n");
+	left_vertical(mlx, &temp);
+
+//	copy_xy_to_x0y0x1y1(mlx);
+	printf("top_horizontal:\n");
+	top_horizontal(mlx, &temp);
+
 }
 
 int main(void)
@@ -1178,15 +1186,15 @@ int main(void)
 //	left_bottom_diagonal(&mlx);
 
 	ft_diamond(&mlx);
-	mlx->x = mlx->x0;
-	mlx->y = mlx->y0;
-	ft_diamond(&mlx);
-	mlx->x = mlx->x0;
-	mlx->y = mlx->y0;
-	ft_diamond(&mlx);
-	mlx->x = mlx->x0;
-	mlx->y = mlx->y0;
-	ft_diamond(&mlx);
+//	mlx->x = mlx->x0;
+//	mlx->y = mlx->y0;
+//	ft_diamond(&mlx);
+//	mlx->x = mlx->x0;
+//	mlx->y = mlx->y0;
+//	ft_diamond(&mlx);
+//	mlx->x = mlx->x0;
+//	mlx->y = mlx->y0;
+//	ft_diamond(&mlx);
 /*	
 	mlx->x = mlx->x + (mlx->size *  0.87);
 	mlx->y = mlx->y + (mlx->size *  0.49) ;
@@ -1230,7 +1238,5 @@ int main(void)
 */
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, &mlx);
 	mlx_loop(mlx->mlx_ptr); //Required to end the program
-
-
 }
 

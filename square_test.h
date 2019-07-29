@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 19:31:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/25 15:56:56 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/29 13:46:34 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@
 
 typedef struct	s_mlx
 {
+	int			test_index;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	double		ro_x;
 	double		ro_y;
-	double		x;
-	double		y;
+	int			x;
+	int			y;
 //	int			size;
 	double		size;
 	size_t		color;
@@ -100,16 +101,20 @@ void shift_program(t_mlx **mlx, int key);
 void zoom_program(t_mlx **mlx, int key);
 void random_color(t_mlx **mlx);
 void get_struct_values(t_mlx **mlx);
-void top_horizontal(t_mlx **mlx);
 void right_vertical(t_mlx **mlx);
 void bottom_horizontal(t_mlx **mlx);
-void left_vertical(t_mlx **mlx);
 void right_top_diagonal(t_mlx **mlx);
 void right_bottom_diagonal(t_mlx **mlx);
 void left_top_diagonal(t_mlx **mlx);
 void left_bottom_diagonal(t_mlx **mlx);
-void ft_diamond(t_mlx **mlx);
 void reset_program(t_mlx **mlx, int key);
-int program_keys(int key, t_mlx **mlx);
+
+void	copy_xy_to_x0y0x1y1(t_mlx **mlx);
+void 	find_min_x(t_mlx **mlx, t_mlx *temp);
+void 	find_max_y(t_mlx **mlx, t_mlx *temp);
+void 	left_vertical(t_mlx **mlx, t_mlx *temp);
+void 	top_horizontal(t_mlx **mlx, t_mlx *temp);
+void 	ft_diamond(t_mlx **mlx);
+int 	program_keys(int key, t_mlx **mlx);
 
 #endif
