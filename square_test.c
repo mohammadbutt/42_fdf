@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/29 15:34:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/29 19:50:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -976,6 +976,14 @@ void left_vertical(t_mlx **mlx)
 }
 */
 
+
+
+/*
+// Partial rotation works. Draws the second vertical line.
+// Need to work on the second horizontal diamond, so that we have a 2 by 2 cube.
+// As such:
+//  ⬦⬦
+//  ⬦⬦
 void left_vertical(t_mlx **mlx, t_mlx *temp)
 {
 	double degree_angle;
@@ -1027,6 +1035,41 @@ void top_horizontal(t_mlx **mlx, t_mlx *temp)
 	add_rotated_x1y1_to_x0y0(mlx);
 	plot_any_line(mlx);
 }
+*/
+
+// Baseline
+void left_vertical(t_mlx **mlx, t_mlx *temp)
+{
+	double degree_angle;
+
+	degree_angle = 150;
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->y1 = (*mlx)->y;
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+}
+
+void top_horizontal(t_mlx **mlx, t_mlx *temp)
+{
+	double degree_angle;
+
+	degree_angle = 30;
+	(*mlx)->x0 = (*mlx)->x;
+	(*mlx)->x1 = (*mlx)->x;
+	(*mlx)->y0 = (*mlx)->y;
+	(*mlx)->y1 = (*mlx)->y;
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+	plot_any_line(mlx);
+}
+
 /*
 // Works, but we are going to do left_vertical first and then top_horizontal
 void top_horizontal(t_mlx **mlx)
@@ -1119,26 +1162,20 @@ void ft_diamond(t_mlx **mlx)
 	(*mlx)->test_index = 0;
 	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
 	
-//	copy_xy_to_x0y0x1y1(mlx);
 	printf("left_vertical in Green:\n");
 	(*mlx)->color = 0x00ff00; //Green Color
 	left_vertical(mlx, &temp);
 
-//	copy_xy_to_x0y0x1y1(mlx);
 	printf("top_horizontal in Red:\n");
 	(*mlx)->color = 0xff0000; // Red Color;
 	top_horizontal(mlx, &temp);
 
-//	(*mlx)->x = temp.x;
-//	(*mlx)->y = temp.y;
+//	printf("left_vertical:\n");
+//	left_vertical(mlx, &temp);
 
-//	copy_xy_to_x0y0x1y1(mlx);
-	printf("left_vertical:\n");
-	left_vertical(mlx, &temp);
+//	printf("top_horizontal:\n");
+//	top_horizontal(mlx, &temp);
 
-//	copy_xy_to_x0y0x1y1(mlx);
-	printf("top_horizontal:\n");
-	top_horizontal(mlx, &temp);
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/27 23:36:44 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/29 18:57:34 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,22 +121,22 @@ void find_max_y(t_mlx *mlx, t_mlx *temp)
 }
 */
 
-void find_max_y(t_mlx *mlx)
-{
-	if(mlx->y0 > mlx->y1)
-		mlx->y = mlx->y0;
-	else if(mlx->y1 > mlx->y0)
-		mlx->y = mlx->y1;
-}
 
-void find_min_x(t_mlx *mlx)
+void find_min_x(t_mlx *mlx, t_mlx *temp)
 {
+	temp->x = 0;
 	if(mlx->x0 < mlx->x1)
-		mlx->x = mlx->x0;
+		temp->x = mlx->x0;
 	else if(mlx->x1 < mlx->x0)
-		mlx->x = mlx->x1;
+		temp->x = mlx->x1;
 }
 
-
-
+void find_max_y(t_mlx *mlx, t_mlx *temp)
+{
+	temp->y = 0;
+	if(mlx->y0 > mlx->y1)
+		temp->y = mlx->y0;
+	else if(mlx->y1 > mlx->y0)
+		temp->y = mlx->y1;
+}
 

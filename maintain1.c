@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/26 09:53:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/29 16:43:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,12 +181,14 @@ void shift_program(t_mlx *mlx, int key)
 	if(key == UP_K)
 	{
 		mlx->y0 = mlx->y0 - 5;
-		mlx->y1 = mlx->y1 - 5;
+	//	mlx->y1 = mlx->y1 - 5;
+		mlx->y1 = mlx->y0;
 	}
 	else if(key == DOWN_K)
 	{
 		mlx->y0 = mlx->y0 + 5;
-		mlx->y1 = mlx->y1 + 5;
+	//	mlx->y1 = mlx->y1 + 5;
+		mlx->y1 = mlx->y0;
 	}
 	else if(key == RIGHT_K)
 	{
@@ -197,7 +199,8 @@ void shift_program(t_mlx *mlx, int key)
 	else if(key == LEFT_K)
 	{
 		mlx->x0 = mlx->x0 - 5;
-		mlx->x1 = mlx->x1 - 5;
+	//	mlx->x1 = mlx->x1 - 5;
+		mlx->x1 = mlx->x0;
 	}
 	ft_render(mlx);
 }

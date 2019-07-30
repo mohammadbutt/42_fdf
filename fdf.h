@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/27 23:39:36 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/29 16:43:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,8 +239,8 @@ void	copy_mlx_xy_to_temp_xy(t_mlx *mlx, t_mlx *temp);
 void	copy_temp_xy_to_mlx_xy(t_mlx *mlx, t_mlx *temp);
 void	rotate_horizontal_line(t_mlx *mlx, t_mlx *temp);
 void	rotate_vertical_line(t_mlx *mlx, t_mlx *temp);
-//void	find_min_x(t_mlx *mlx, t_mlx *temp);
-//void	find_max_y(t_mlx *mlx, t_mlx *temp);
-void	find_max_y(t_mlx *mlx);
-void	find_min_x(t_mlx *mlx);
+void	find_min_x(t_mlx *mlx, t_mlx *temp);
+void	find_max_y(t_mlx *mlx, t_mlx *temp);
+
+
 #endif
