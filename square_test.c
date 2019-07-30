@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/29 19:50:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/30 15:59:01 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,6 +327,33 @@ void draw_horizontal_line(t_mlx **mlx, int x, int y, int size)
 void shift_program(t_mlx **mlx, int key)
 {
 	if(key == UP_K)
+	{
+		(*mlx)->y0 = (*mlx)->y0 - 5;
+		(*mlx)->y1 = (*mlx)->y1 - 5;
+	}
+	else if(key == DOWN_K)
+	{
+		(*mlx)->y0 = (*mlx)->y0 + 5;
+		(*mlx)->y1 = (*mlx)->y1 + 5;
+	}
+	else if(key == RIGHT_K)
+	{
+		(*mlx)->x0 = (*mlx)->x0 + 5;
+		(*mlx)->x1 = (*mlx)->x1 + 5;
+	}
+	else if(key == LEFT_K)
+	{
+		(*mlx)->x0 = (*mlx)->x0 - 5;
+		(*mlx)->x1 = (*mlx)->x1 - 5;
+	}
+	ft_diamond(mlx);
+}
+
+/*
+// Works, but experimenting changing key binding from y to y0 and y1.
+void shift_program(t_mlx **mlx, int key)
+{
+	if(key == UP_K)
 		(*mlx)->y = (*mlx)->y - 5;
 	else if(key == DOWN_K)
 		(*mlx)->y = (*mlx)->y + 5;
@@ -334,25 +361,17 @@ void shift_program(t_mlx **mlx, int key)
 		(*mlx)->x = (*mlx)->x + 5;
 	else if(key == LEFT_K)
 		(*mlx)->x = (*mlx)->x - 5;
-//	top_horizontal(mlx);
-//	right_vertical(mlx);
-//	bottom_horizontal(mlx);
-//	left_vertical(mlx);
-//	draw_square(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
-//	draw_cube(mlx, (*mlx)->x, (*mlx)->y, (*mlx)->size);
 	ft_diamond(mlx);
 }
-
+*/
 void zoom_program(t_mlx **mlx, int key)
 {
 	int size;
 
 	size = (*mlx)->size;
 	if(key == ZOOM_IN_Q)
-//		size = size + 30;
 		size = size + 1;
 	else if(key == ZOOM_OUT_A)
-//		size = size - 30;
 		size = size - 1;
 // Centeralizes map
 
@@ -368,9 +387,7 @@ void zoom_program(t_mlx **mlx, int key)
 	}
 
 	(*mlx)->size = size;
-//	draw_square(mlx, (*mlx)->x, (*mlx)->y, size);
 	ft_diamond(mlx);
-//	draw_cube(mlx, (*mlx)->x, (*mlx)->y, size);
 }
 void random_color(t_mlx **mlx)
 {
@@ -387,8 +404,12 @@ void random_color(t_mlx **mlx)
 
 void get_struct_values(t_mlx **mlx)
 {
-	(*mlx)->x = P_WIDTH / 2;
-	(*mlx)->y = P_HEIGHT / 2;
+//	(*mlx)->x = P_WIDTH / 2;
+//	(*mlx)->y = P_HEIGHT / 2;
+	(*mlx)->x0 = P_WIDTH / 2;
+	(*mlx)->x1 = P_WIDTH / 2;
+	(*mlx)->y0 = P_HEIGHT / 2;
+	(*mlx)->y1 = P_HEIGHT / 2;
 	(*mlx)->size = 100;
 	(*mlx)->color = 0x7FFFD4;
 	(*mlx)->angle_y = 0.5;
@@ -794,13 +815,12 @@ void find_min_xy(t_mlx **mlx, t_mlx *temp)
 	}
 }
 
-
 void find_min_x(t_mlx **mlx, t_mlx *temp)
 {
 	temp->x = 0;
 	if((*mlx)->x0 < (*mlx)->x1)
 		temp->x = (*mlx)->x0;
-	else if((*mlx)->x1 < (*mlx)->x0)
+	else if((*mlx)->x1 <= (*mlx)->x0)
 		temp->x = (*mlx)->x1;
 
 	printf("find_min_x: temp_x in function:|%d|\n", temp->x);
@@ -811,12 +831,12 @@ void find_max_y(t_mlx **mlx, t_mlx *temp)
 	temp->y = 0;
 	if((*mlx)->y0 > (*mlx)->y1)
 		temp->y = (*mlx)->y0;
-	else if((*mlx)->y1 > (*mlx)->y0)
+	else if((*mlx)->y1 >= (*mlx)->y0)
 		temp->y = (*mlx)->y1;
 
 	printf("find_max_y: temp_y in function:|%d|\n", temp->y);
 }
-
+/*
 void mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
 {
 	temp->x0 = (*mlx)->x0;
@@ -824,6 +844,22 @@ void mlx_xy_to_temp_xy(t_mlx **mlx, t_mlx *temp)
 	temp->y0 = (*mlx)->y0;
 	temp->y1 = (*mlx)->y1;
 }
+*/
+
+/*
+** Copy_temp_xy_to_mlx_x0y0x1y1 is used with values that are found using
+** find_min_x and find_max_y.
+*/
+
+void copy_temp_xy_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp)
+{
+	(*mlx)->x0 = temp->x;
+	(*mlx)->x1 = temp->x;
+	(*mlx)->y0 = temp->y;
+	(*mlx)->y1 = temp->y;
+}
+
+
 
 /*
 void top_horizontal(t_mlx **mlx)
@@ -894,8 +930,6 @@ void left_vertical(t_mlx **mlx)
 	apply_rotation(mlx);
 	plot_any_line(mlx);
 	find_max_xy(mlx, &temp);
-
-
 }
 */
 
@@ -975,8 +1009,58 @@ void left_vertical(t_mlx **mlx)
 	plot_any_line(mlx);
 }
 */
+void left_vertical(t_mlx **mlx, t_mlx *temp)
+{
+	double degree_angle;
+
+	degree_angle = 150;
+
+	
+	if((*mlx)->test_index == 3)
+	{
+		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
+		printf("x0:|%d|, x1:|%d|\n", (*mlx)->x0, (*mlx)->x1);
+		printf("y0:|%d|, y1:|%d|\n", (*mlx)->y0, (*mlx)->y1);
+	}
+	
+//	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->size;
+
+// Rotation
+
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
 
 
+	if((*mlx)->test_index == 0)
+	{
+	find_min_x(mlx, temp);
+	find_max_y(mlx, temp);
+	}
+
+	plot_any_line(mlx);
+	(*mlx)->test_index++;
+}
+
+void top_horizontal(t_mlx **mlx, t_mlx *temp)
+{
+	double degree_angle;
+
+	degree_angle = 30;
+
+	if((*mlx)->test_index == 4)
+		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
+
+	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
+
+// Rotation
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
+
+	plot_any_line(mlx);
+}
 
 /*
 // Partial rotation works. Draws the second vertical line.
@@ -1036,7 +1120,7 @@ void top_horizontal(t_mlx **mlx, t_mlx *temp)
 	plot_any_line(mlx);
 }
 */
-
+/*
 // Baseline
 void left_vertical(t_mlx **mlx, t_mlx *temp)
 {
@@ -1069,7 +1153,7 @@ void top_horizontal(t_mlx **mlx, t_mlx *temp)
 	add_rotated_x1y1_to_x0y0(mlx);
 	plot_any_line(mlx);
 }
-
+*/
 /*
 // Works, but we are going to do left_vertical first and then top_horizontal
 void top_horizontal(t_mlx **mlx)
@@ -1146,7 +1230,7 @@ void right_vertical(t_mlx **mlx)
 	add_rotated_x1y1_to_x0y0(mlx);
 	plot_any_line(mlx);
 }
-
+/*
 void copy_xy_to_x0y0x1y1(t_mlx **mlx)
 {
 	(*mlx)->x0 = (*mlx)->x;
@@ -1154,29 +1238,70 @@ void copy_xy_to_x0y0x1y1(t_mlx **mlx)
 	(*mlx)->y0 = (*mlx)->y;
 	(*mlx)->y1 = (*mlx)->y;
 }
+*/
 
+void copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(t_mlx **mlx, t_mlx *temp)
+{
+	temp->x0 = (*mlx)->x0;
+	temp->x1 = (*mlx)->x1;
+	temp->y0 = (*mlx)->y0;
+	temp->y1 = (*mlx)->y1;
+}
+
+void copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp)
+{
+	(*mlx)->x0 = temp->x0;
+	(*mlx)->x1 = temp->x1;
+	(*mlx)->y0 = temp->y0;
+	(*mlx)->y1 = temp->y1;
+}
+
+/*
+** We create two temps, temp1 and temp2.
+** Once we store values onto temp1, we dont touch it until at the end to
+** reset the values back for shifting and zoom to work properly.
+*/
 void ft_diamond(t_mlx **mlx)
 {
-	t_mlx temp;
+	t_mlx temp1;
+	t_mlx temp2;
 
 	(*mlx)->test_index = 0;
 	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
 	
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp1);
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
 	printf("left_vertical in Green:\n");
 	(*mlx)->color = 0x00ff00; //Green Color
-	left_vertical(mlx, &temp);
-
+	left_vertical(mlx, &temp2);
+	
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp2);	
 	printf("top_horizontal in Red:\n");
 	(*mlx)->color = 0xff0000; // Red Color;
-	top_horizontal(mlx, &temp);
+	top_horizontal(mlx, &temp2);
 
-//	printf("left_vertical:\n");
-//	left_vertical(mlx, &temp);
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
+	left_vertical(mlx, &temp2);
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp2);
+	top_horizontal(mlx, &temp2);
 
-//	printf("top_horizontal:\n");
-//	top_horizontal(mlx, &temp);
+	left_vertical(mlx, &temp2);
 
 
+// Second line	
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
+	left_vertical(mlx, &temp2);
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp2);
+	top_horizontal(mlx, &temp2);
+
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
+	left_vertical(mlx, &temp2);
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp2);
+	top_horizontal(mlx, &temp2);
+	
+	left_vertical(mlx, &temp2);
+
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp1);
 }
 
 int main(void)

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 19:31:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/29 13:46:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/30 15:59:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,13 @@ void left_top_diagonal(t_mlx **mlx);
 void left_bottom_diagonal(t_mlx **mlx);
 void reset_program(t_mlx **mlx, int key);
 
-void	copy_xy_to_x0y0x1y1(t_mlx **mlx);
+void 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
+void	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
+void	copy_temp_xy_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
+//void	copy_mlx_x0y0_to_temp_xy(t_mlx **mlx, t_mlx *temp);
+//void	copy_temp_xy_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
+//void	copy_xy_to_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
+//void	copy_temp_xy_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
 void 	find_min_x(t_mlx **mlx, t_mlx *temp);
 void 	find_max_y(t_mlx **mlx, t_mlx *temp);
 void 	left_vertical(t_mlx **mlx, t_mlx *temp);
