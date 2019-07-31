@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 20:45:16 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/31 11:07:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ void centeralize_with_zoom(t_mlx *mlx, int key)
 		mlx->x1 = mlx->x0;
 		mlx->y0 = mlx->y0 - 6;//(P_HEIGHT/95 * mlx->map_height);
 		mlx->y1 = mlx->y0;
-//		printf("%d\n")
 	}
 	else if(key == ZOOM_OUT_A)
 	{
@@ -165,12 +164,12 @@ void zoom_program(t_mlx *mlx, int key)
 {
 	if(key == ZOOM_IN_Q)
 	{
-		mlx->size = mlx->size + 1;
+		mlx->size = mlx->size + 2;
 		centeralize_with_zoom(mlx, key);
 	}
-	if(key == ZOOM_OUT_A && mlx->size != 1)
+	if(key == ZOOM_OUT_A && mlx->size != 3)
 	{
-		mlx->size = mlx->size - 1;
+		mlx->size = mlx->size - 2;
 		centeralize_with_zoom(mlx, key);
 	}
 	ft_render(mlx);
