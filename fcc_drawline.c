@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 19:56:47 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/30 20:45:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,7 +309,8 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 		find_min_x(mlx, temp);
 		find_max_y(mlx, temp);
 	}
-	plot_any_line(mlx);
+	if(mlx->y < temp->map_height)
+		plot_any_line(mlx);
 //	mlx->y0 = mlx->y0 - mlx->size; // During rotation this will not work
 //	mlx->y1 = mlx->y1 - mlx->size; // During rotation this will not work.
 }
@@ -609,10 +610,10 @@ void ft_render(t_mlx *mlx)
 	{
 		while(mlx->x <= temp.map_width)
 		{
-			if(mlx->y < temp.map_height)
+//			if(mlx->y < temp.map_height)
 				ft_render_horizontal_vertical(mlx, &temp);
-			else if(mlx->y == temp.map_height)
-				ft_render_horizontal(mlx, &temp);
+//			else if(mlx->y == temp.map_height)
+//				ft_render_horizontal(mlx, &temp);
 			mlx->x++;
 		}
 		mlx->x = 0;
