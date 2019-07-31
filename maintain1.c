@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/31 11:07:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/31 13:57:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,16 +227,16 @@ void iso_projection(t_mlx *mlx)
 	
 	ft_render(mlx);
 }
-/*
+
 void change_camera(t_mlx *mlx)
 {
 	if(mlx->camera == 0)
-		mlx->camera == 1;
+		mlx->camera = 1;
 	else if(mlx->camera == 1)
-		mlx->camera == 0;
+		mlx->camera = 0;
 	ft_render(mlx);
 }
-*/
+
 int program_keys(int key, t_mlx *mlx)
 {
 	if(key == ESCAPE_ESC)
@@ -249,8 +249,8 @@ int program_keys(int key, t_mlx *mlx)
 		random_color(mlx, key);
 	else if(key == RESET_PROGRAM_E)
 		reset_program(mlx, key);
-//	else if(key == CHANGE_CAMERA_C)
-//		iso_projection(mlx);
+	else if(key == CHANGE_CAMERA_C)
+		change_camera(mlx);
 	return(0);
 }
 

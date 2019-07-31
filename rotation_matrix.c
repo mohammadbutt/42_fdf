@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 19:44:36 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/31 13:34:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(t_mlx *mlx, t_mlx *temp)
 }
 void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 {
-//	t_mlx temp;
 	double degree_angle;
 
 //	degree_angle = 30;
@@ -75,11 +74,15 @@ void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
+	if(mlx->x == 0)
+	{
+		find_min_x(mlx, temp);
+		find_max_y(mlx, temp);
+	}
 }
 
 void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 {
-//	t_mlx temp;
 	double degree_angle;
 
 //	degree_angle = -30;

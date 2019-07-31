@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 20:45:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/31 14:20:44 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,42 +289,24 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 //Working on it - Need to add angles
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
-	double degree_angle;
+	if(mlx->camera == 1)				//Uncommenting
+		mlx->y1 = mlx->y1 + mlx->size;	//Uncommenting
 
-	degree_angle = 150;
-
-	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, temp);
-//	printf("mlx->x0:|%d|, mlx->x1:|%d|, mlx->y0:|%d|, mlx->y1:|%d|\n", mlx->x0,\
-//			mlx->x1, mlx->y0, mlx->y1);
-//	printf("temp->x0:|%d|, temp->x1:|%d|, temp->y0:|%d|, temp->y1:|%d|\n\n", temp->x0,\
-//			temp->x1, temp->x0, temp->x1);
-//	mlx->y1 = mlx->y1 + mlx->size;
-	mlx->x1 = mlx->x1 + mlx->size;
-	subtract_x0y0_from_x1y1(mlx);
-	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
-	add_rotated_x1y1_to_x0y0(mlx);
-	
-	if(mlx->x == 0)
-	{
-		find_min_x(mlx, temp);
-		find_max_y(mlx, temp);
-	}
+	if(mlx->camera == 0)
+		rotate_vertical_line(mlx, temp);
 	if(mlx->y < temp->map_height)
 		plot_any_line(mlx);
-//	mlx->y0 = mlx->y0 - mlx->size; // During rotation this will not work
-//	mlx->y1 = mlx->y1 - mlx->size; // During rotation this will not work.
+	if(mlx->camera == 1)				// Uncommenting
+		mlx->y0 = mlx->y0 - mlx->size; //  Uncommenting
+		mlx->y1 = mlx->y1 - mlx->size; //  Uncommenting
 }
 
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
-	double degree_angle;
-
-	degree_angle = 30;
-	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, temp);
-	mlx->x1 = mlx->x1 + mlx->size;
-	subtract_x0y0_from_x1y1(mlx);
-	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
-	add_rotated_x1y1_to_x0y0(mlx);
+	 if(mlx->camera == 1)				// Uncommenting
+ 		mlx->x1 = mlx->x1 + mlx->size;	// Uncommenting
+	if(mlx->camera == 0)
+		rotate_horizontal_line(mlx, temp);
 	if(mlx->x < temp->map_width)
 		plot_any_line(mlx);
 }
@@ -429,11 +411,15 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 ** end and the bottom, ft_render_edges takes care of that.
 */
 
-void ft_render_horizontal_vertical(t_mlx *mlx, t_mlx *temp)
+//void ft_render_horizontal_vertical(t_mlx *mlx, t_mlx *temp)
+void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp)
 {
-	ft_render_vertical(mlx, temp);
-	ft_render_horizontal(mlx, temp);
-//	ft_render_vertical(mlx, temp);
+	if(mlx->camera == 0 || mlx->camera == 1)
+	{
+		if(mlx->camera == 0 ||  mlx->y < temp->map_height)
+			ft_render_vertical(mlx, temp);
+		ft_render_horizontal(mlx, temp);
+	}
 }
 
 /*
@@ -516,6 +502,7 @@ void get_struct_values(t_mlx *mlx)
 	mlx->y = 0;
 	mlx->x0 = 0;
 	mlx->y0 = 0;
+	mlx->camera = 0;
 //	mlx->x0 = (P_WIDTH / 2) - (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
 //	mlx->y0 = (P_HEIGHT / 2) - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
 	mlx->x1 = mlx->x0;
@@ -574,10 +561,10 @@ void ft_render(t_mlx *mlx)
 ** Once x0 and x1
 */
 
-void reset_x0x1(t_mlx *mlx, t_mlx *temp)
+void reset_x0x1(t_mlx *mlx, t_mlx *temp_reset)
 {
-	mlx->x0 = temp->x0;
-	mlx->x1 = temp->x1;
+	mlx->x0 = temp_reset->x0;
+	mlx->x1 = temp_reset->x1;
 	mlx->x = 0;
 }
 
@@ -588,20 +575,24 @@ void reset_x0x1(t_mlx *mlx, t_mlx *temp)
 ** program allowing us to shift the program in any direction and change zoom.
 */
 
-void reset_y0y1(t_mlx *mlx, t_mlx *temp)
+void reset_y0y1(t_mlx *mlx, t_mlx *temp_reset)
 {
-	mlx->y0 = temp->y0;
-	mlx->y1 = temp->y1;
+	mlx->y0 = temp_reset->y0;
+	mlx->y1 = temp_reset->y1;
 	mlx->y = 0;
 }
 
+void reset_x0x1_y0y1(t_mlx *mlx, t_mlx *temp_reset)
+{
+	reset_x0x1(mlx, temp_reset);
+	reset_y0y1(mlx, temp_reset);
+}
 
 //Working on it - Need to make rotation work
 void ft_render(t_mlx *mlx)
 {
-	t_mlx temp; // Need a second temp to reset values back to original state.
+	t_mlx temp;
 	t_mlx temp_reset;
-
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	ft_menu(mlx);
 	struct_copy(mlx, &temp);
@@ -610,23 +601,21 @@ void ft_render(t_mlx *mlx)
 	{
 		while(mlx->x <= temp.map_width)
 		{
-//			if(mlx->y < temp.map_height)
-				ft_render_horizontal_vertical(mlx, &temp);
-//			else if(mlx->y == temp.map_height)
-//				ft_render_horizontal(mlx, &temp);
+			ft_render_vertical_horizontal(mlx, &temp);
 			mlx->x++;
+		}
+		if(mlx->camera == 0)
+			copy_temp_xy_to_mlx_x0y0x1y1(mlx, &temp);
+		else if(mlx->camera == 1)
+		{
+			mlx->y0 = mlx->y0 + mlx->size;
+			mlx->y1 = mlx->y1 + mlx->size;
+			reset_x0x1(mlx, &temp);
 		}
 		mlx->x = 0;
 		mlx->y++;
-		copy_temp_xy_to_mlx_x0y0x1y1(mlx, &temp);
-//		mlx->y0 = mlx->y0 + mlx->size; // Might have to remove completely
-//		mlx->y1 = mlx->y1 + mlx->size; // Might have to remove completely
-//		reset_x0x1(mlx, &temp); // Bring it outside the while loop
 	}
-//	reset_x0x1(mlx, &temp);
-//	reset_y0y1(mlx, &temp);
-	reset_x0x1(mlx, &temp_reset);
-	reset_y0y1(mlx, &temp_reset);
+	reset_x0x1_y0y1(mlx, &temp_reset);
 }
 
 

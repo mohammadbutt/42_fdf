@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/31 11:08:03 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/31 14:20:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,11 +220,14 @@ void	vertical_render(t_fdf *fdf, int x, int y);
 void	ft_dots(t_mlx *mlx);
 void	struct_copy(t_mlx *source, t_mlx *dest);
 void	get_z_value(t_mlx *mlx, t_mlx *temp);
-void	ft_render_horizontal(t_mlx *mlx, t_mlx *temp);
 void	ft_render_vertical(t_mlx *mlx, t_mlx *temp);
-void	ft_render_horizontal_vertical(t_mlx *mlx, t_mlx *temp);
+void	ft_render_horizontal(t_mlx *mlx, t_mlx *temp);
+void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp);
 void	ft_render_edges(t_mlx *mlx, t_mlx *temp);
-void	reset_xy_values(t_mlx *mlx, t_mlx *temp);
+//void	reset_xy_values(t_mlx *mlx, t_mlx *temp);
+void	reset_x0x1(t_mlx *mlx, t_mlx *temp_reset);
+void	reset_y0y1(t_mlx *mlx, t_mlx *temp_reset);
+void	reset_x0x1_y0y1(t_mlx *mlx, t_mlx *temp_reset);
 void	ft_render(t_mlx *mlx);
 void	ft_print_data(t_mlx *mlx);
 
