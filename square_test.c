@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 15:59:01 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/30 17:43:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1012,10 +1012,7 @@ void left_vertical(t_mlx **mlx)
 void left_vertical(t_mlx **mlx, t_mlx *temp)
 {
 	double degree_angle;
-
 	degree_angle = 150;
-
-	
 	if((*mlx)->test_index == 3)
 	{
 		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
@@ -1024,21 +1021,17 @@ void left_vertical(t_mlx **mlx, t_mlx *temp)
 	}
 	
 //	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->size;
-
 // Rotation
 
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
-
-
 	if((*mlx)->test_index == 0)
 	{
 	find_min_x(mlx, temp);
 	find_max_y(mlx, temp);
 	}
-
 	plot_any_line(mlx);
 	(*mlx)->test_index++;
 }
@@ -1046,14 +1039,11 @@ void left_vertical(t_mlx **mlx, t_mlx *temp)
 void top_horizontal(t_mlx **mlx, t_mlx *temp)
 {
 	double degree_angle;
-
 	degree_angle = 30;
-
 	if((*mlx)->test_index == 4)
 		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
 
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
-
 // Rotation
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);

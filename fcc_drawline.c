@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/29 19:50:13 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/30 19:44:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,23 +293,25 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 
 	degree_angle = 150;
 
-//	copy_mlx_xy_to_temp_xy(mlx, temp);
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, temp);
 //	printf("mlx->x0:|%d|, mlx->x1:|%d|, mlx->y0:|%d|, mlx->y1:|%d|\n", mlx->x0,\
 //			mlx->x1, mlx->y0, mlx->y1);
 //	printf("temp->x0:|%d|, temp->x1:|%d|, temp->y0:|%d|, temp->y1:|%d|\n\n", temp->x0,\
 //			temp->x1, temp->x0, temp->x1);
-	mlx->y1 = mlx->y1 + mlx->size;
-//	mlx->x1 = mlx->x1 + mlx->size;
-//	subtract_x0y0_from_x1y1(mlx);
-//	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
-//	add_rotated_x1y1_to_x0y0(mlx);
+//	mlx->y1 = mlx->y1 + mlx->size;
+	mlx->x1 = mlx->x1 + mlx->size;
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
 	
+	if(mlx->x == 0)
+	{
+		find_min_x(mlx, temp);
+		find_max_y(mlx, temp);
+	}
 	plot_any_line(mlx);
-	mlx->y0 = mlx->y0 - mlx->size; // During rotation this will not work
-	mlx->y1 = mlx->y1 - mlx->size; // During rotation this will not work.
-//	find_min_x(mlx, temp);
-//	find_max_y(mlx);
-//	find_min_x(mlx);
+//	mlx->y0 = mlx->y0 - mlx->size; // During rotation this will not work
+//	mlx->y1 = mlx->y1 - mlx->size; // During rotation this will not work.
 }
 
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
@@ -317,11 +319,11 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 	double degree_angle;
 
 	degree_angle = 30;
-//	copy_temp_xy_to_mlx_xy(mlx, temp);
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, temp);
 	mlx->x1 = mlx->x1 + mlx->size;
-//	subtract_x0y0_from_x1y1(mlx);
-//	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
-//	add_rotated_x1y1_to_x0y0(mlx);
+	subtract_x0y0_from_x1y1(mlx);
+	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	add_rotated_x1y1_to_x0y0(mlx);
 	if(mlx->x < temp->map_width)
 		plot_any_line(mlx);
 }
@@ -575,6 +577,7 @@ void reset_x0x1(t_mlx *mlx, t_mlx *temp)
 {
 	mlx->x0 = temp->x0;
 	mlx->x1 = temp->x1;
+	mlx->x = 0;
 }
 
 /*
@@ -595,11 +598,12 @@ void reset_y0y1(t_mlx *mlx, t_mlx *temp)
 //Working on it - Need to make rotation work
 void ft_render(t_mlx *mlx)
 {
-	t_mlx temp;
+	t_mlx temp; // Need a second temp to reset values back to original state.
+	t_mlx temp_reset;
 
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	struct_copy(mlx, &temp);
-
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp_reset);
 	while(mlx->y <= temp.map_height)
 	{
 		while(mlx->x <= temp.map_width)
@@ -612,12 +616,15 @@ void ft_render(t_mlx *mlx)
 		}
 		mlx->x = 0;
 		mlx->y++;
-		mlx->y0 = mlx->y0 + mlx->size;
-		mlx->y1 = mlx->y1 + mlx->size;
-		reset_x0x1(mlx, &temp);
+		copy_temp_xy_to_mlx_x0y0x1y1(mlx, &temp);
+//		mlx->y0 = mlx->y0 + mlx->size; // Might have to remove completely
+//		mlx->y1 = mlx->y1 + mlx->size; // Might have to remove completely
+//		reset_x0x1(mlx, &temp); // Bring it outside the while loop
 	}
-	reset_y0y1(mlx, &temp);
-//	mlx->y = 0;
+//	reset_x0x1(mlx, &temp);
+//	reset_y0y1(mlx, &temp);
+	reset_x0x1(mlx, &temp_reset);
+	reset_y0y1(mlx, &temp_reset);
 }
 
 
