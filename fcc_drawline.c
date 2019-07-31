@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 19:44:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/07/30 19:56:47 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -602,6 +602,7 @@ void ft_render(t_mlx *mlx)
 	t_mlx temp_reset;
 
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	ft_menu(mlx);
 	struct_copy(mlx, &temp);
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp_reset);
 	while(mlx->y <= temp.map_height)
