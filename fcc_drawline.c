@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/01 19:30:15 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/01 19:59:17 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 // Method 1
 
 
-
+/*
 void get_z_value(t_mlx *mlx, t_mlx *temp)
 {
 	if((mlx->x +1) < temp->map_width)
@@ -256,6 +256,7 @@ void get_z_value(t_mlx *mlx, t_mlx *temp)
 	mlx->x0 = mlx->z0;
 	mlx->x1 = mlx->z1;
 }
+*/
 /*
 // Works - making slight changes
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
@@ -296,7 +297,7 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 
 	if(mlx->camera == 0)
 		rotate_vertical_line(mlx, temp);
-	if(mlx->y < temp->map_height - 1)
+	if(mlx->y < temp->map_height)                                    //Maybe <=
 		plot_any_line(mlx);
 	if(mlx->camera == 1)
 		mlx->y0 = mlx->y0 - mlx->size;
@@ -311,7 +312,7 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
  		mlx->x1 = mlx->x1 + mlx->size;
 	if(mlx->camera == 0)
 		rotate_horizontal_line(mlx, temp);
-	if(mlx->x < temp->map_width - 1)
+	if(mlx->x < temp->map_width)								//Maybe <=
 		plot_any_line(mlx);
 }
 
@@ -446,7 +447,7 @@ void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp)
 {
 	if(mlx->camera == 0 || mlx->camera == 1)
 	{
-		if(mlx->camera == 0 ||  mlx->y < temp->map_height - 1)
+		if(mlx->camera == 0 ||  mlx->y < temp->map_height)                  //Maybe <=
 			ft_render_vertical(mlx, temp);
 		ft_render_horizontal(mlx, temp);
 	}
@@ -515,8 +516,8 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 {
 	dest->map_height = source->map_height;
 	dest->map_width = source->map_width;
-//	dest->map_height--;
-//	dest->map_width--;
+	dest->map_height--;
+	dest->map_width--;
 	dest->x0 = source->x0;
 	dest->y0 = source->y0;
 	dest->x1 = source->x1;
@@ -627,9 +628,9 @@ void ft_render(t_mlx *mlx)
 	ft_menu(mlx);
 	struct_copy(mlx, &temp);
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp_reset);
-	while(mlx->y < temp.map_height)
+	while(mlx->y <= temp.map_height)
 	{
-		while(mlx->x < temp.map_width)
+		while(mlx->x <= temp.map_width)
 		{
 			ft_render_vertical_horizontal(mlx, &temp);
 			ft_putnbr(mlx->int_data[mlx->y][mlx->x]);

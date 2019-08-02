@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/01 19:30:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/01 19:59:14 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,10 @@ void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 //	degree_angle = 30;
 
 	degree_angle = 150;	
-	if(mlx->y > 0)
+	if(mlx->y < temp->map_height)
 	{
-		mlx->z0 = mlx->int_data[mlx->y -1][mlx->x]; // Added z value
-		mlx->z1 = mlx->int_data[mlx->y][mlx->x]; // Added z value
+	mlx->z0 = mlx->int_data[mlx->y][mlx->x]; // Added z value
+	mlx->z1 = mlx->int_data[mlx->y + 1][mlx->x]; // Added z value
 	}
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, temp);
 	mlx->x1 = mlx->x1 + mlx->size;
@@ -149,10 +149,10 @@ void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 //	degree_angle = -30;
 	degree_angle = 30;
 
-	if(mlx->x > 0)
+	if(mlx->x < temp->map_width)
 	{
-		mlx->z0 = mlx->int_data[mlx->y][mlx->x - 1];   //Added z value 
- 		mlx->z1 = mlx->int_data[mlx->y][mlx->x]; //Added z value
+	mlx->z0 = mlx->int_data[mlx->y][mlx->x];   //Added z value 
+	mlx->z1 = mlx->int_data[mlx->y][mlx->x + 1]; //Added z value
 	}
 	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, temp);
 	mlx->x1 = mlx->x1 + mlx->size;
