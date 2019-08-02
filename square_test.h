@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 19:31:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 19:44:39 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/01 14:37:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void left_top_diagonal(t_mlx **mlx);
 void left_bottom_diagonal(t_mlx **mlx);
 void reset_program(t_mlx **mlx, int key);
 
+void	ft_single_diamond(t_mlx **mlx);
 void 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
 void	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp);
 void	copy_temp_xy_to_mlx_x0y0x1y1(t_mlx **mlx, t_mlx *temp);

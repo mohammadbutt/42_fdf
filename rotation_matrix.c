@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/31 13:34:04 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/01 19:30:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,41 @@ double degree_to_radian(double degrees)
 	radian = degrees * (M_PI/180);
 	return(radian);
 }
+void	rotation_matrix(t_mlx *mlx, t_mlx *temp, double degree_angle)
+{
+	t_mlx temp2;
+	double radian;
 
+	radian = degree_to_radian(degree_angle);
+//	temp2.x = (mlx->x1 * cos(radian)) - (mlx->y1 * sin(radian));
+//	temp2.y = (mlx->x1 * sin(radian)) + (mlx->y1 * cos(radian));
+	
+	temp2.x = (mlx->x1 + mlx->y1) * cos(radian);
+//	temp2.y = ((mlx->x1 - mlx->y1) * sin(radian)); // Adding z value
+	temp2.y = -mlx->z1 + (mlx->x1 - mlx->y1) * sin(radian);
+
+	mlx->x1 = temp2.x;
+	mlx->y1 = temp2.y;
+}
+
+/*
+// Works and changed variables Need to implement z values.
+//void rotation_matrix(t_mlx *mlx, int *x, int *y, double degree_angle)
+void	rotation_matrix(t_mlx *mlx, t_mlx *temp, double degree_angle)
+{
+	t_mlx temp2;
+	double radian;
+
+	radian = degree_to_radian(degree_angle);
+	temp2.x = (mlx->x1 * cos(radian)) - (mlx->y1 * sin(radian));
+	temp2.y = (mlx->x1 * sin(radian)) + (mlx->y1 * cos(radian));
+
+	mlx->x1 = temp2.x;
+	mlx->y1 = temp2.y;
+}
+*/
+/*
+// Works, but changing variables
 void rotation_matrix(t_mlx *mlx, int *x, int *y, double degree_angle)
 {
 	t_mlx temp;
@@ -32,12 +66,24 @@ void rotation_matrix(t_mlx *mlx, int *x, int *y, double degree_angle)
 	*x = temp.x;
 	*y = temp.y;
 }
+*/
+void subtract_x0y0_from_x1y1(t_mlx *mlx, t_mlx *temp)
+{
+//	mlx->y1 = mlx->int_data[temp->y][temp->x+1];
+//	mlx->y0 = mlx->int_data[temp->y][temp->x];
+	mlx->x1 = mlx->x1 - mlx->x0;
+	mlx->y1 = mlx->y1 - mlx->y0;
+//	mlx->z1 = mlx->z1 - mlx->z0;
+}
 
-void subtract_x0y0_from_x1y1(t_mlx *mlx)
+/*
+// Works, trying to add z values
+void subtract_x0y0_from_x1y1(t_mlx *mlx, t_mlx *temp)
 {
 	mlx->x1 = mlx->x1 - mlx->x0;
 	mlx->y1 = mlx->y1 - mlx->y0;
 }
+*/
 
 void add_rotated_x1y1_to_x0y0(t_mlx *mlx)
 {
@@ -52,6 +98,10 @@ void	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(t_mlx *mlx, t_mlx *temp)
 	temp->x1 = mlx->x1;
 	temp->y0 = mlx->y0;
 	temp->y1 = mlx->y1;
+//	temp->z0 = mlx->z0;
+//	temp->z1 = mlx->z1;
+//	temp->y0 = temp->z0;
+//	temp->y1 = temp->z1;
 }
 
 //void copy_temp_xy_to_mlx_xy(t_mlx *mlx, t_mlx *temp)
@@ -61,19 +111,30 @@ void	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(t_mlx *mlx, t_mlx *temp)
 	mlx->x1 = temp->x1;
 	mlx->y0 = temp->y0;
 	mlx->y1 = temp->y1;
+//	mlx->z0 = temp->z0;
+//	mlx->z1 = temp->z1;
+//	mlx->y0 = mlx->z0;
+//	mlx->y1 = mlx->z1;
 }
 void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 {
 	double degree_angle;
 
 //	degree_angle = 30;
-	degree_angle = 150;
+
+	degree_angle = 150;	
+	if(mlx->y > 0)
+	{
+		mlx->z0 = mlx->int_data[mlx->y -1][mlx->x]; // Added z value
+		mlx->z1 = mlx->int_data[mlx->y][mlx->x]; // Added z value
+	}
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, temp);
-	
 	mlx->x1 = mlx->x1 + mlx->size;
-	subtract_x0y0_from_x1y1(mlx);
-	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	subtract_x0y0_from_x1y1(mlx, temp);
+	rotation_matrix(mlx, temp, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
+
+
 	if(mlx->x == 0)
 	{
 		find_min_x(mlx, temp);
@@ -87,11 +148,16 @@ void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 
 //	degree_angle = -30;
 	degree_angle = 30;
+
+	if(mlx->x > 0)
+	{
+		mlx->z0 = mlx->int_data[mlx->y][mlx->x - 1];   //Added z value 
+ 		mlx->z1 = mlx->int_data[mlx->y][mlx->x]; //Added z value
+	}
 	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, temp);
-	
-	mlx->x1 = mlx->x1 + mlx->size;	
-	subtract_x0y0_from_x1y1(mlx);
-	rotation_matrix(mlx, &mlx->x1, &mlx->y1, degree_angle);
+	mlx->x1 = mlx->x1 + mlx->size;
+	subtract_x0y0_from_x1y1(mlx, temp);
+	rotation_matrix(mlx, temp, degree_angle);
 	add_rotated_x1y1_to_x0y0(mlx);
 }
 

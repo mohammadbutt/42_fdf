@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 20:27:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/30 17:43:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/01 15:05:14 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,8 @@ void shift_program(t_mlx **mlx, int key)
 		(*mlx)->x0 = (*mlx)->x0 - 5;
 		(*mlx)->x1 = (*mlx)->x1 - 5;
 	}
-	ft_diamond(mlx);
+//	ft_diamond(mlx);
+	ft_single_diamond(mlx);
 }
 
 /*
@@ -387,7 +388,8 @@ void zoom_program(t_mlx **mlx, int key)
 	}
 
 	(*mlx)->size = size;
-	ft_diamond(mlx);
+//	ft_diamond(mlx);
+	ft_single_diamond(mlx);
 }
 void random_color(t_mlx **mlx)
 {
@@ -749,6 +751,27 @@ double degree_to_radian(double degrees)
 
 void rotation_matrix(t_mlx **mlx, int *x, int *y, double degree_angle)
 {
+	int z;
+	t_mlx temp;
+	double radian;
+	
+	z = 0;
+	radian = degree_to_radian(degree_angle);
+	temp.x = (*x * cos(radian)) - (*y * sin(radian));
+//	if((*mlx)->test_index == 0)
+	//	temp.y = -z +(*x * sin(radian)) + (*y * cos(radian));
+	temp.y = (*x * sin(radian)) + (*y * cos(radian));
+
+	*x = temp.x;
+	*y = temp.y;
+
+}
+
+
+/*
+// Works - trying to incorporate z values.
+void rotation_matrix(t_mlx **mlx, int *x, int *y, double degree_angle)
+{
 	t_mlx temp;
 	double radian;
 
@@ -760,7 +783,7 @@ void rotation_matrix(t_mlx **mlx, int *x, int *y, double degree_angle)
 	*y = temp.y;
 
 }
-
+*/
 void apply_rotation(t_mlx **mlx, double degree_angle)
 {
 	rotation_matrix(mlx, &(*mlx)->x0, &(*mlx)->y0, degree_angle);
@@ -818,9 +841,9 @@ void find_min_xy(t_mlx **mlx, t_mlx *temp)
 void find_min_x(t_mlx **mlx, t_mlx *temp)
 {
 	temp->x = 0;
-	if((*mlx)->x0 < (*mlx)->x1)
+	if((*mlx)->x0 <= (*mlx)->x1)
 		temp->x = (*mlx)->x0;
-	else if((*mlx)->x1 <= (*mlx)->x0)
+	else if((*mlx)->x1 < (*mlx)->x0)
 		temp->x = (*mlx)->x1;
 
 	printf("find_min_x: temp_x in function:|%d|\n", temp->x);
@@ -829,9 +852,9 @@ void find_min_x(t_mlx **mlx, t_mlx *temp)
 void find_max_y(t_mlx **mlx, t_mlx *temp)
 {
 	temp->y = 0;
-	if((*mlx)->y0 > (*mlx)->y1)
+	if((*mlx)->y0 >= (*mlx)->y1)
 		temp->y = (*mlx)->y0;
-	else if((*mlx)->y1 >= (*mlx)->y0)
+	else if((*mlx)->y1 > (*mlx)->y0)
 		temp->y = (*mlx)->y1;
 
 	printf("find_max_y: temp_y in function:|%d|\n", temp->y);
@@ -1013,12 +1036,10 @@ void left_vertical(t_mlx **mlx, t_mlx *temp)
 {
 	double degree_angle;
 	degree_angle = 150;
+//	if((*mlx)->test_index == 2)
+//		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
 	if((*mlx)->test_index == 3)
-	{
 		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
-		printf("x0:|%d|, x1:|%d|\n", (*mlx)->x0, (*mlx)->x1);
-		printf("y0:|%d|, y1:|%d|\n", (*mlx)->y0, (*mlx)->y1);
-	}
 	
 //	(*mlx)->y1 = (*mlx)->y1 + (*mlx)->size;
 // Rotation
@@ -1026,6 +1047,7 @@ void left_vertical(t_mlx **mlx, t_mlx *temp)
 	(*mlx)->x1 = (*mlx)->x1 + (*mlx)->size;
 	subtract_x0y0_from_x1y1(mlx);
 	rotation_matrix(mlx, &(*mlx)->x1, &(*mlx)->y1, degree_angle);
+	
 	add_rotated_x1y1_to_x0y0(mlx);
 	if((*mlx)->test_index == 0)
 	{
@@ -1040,6 +1062,8 @@ void top_horizontal(t_mlx **mlx, t_mlx *temp)
 {
 	double degree_angle;
 	degree_angle = 30;
+//	if((*mlx)->test_index == 2)
+//		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
 	if((*mlx)->test_index == 4)
 		copy_temp_xy_to_mlx_x0y0x1y1(mlx, temp);
 
@@ -1258,7 +1282,7 @@ void ft_diamond(t_mlx **mlx)
 
 	(*mlx)->test_index = 0;
 	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
-	
+
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp1);
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
 	printf("left_vertical in Green:\n");
@@ -1272,6 +1296,7 @@ void ft_diamond(t_mlx **mlx)
 
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
 	left_vertical(mlx, &temp2);
+
 	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp2);
 	top_horizontal(mlx, &temp2);
 
@@ -1294,6 +1319,29 @@ void ft_diamond(t_mlx **mlx)
 	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp1);
 }
 
+void ft_single_diamond(t_mlx **mlx)
+{
+	t_mlx temp1;
+	t_mlx temp2;
+	(*mlx)->test_index = 0;
+	mlx_clear_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp1);
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
+
+	left_vertical(mlx, &temp2);  // |
+
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp2);
+	top_horizontal(mlx, &temp2); // -
+
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp2);
+	left_vertical(mlx, &temp2); // |
+
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp2);
+	top_horizontal(mlx, &temp2);
+
+	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, &temp1);
+
+}
 int main(void)
 {
 	t_mlx *mlx;
@@ -1338,6 +1386,7 @@ int main(void)
 //	left_bottom_diagonal(&mlx);
 
 	ft_diamond(&mlx);
+//	ft_single_diamond(&mlx);
 //	mlx->x = mlx->x0;
 //	mlx->y = mlx->y0;
 //	ft_diamond(&mlx);

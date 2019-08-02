@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/31 14:20:44 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/01 19:30:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,31 +286,61 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 }
 */
 
-//Working on it - Need to add angles
+// Working on z values
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
-	if(mlx->camera == 1)				//Uncommenting
-		mlx->y1 = mlx->y1 + mlx->size;	//Uncommenting
+//	mlx->z0 = mlx->int_data[mlx->y][mlx->x]; // Added for z value
+//	mlx->z1 = mlx->int_data[mlx->y +1][mlx->x]; // Added for z value
+	if(mlx->camera == 1)
+		mlx->y1 = mlx->y1 + mlx->size;
+
+	if(mlx->camera == 0)
+		rotate_vertical_line(mlx, temp);
+	if(mlx->y < temp->map_height - 1)
+		plot_any_line(mlx);
+	if(mlx->camera == 1)
+		mlx->y0 = mlx->y0 - mlx->size;
+		mlx->y1 = mlx->y1 - mlx->size;
+}
+
+void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
+{
+//	mlx->z0 = mlx->int_data[mlx->y][mlx->x]; // Added for z value
+//	mlx->z1 = mlx->int_data[mlx->y][mlx->x +1]; // Added for z value
+	 if(mlx->camera == 1)
+ 		mlx->x1 = mlx->x1 + mlx->size;
+	if(mlx->camera == 0)
+		rotate_horizontal_line(mlx, temp);
+	if(mlx->x < temp->map_width - 1)
+		plot_any_line(mlx);
+}
+
+/*
+//Camera change works - Need to work on Z Values
+void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
+{
+	if(mlx->camera == 1)
+		mlx->y1 = mlx->y1 + mlx->size;
 
 	if(mlx->camera == 0)
 		rotate_vertical_line(mlx, temp);
 	if(mlx->y < temp->map_height)
 		plot_any_line(mlx);
-	if(mlx->camera == 1)				// Uncommenting
-		mlx->y0 = mlx->y0 - mlx->size; //  Uncommenting
-		mlx->y1 = mlx->y1 - mlx->size; //  Uncommenting
+	if(mlx->camera == 1)
+		mlx->y0 = mlx->y0 - mlx->size;
+		mlx->y1 = mlx->y1 - mlx->size;
 }
 
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
-	 if(mlx->camera == 1)				// Uncommenting
- 		mlx->x1 = mlx->x1 + mlx->size;	// Uncommenting
+	 if(mlx->camera == 1)
+ 		mlx->x1 = mlx->x1 + mlx->size;
 	if(mlx->camera == 0)
 		rotate_horizontal_line(mlx, temp);
 	if(mlx->x < temp->map_width)
 		plot_any_line(mlx);
 }
-
+*/
 
 /*
 // Works - Adding rotation to this.
@@ -416,7 +446,7 @@ void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp)
 {
 	if(mlx->camera == 0 || mlx->camera == 1)
 	{
-		if(mlx->camera == 0 ||  mlx->y < temp->map_height)
+		if(mlx->camera == 0 ||  mlx->y < temp->map_height - 1)
 			ft_render_vertical(mlx, temp);
 		ft_render_horizontal(mlx, temp);
 	}
@@ -485,8 +515,8 @@ void struct_copy(t_mlx *source, t_mlx *dest)
 {
 	dest->map_height = source->map_height;
 	dest->map_width = source->map_width;
-	dest->map_height--;
-	dest->map_width--;
+//	dest->map_height--;
+//	dest->map_width--;
 	dest->x0 = source->x0;
 	dest->y0 = source->y0;
 	dest->x1 = source->x1;
@@ -597,13 +627,16 @@ void ft_render(t_mlx *mlx)
 	ft_menu(mlx);
 	struct_copy(mlx, &temp);
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp_reset);
-	while(mlx->y <= temp.map_height)
+	while(mlx->y < temp.map_height)
 	{
-		while(mlx->x <= temp.map_width)
+		while(mlx->x < temp.map_width)
 		{
 			ft_render_vertical_horizontal(mlx, &temp);
+			ft_putnbr(mlx->int_data[mlx->y][mlx->x]);
+			ft_putstr(" ");
 			mlx->x++;
 		}
+		ft_putstr("\n");
 		if(mlx->camera == 0)
 			copy_temp_xy_to_mlx_x0y0x1y1(mlx, &temp);
 		else if(mlx->camera == 1)
