@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 14:55:59 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 15:08:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,15 @@ void zoom_program(t_mlx *mlx, int key)
 	ft_render(mlx);
 }
 
+void change_altitude(t_mlx *mlx, int key)
+{
+	if(key == ALTITUDE_INCREASE_W)
+		mlx->z_zoom = mlx->z_zoom + Z_ZOOM;
+	else if(key == ALTITUDE_DECREASE_S)
+		mlx->z_zoom = mlx->z_zoom - Z_ZOOM;
+	ft_render(mlx);
+}	
+
 /*
 // Zoom works with flat maps.
 void zoom_program(t_mlx *mlx, int key)
@@ -278,6 +287,8 @@ int program_keys(int key, t_mlx *mlx)
 		reset_program(mlx, key);
 	else if(key == CHANGE_CAMERA_C)
 		change_camera(mlx);
+	else if(key == ALTITUDE_INCREASE_W || key == ALTITUDE_DECREASE_S)
+		change_altitude(mlx, key);
 	return(0);
 }
 

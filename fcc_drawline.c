@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 14:55:52 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 15:08:41 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -552,8 +552,8 @@ void get_struct_values(t_mlx *mlx)
 	mlx->camera = 0;
 	mlx->x_shift = 0;
 	mlx->y_shift = 0;
-	mlx->x0 = (P_WIDTH / 2); - (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
-	mlx->y0 = (P_HEIGHT / 2); - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
+	mlx->x0 = (P_WIDTH / 2); //- (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
+	mlx->y0 = (P_HEIGHT / 2);// - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
 	mlx->x1 = mlx->x0;
 	mlx->y1 = mlx->y0;
 	mlx->camera = 0;

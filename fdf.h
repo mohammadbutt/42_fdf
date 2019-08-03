@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 14:56:02 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 15:08:38 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ typedef struct	s_data
 # define ZOOM_IN_Q 12
 # define ZOOM_OUT_A 0
 
-# define SPIKE_INCREASE_W 13
-# define SPIKE_DECREASE_S 1
+# define ALTITUDE_INCREASE_W 13
+# define ALTITUDE_DECREASE_S 1
 
 # define RANDOM_COLOR_R 15
 # define RESET_PROGRAM_E 14
