@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 10:55:32 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 14:55:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 //	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, temp);
 //	mlx->x1 = mlx->x0 + mlx->size;
 	mlx->x1 = mlx->x0 + 1;
-	mlx->y1 = mlx->y;
+	mlx->y1 = mlx->y0;
 
 
 	mlx->x0 = mlx->x0 * mlx->xy_zoom * min;
