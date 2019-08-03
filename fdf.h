@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/31 16:17:05 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/02 20:42:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef struct	s_data
 # define ISOMETRIC 0.52
 # define TOPDOWN 1.57
 
-# define XY_ZOOM 0.25
-# define Z_ZOOM 0.25
+# define XY_ZOOM 0.05
+# define Z_ZOOM 0.05
 
 /*
 ** Structs ---------------------------------------------------------------------
@@ -124,8 +124,13 @@ typedef struct	s_mlx
 	int			map_width;
 	int			map_height;
 	int			camera;
+	int			x_shift;
+	int			y_shift;
+	double 		xy_zoom;
+	double		z_zoom;
 	double		angle_y;
 	double		angle_z;
+	double		degree_angle;
 //	int			size;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
@@ -235,9 +240,11 @@ void	ft_print_data(t_mlx *mlx);
 ** rotation_matrix.c
 */
 
+int		ft_min(t_mlx *mlx);
 double 	degree_to_radian(double degrees);
 //void 	rotation_matrix(t_mlx *mlx, int *x, int *y, double degree_angle);
-void	rotation_matrix(t_mlx *mlx, t_mlx *temp, double degree_angle);
+//void	rotation_matrix(t_mlx *mlx, t_mlx *temp, double degree_angle);
+void	rotation_matrix(t_mlx *mlx, int *x, int *y, int z);
 void	subtract_x0y0_from_x1y1(t_mlx *mlx, t_mlx *temp);
 void	add_rotated_x1y1_to_x0y0(t_mlx *mlx);
 void	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(t_mlx *mlx, t_mlx *temp);

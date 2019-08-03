@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/01 19:59:17 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 10:55:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,13 +292,20 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
 //	mlx->z0 = mlx->int_data[mlx->y][mlx->x]; // Added for z value
 //	mlx->z1 = mlx->int_data[mlx->y +1][mlx->x]; // Added for z value
+//	mlx->x0 = mlx->x;
+//	mlx->y0 = mlx->y;
+	mlx->x0 = mlx->x - (temp->map_width/2);
+	mlx->y0 = mlx->y - (temp->map_height/2);
 	if(mlx->camera == 1)
 		mlx->y1 = mlx->y1 + mlx->size;
 
 	if(mlx->camera == 0)
 		rotate_vertical_line(mlx, temp);
 	if(mlx->y < temp->map_height)                                    //Maybe <=
+	{
+//		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 		plot_any_line(mlx);
+	}
 	if(mlx->camera == 1)
 		mlx->y0 = mlx->y0 - mlx->size;
 		mlx->y1 = mlx->y1 - mlx->size;
@@ -308,12 +315,20 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
 //	mlx->z0 = mlx->int_data[mlx->y][mlx->x]; // Added for z value
 //	mlx->z1 = mlx->int_data[mlx->y][mlx->x +1]; // Added for z value
-	 if(mlx->camera == 1)
+//	mlx->x0 = mlx->x;
+//	mlx->y0 = mlx->y;	
+	mlx->x0 = mlx->x - (temp->map_width/2);
+	mlx->y0 = mlx->y - (temp->map_height/2);
+
+	if(mlx->camera == 1)
  		mlx->x1 = mlx->x1 + mlx->size;
 	if(mlx->camera == 0)
 		rotate_horizontal_line(mlx, temp);
 	if(mlx->x < temp->map_width)								//Maybe <=
+	{
+//		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 		plot_any_line(mlx);
+	}
 }
 
 /*
@@ -529,18 +544,23 @@ void get_struct_values(t_mlx *mlx)
 	t_mlx temp;
 	size_t hue;
 	mlx->size = 15;
-	mlx->x = 0;
-	mlx->y = 0;
+//	mlx->x = 0;
+//	mlx->y = 0;
 	mlx->x0 = 0;
 	mlx->y0 = 0;
 	mlx->camera = 0;
-//	mlx->x0 = (P_WIDTH / 2) - (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
-//	mlx->y0 = (P_HEIGHT / 2) - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
+	mlx->x_shift = 0;
+	mlx->y_shift = 0;
+	mlx->x0 = (P_WIDTH / 2);// - (P_WIDTH/160 * mlx->map_width);   //Works - Put it back on after
+	mlx->y0 = (P_HEIGHT / 2);// - (P_HEIGHT/95 * mlx->map_height); //Works - Put it back on after
 	mlx->x1 = mlx->x0;
 	mlx->y1 = mlx->y0;
 	mlx->camera = 0;
 	mlx->angle_y = 0.5;
 	mlx->angle_z = 0.25;
+	mlx->degree_angle = 30;
+	mlx->xy_zoom = XY_ZOOM;
+	mlx->z_zoom = Z_ZOOM;
 //	t_mlx temp;	
 //	mlx->size = 15;
 //	mlx->x0 = mlx->size;
@@ -618,8 +638,42 @@ void reset_x0x1_y0y1(t_mlx *mlx, t_mlx *temp_reset)
 	reset_x0x1(mlx, temp_reset);
 	reset_y0y1(mlx, temp_reset);
 }
+//Working on it - Need to make z value work
+void ft_render(t_mlx *mlx)
+{
+	t_mlx temp;
+	t_mlx temp_reset;
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	ft_menu(mlx);
+	struct_copy(mlx, &temp);
+	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp_reset);
+	while(mlx->y <= temp.map_height)
+	{
+		while(mlx->x <= temp.map_width)
+		{
+			ft_render_vertical_horizontal(mlx, &temp);
+//			ft_putnbr(mlx->int_data[mlx->y][mlx->x]);
+//			ft_putstr(" ");
+			mlx->x++;
+		}
+//		ft_putstr("\n");
+//		if(mlx->camera == 0)
+//			copy_temp_xy_to_mlx_x0y0x1y1(mlx, &temp);
+		if(mlx->camera == 1)
+		{
+			mlx->y0 = mlx->y0 + mlx->size;
+			mlx->y1 = mlx->y1 + mlx->size;
+			reset_x0x1(mlx, &temp);
+		}
+		mlx->x = 0;
+		mlx->y++;
+	}
+	reset_x0x1_y0y1(mlx, &temp_reset);
+}
 
-//Working on it - Need to make rotation work
+
+/*
+//Rotation works - Need to make z value work
 void ft_render(t_mlx *mlx)
 {
 	t_mlx temp;
@@ -651,10 +705,10 @@ void ft_render(t_mlx *mlx)
 	}
 	reset_x0x1_y0y1(mlx, &temp_reset);
 }
-
+*/
 
 /*
-// Works - Adding rotation
+// flat map Works - Adding rotation
 void ft_render(t_mlx *mlx)
 {
 	t_mlx temp;

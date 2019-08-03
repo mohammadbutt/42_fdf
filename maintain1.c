@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/31 13:57:23 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 10:55:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,18 @@ void centeralize_with_zoom(t_mlx *mlx, int key)
 		mlx->y1 = mlx->y0;
 	}
 }
+
+void zoom_program(t_mlx *mlx, int key)
+{
+	if(key == ZOOM_IN_Q)
+		mlx->xy_zoom = mlx->xy_zoom + XY_ZOOM;
+	else if(key == ZOOM_OUT_A)
+		mlx->xy_zoom = mlx->xy_zoom - XY_ZOOM;
+	ft_render(mlx);
+}
+
+/*
+// Zoom works with flat maps.
 void zoom_program(t_mlx *mlx, int key)
 {
 	if(key == ZOOM_IN_Q)
@@ -170,11 +182,11 @@ void zoom_program(t_mlx *mlx, int key)
 	if(key == ZOOM_OUT_A && mlx->size != 3)
 	{
 		mlx->size = mlx->size - 2;
-		centeralize_with_zoom(mlx, key);
+//		centeralize_with_zoom(mlx, key);
 	}
 	ft_render(mlx);
 }
-
+*/
 void reset_program(t_mlx *mlx, int key)
 {
 	mlx->x0 = 0;
@@ -184,8 +196,23 @@ void reset_program(t_mlx *mlx, int key)
 	mlx->size = 15;
 	mlx->color = 0xff000;
 	ft_render(mlx);
-}	
+}
 
+void shift_program(t_mlx *mlx, int key)
+{
+	if(key == UP_K)
+		mlx->y_shift = mlx->y_shift - 5;
+	else if(key == DOWN_K)
+		mlx->y_shift = mlx->y_shift + 5;
+	else if(key == LEFT_K)
+		mlx->x_shift = mlx->x_shift - 5;
+	else if(key == RIGHT_K)
+		mlx->x_shift = mlx->x_shift + 5;
+	ft_render(mlx);
+}
+
+/*
+// Works with flat map - Changing it to make it work with rotated map
 void shift_program(t_mlx *mlx, int key)
 {
 	if(key == UP_K)
@@ -214,7 +241,7 @@ void shift_program(t_mlx *mlx, int key)
 	}
 	ft_render(mlx);
 }
-
+*/
 void iso_projection(t_mlx *mlx)
 {
 //	mlx->x1 = (mlx->x0 * cos(0.52)) - (mlx->y0 * sin(0.52));
