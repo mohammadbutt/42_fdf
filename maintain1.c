@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 15:08:35 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 19:00:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,14 +196,15 @@ void zoom_program(t_mlx *mlx, int key)
 	ft_render(mlx);
 }
 */
-void reset_program(t_mlx *mlx, int key)
+void reset_program(t_mlx *mlx)
 {
-	mlx->x0 = 0;
-	mlx->x1 = 0;
-	mlx->y0 = 0;
-	mlx->y1 = 0;
-	mlx->size = 15;
-	mlx->color = 0xff000;
+//	mlx->x0 = 0;
+//	mlx->x1 = 0;
+//	mlx->y0 = 0;
+//	mlx->y1 = 0;
+//	mlx->size = 15;
+//	mlx->color = 0xff000;
+	get_struct_values(mlx);
 	ft_render(mlx);
 }
 
@@ -284,7 +285,7 @@ int program_keys(int key, t_mlx *mlx)
 	else if(key == RANDOM_COLOR_R)
 		random_color(mlx, key);
 	else if(key == RESET_PROGRAM_E)
-		reset_program(mlx, key);
+		reset_program(mlx);
 	else if(key == CHANGE_CAMERA_C)
 		change_camera(mlx);
 	else if(key == ALTITUDE_INCREASE_W || key == ALTITUDE_DECREASE_S)

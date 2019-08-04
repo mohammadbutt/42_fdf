@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 15:08:41 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 19:00:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,19 +296,20 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 //	mlx->y0 = mlx->y;
 	mlx->x0 = mlx->x - (temp->map_width/2);
 	mlx->y0 = mlx->y - (temp->map_height/2);
-	if(mlx->camera == 1)
-		mlx->y1 = mlx->y1 + mlx->size;
+//	if(mlx->camera == 1)
+//		mlx->y1 = mlx->y1 + mlx->size;
 
-	if(mlx->camera == 0)
-		rotate_vertical_line(mlx, temp);
+//	if(mlx->camera == 0)
+//		rotate_vertical_line(mlx, temp);
+	rotate_vertical_line(mlx, temp);
 	if(mlx->y < temp->map_height)                                    //Maybe <=
 	{
 //		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
 		plot_any_line(mlx);
 	}
-	if(mlx->camera == 1)
-		mlx->y0 = mlx->y0 - mlx->size;
-		mlx->y1 = mlx->y1 - mlx->size;
+//	if(mlx->camera == 1)
+//		mlx->y0 = mlx->y0 - mlx->size;
+//		mlx->y1 = mlx->y1 - mlx->size;
 }
 
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
@@ -320,10 +321,10 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 	mlx->x0 = mlx->x - (temp->map_width/2);
 	mlx->y0 = mlx->y - (temp->map_height/2);
 
-	if(mlx->camera == 1)
- 		mlx->x1 = mlx->x1 + mlx->size;
-	if(mlx->camera == 0)
-		rotate_horizontal_line(mlx, temp);
+//	if(mlx->camera == 1)
+ //		mlx->x1 = mlx->x1 + mlx->size;
+//	if(mlx->camera == 0)
+	rotate_horizontal_line(mlx, temp);
 	if(mlx->x < temp->map_width)								//Maybe <=
 	{
 //		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
@@ -462,8 +463,7 @@ void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp)
 {
 	if(mlx->camera == 0 || mlx->camera == 1)
 	{
-//		ft_render_horizontal(mlx, temp);
-		if(mlx->camera == 0 ||  mlx->y < temp->map_height)                  //Maybe <=
+		if(mlx->y < temp->map_height)	
 			ft_render_vertical(mlx, temp);
 		ft_render_horizontal(mlx, temp);
 	}
@@ -560,8 +560,8 @@ void get_struct_values(t_mlx *mlx)
 	mlx->angle_y = 0.5;
 	mlx->angle_z = 0.25;
 	mlx->degree_angle = 30;
-	mlx->xy_zoom = XY_ZOOM;
-	mlx->z_zoom = Z_ZOOM;
+	mlx->xy_zoom = 0.5;
+	mlx->z_zoom = 0.02;
 //	t_mlx temp;	
 //	mlx->size = 15;
 //	mlx->x0 = mlx->size;
@@ -653,18 +653,7 @@ void ft_render(t_mlx *mlx)
 		while(mlx->x <= temp.map_width)
 		{
 			ft_render_vertical_horizontal(mlx, &temp);
-//			ft_putnbr(mlx->int_data[mlx->y][mlx->x]);
-//			ft_putstr(" ");
 			mlx->x++;
-		}
-//		ft_putstr("\n");
-//		if(mlx->camera == 0)
-//			copy_temp_xy_to_mlx_x0y0x1y1(mlx, &temp);
-		if(mlx->camera == 1)
-		{
-			mlx->y0 = mlx->y0 + mlx->size;
-			mlx->y1 = mlx->y1 + mlx->size;
-			reset_x0x1(mlx, &temp);
 		}
 		mlx->x = 0;
 		mlx->y++;

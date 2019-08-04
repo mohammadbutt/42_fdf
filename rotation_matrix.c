@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 15:08:32 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 19:00:43 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,31 @@ void rotation_matrix(t_mlx *mlx, int *x, int *y, int z)
 	int temp_y;
 	double radian;
 
+	
 	temp_x = *x;
 	temp_y = *y;
-//	radian = degree_to_radian(mlx->degree_angle);
-//	*x = (temp_x + temp_y) * cos(radian);
-//	*y = -z + (temp_x - temp_y) * sin(radian);
+	if(mlx->camera == 0)
+		mlx->degree_angle = 30;
+	else if(mlx->camera == 1)
+		mlx->degree_angle = 15;
+	radian = degree_to_radian(mlx->degree_angle);
+	*x = (temp_x - temp_y) * cos(radian);
+	*y = -z + (temp_x + temp_y) * sin(radian);
 
-	*x = (temp_x - temp_y) * cos(0.52);
-	*y = -z + (temp_x + temp_y) * sin(0.52);
 
+/*	
+//	if(mlx->camera == 0)
+//		mlx->degree_angle = 30;
+//	else if(mlx->camera == 1)
+//		mlx->degree_angle = 0;
 
+	radian = degree_to_radian(mlx->degree_angle);
+	temp_x = (*x * cos(radian)) - (*y * sin(radian));
+	temp_y = -z + (*x * sin(radian)) + (*y * cos(radian));
+
+	*x = temp_x;
+	*y = temp_y;
+*/
 }
 
 
@@ -221,8 +236,6 @@ void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 	mlx->z0 = mlx->int_data[mlx->y][mlx->x] * mlx->z_zoom * min;   //Added z value 
 	mlx->z1 = mlx->int_data[mlx->y][mlx->x + 1] * mlx->z_zoom * min; //Added z value
 	}
-//	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(mlx, temp);
-//	mlx->x1 = mlx->x0 + mlx->size;
 	mlx->x1 = mlx->x0 + 1;
 	mlx->y1 = mlx->y0;
 
@@ -231,8 +244,6 @@ void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 	mlx->x1 = mlx->x1 * mlx->xy_zoom * min;
 	mlx->y0 = mlx->y0 * mlx->xy_zoom * min;
 	mlx->y1 = mlx->y1 * mlx->xy_zoom * min;
-//	subtract_x0y0_from_x1y1(mlx, temp);
-//	rotation_matrix(mlx, temp, degree_angle);
 	
 	printf("3. Before rotation: x0:|%d|, y0:|%d|\n", mlx->x0,  mlx->y0);
 	rotation_matrix(mlx, &mlx->x0, &mlx->y0, mlx->z0);

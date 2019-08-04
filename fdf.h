@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 15:08:38 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 19:00:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int 	ft_hue(int y, int color);
 void	random_color(t_mlx *mlx, int key);
 void	centeralize_with_zoom(t_mlx *mlx, int key);
 void	zoom_program(t_mlx *mlx, int key);
-void	reset_program(t_mlx *mlx, int key);
+void	reset_program(t_mlx *mlx);
 void	shift_program(t_mlx *mlx, int key);
 //int		program_keys(int key, t_mlx **mlx);
 void	iso_projection(t_mlx *mlx);
