@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 19:00:48 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 19:08:44 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,18 +148,22 @@ void ft_menu(t_mlx *mlx)
 	char *str3;
 	char *str4;
 	char *str5;
+	char *str6;
 
 	str1 = "Menu Controls";
 	str2 = "Shift: Arrow Keys: < ^ v >";
-	str3 = "Zoom in and out: Q A";
-	str4 = "Reset map: E";
-	str5 = "Random Colors: R";
+	str3 = "Zoom: Q A";
+	str4 = "Altitude: W S";
+	str5 = "Reset map: E";
+	str6 = "Random Colors: R";
 
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, 0x00d4ff, str1);
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 30, 0x00d4ff, str2);
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 50, 0x00d4ff, str3);
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 70, 0x00d4ff, str4);
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, 0x00d4ff, str5);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, 0xffffff, str1);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 40, 0xadadad, str2);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 60, 0xadadad, str3);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 80, 0xadadad, str4);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 100, 0xadadad, str5);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 120, 0xadadad, str6);
+
 }
 /*
 ** get_struct_values: sets values of several variables for struct t_mlx;
@@ -290,46 +294,22 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 // Working on z values
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
-//	mlx->z0 = mlx->int_data[mlx->y][mlx->x]; // Added for z value
-//	mlx->z1 = mlx->int_data[mlx->y +1][mlx->x]; // Added for z value
-//	mlx->x0 = mlx->x;
-//	mlx->y0 = mlx->y;
 	mlx->x0 = mlx->x - (temp->map_width/2);
 	mlx->y0 = mlx->y - (temp->map_height/2);
-//	if(mlx->camera == 1)
-//		mlx->y1 = mlx->y1 + mlx->size;
 
-//	if(mlx->camera == 0)
-//		rotate_vertical_line(mlx, temp);
 	rotate_vertical_line(mlx, temp);
-	if(mlx->y < temp->map_height)                                    //Maybe <=
-	{
-//		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+	if(mlx->y < temp->map_height)
 		plot_any_line(mlx);
-	}
-//	if(mlx->camera == 1)
-//		mlx->y0 = mlx->y0 - mlx->size;
-//		mlx->y1 = mlx->y1 - mlx->size;
 }
 
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
-//	mlx->z0 = mlx->int_data[mlx->y][mlx->x]; // Added for z value
-//	mlx->z1 = mlx->int_data[mlx->y][mlx->x +1]; // Added for z value
-//	mlx->x0 = mlx->x;
-//	mlx->y0 = mlx->y;	
 	mlx->x0 = mlx->x - (temp->map_width/2);
 	mlx->y0 = mlx->y - (temp->map_height/2);
 
-//	if(mlx->camera == 1)
- //		mlx->x1 = mlx->x1 + mlx->size;
-//	if(mlx->camera == 0)
 	rotate_horizontal_line(mlx, temp);
-	if(mlx->x < temp->map_width)								//Maybe <=
-	{
-//		printf("x0:|%d|, x1:|%d|, y0:|%d|, y1:|%d|\n\n", mlx->x0, mlx->x1, mlx->y0, mlx->y1);
+	if(mlx->x < temp->map_width)
 		plot_any_line(mlx);
-	}
 }
 
 /*
