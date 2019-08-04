@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 20:58:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 14:00:37 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -563,6 +563,9 @@ void get_struct_values(t_mlx *mlx)
 	mlx->degree_angle = 30;
 	mlx->xy_zoom = 0.5;
 	mlx->z_zoom = 0.03;
+	mlx->x_axis = 0;
+	mlx->y_axis = 0;
+	mlx->z_axis = 0;
 //	t_mlx temp;	
 //	mlx->size = 15;
 //	mlx->x0 = mlx->size;

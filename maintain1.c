@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 20:58:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 14:00:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,37 @@ void change_camera(t_mlx *mlx)
 	ft_render(mlx);
 }
 
+void rotate_axis(t_mlx *mlx, int key)
+{
+/*
+	if(key == ROTATE_UP_I)
+		mlx->y_axis = mlx->y_axis - 0.03;
+	else if(key == ROTATE_DOWN_K)
+		mlx->y_axis = mlx->y_axis + 0.03;
+	else if(key == ROTATE_LEFT_J)
+		mlx->x_axis = mlx->x_axis - 0.03;
+	else if(key == ROTATE_RIGHT_L)
+		mlx->x_axis = mlx->x_axis + 0.03;
+*/
+	if(key == ROTATE_UP_I)
+		mlx->x_axis = mlx->x_axis + 0.03;
+	else if(key == ROTATE_DOWN_K)
+		mlx->x_axis = mlx->x_axis - 0.03;
+	else if(key == ROTATE_LEFT_J)
+		mlx->y_axis = mlx->y_axis + 0.03;
+	else if(key == ROTATE_RIGHT_L)
+		mlx->y_axis = mlx->y_axis - 0.03;
+
+	else if(key == ROTATE_SIDE_U)
+		mlx->z_axis = mlx->z_axis + 0.03;
+	else if(key == ROTATE_SIDE_O)
+		mlx->z_axis = mlx->z_axis - 0.03;
+
+	printf("key:|%d|\n", key);
+	printf("key:|%c|\n", key);
+	ft_render(mlx);
+}
+
 int program_keys(int key, t_mlx *mlx)
 {
 	if(key == ESCAPE_ESC)
@@ -291,6 +322,12 @@ int program_keys(int key, t_mlx *mlx)
 		change_camera(mlx);
 	else if(key == ALTITUDE_INCREASE_W || key == ALTITUDE_DECREASE_S)
 		change_altitude(mlx, key);
+	else if(key == ROTATE_UP_I || key == ROTATE_DOWN_K)
+		rotate_axis(mlx, key);
+	else if(key == ROTATE_LEFT_J || key == ROTATE_RIGHT_L)
+		rotate_axis(mlx, key);
+	else if(key == ROTATE_SIDE_U || key == ROTATE_SIDE_O)
+		rotate_axis(mlx, key);
 	return(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 20:58:00 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 14:00:33 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,13 @@ typedef struct	s_data
 # define CHANGE_CAMERA_C 8
 # define ESCAPE_ESC 53
 
+# define ROTATE_UP_I 34 
+# define ROTATE_LEFT_J 38
+# define ROTATE_DOWN_K 40
+# define ROTATE_RIGHT_L 37
+# define ROTATE_SIDE_U 32
+# define ROTATE_SIDE_O 31
+
 /*
 ** To get isometric and top_down values in below macros, we convert the angle
 ** to a radian by performing the following calculation:
@@ -132,6 +139,10 @@ typedef struct	s_mlx
 	double		angle_y;
 	double		angle_z;
 	double		degree_angle;
+	double 		x_axis;
+	double 		y_axis;
+	double		z_axis;
+	double		map_min;
 //	int			size;
 //	void		*img_ptr; Not using it currently
 }				t_mlx;
@@ -193,6 +204,8 @@ void	reset_program(t_mlx *mlx);
 void	shift_program(t_mlx *mlx, int key);
 //int		program_keys(int key, t_mlx **mlx);
 void	iso_projection(t_mlx *mlx);
+void	change_camera(t_mlx *mlx);
+void	rotate_axis(t_mlx *mlx, int key);
 int		program_keys(int key, t_mlx *mlx);
 int 	solve_driver1(int fd, int height, char *argv);
 
@@ -255,6 +268,8 @@ void	rotate_vertical_line(t_mlx *mlx, t_mlx *temp);
 void	find_min_x(t_mlx *mlx, t_mlx *temp);
 void	find_max_y(t_mlx *mlx, t_mlx *temp);
 void	copy_temp_xy_to_mlx_x0y0x1y1(t_mlx *mlx, t_mlx *temp);
-
+void 	rotate_x_axis(t_mlx *mlx, int *y, int *z, double x_axis);
+void	rotate_y_axis(t_mlx *mlx, int *x, int *z, double y_axis);
+void	rotate_z_axis(t_mlx *mlx, int *x, int *y, double z_axis);
 
 #endif
