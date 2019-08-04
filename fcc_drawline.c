@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 19:27:22 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 20:58:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,9 +294,20 @@ void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 // Working on z values
 void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 {
-	mlx->x0 = mlx->x - (temp->map_width/2);
-	mlx->y0 = mlx->y - (temp->map_height/2);
+//	mlx->x0 = mlx->x + (temp->map_width * 2);
+//	mlx->y0 = mlx->y + (temp->map_height * 0.000001);	
+//	mlx->x0 = mlx->x + (P_WIDTH / 3);
+//	mlx->y0 = mlx->y + (P_HEIGHT / 3);
+	mlx->x0 = mlx->x;
+	mlx->y0 = mlx->y;
 
+//	mlx->x0 = mlx->x0 + 30;
+//	mlx->y0 = mlx->y0 + 4;	
+//	mlx->x0 = mlx->x + 640;
+//	mlx->y0 = mlx->y + 360;
+
+//	printf("x0:|%d|, y0:|%d|\n", mlx->x0, mlx->y0);
+//	printf("x1:|%d|, y1:|%d|\n\n", mlx->x1, mlx->y1);
 	rotate_vertical_line(mlx, temp);
 	if(mlx->y < temp->map_height)
 		plot_any_line(mlx);
@@ -304,8 +315,18 @@ void ft_render_vertical(t_mlx *mlx, t_mlx *temp)
 
 void ft_render_horizontal(t_mlx *mlx, t_mlx *temp)
 {
-	mlx->x0 = mlx->x - (temp->map_width/2);
-	mlx->y0 = mlx->y - (temp->map_height/2);
+//	mlx->x0 = mlx->x + (temp->map_width * 2);
+//	mlx->y0 = mlx->y + (temp->map_height * 0.000001);
+//	mlx->x0 = mlx->x + (P_WIDTH / 3);
+//	mlx->y0 = mlx->y + (P_HEIGHT / 3);
+	mlx->x0 = mlx->x;
+	mlx->y0 = mlx->y;
+
+//	mlx->x0 = mlx->x0 + 30;
+//	mlx->y0 = mlx->y0 + 4;
+
+//	mlx->x0 = mlx->x + 640;
+//	mlx->y0 = mlx->y + 360;
 
 	rotate_horizontal_line(mlx, temp);
 	if(mlx->x < temp->map_width)
@@ -540,8 +561,8 @@ void get_struct_values(t_mlx *mlx)
 	mlx->angle_y = 0.5;
 	mlx->angle_z = 0.25;
 	mlx->degree_angle = 30;
-	mlx->xy_zoom = 20;
-	mlx->z_zoom = 1;
+	mlx->xy_zoom = 0.5;
+	mlx->z_zoom = 0.03;
 //	t_mlx temp;	
 //	mlx->size = 15;
 //	mlx->x0 = mlx->size;

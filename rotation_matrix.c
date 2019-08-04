@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 19:27:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 20:58:03 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,18 +182,21 @@ void	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(t_mlx *mlx, t_mlx *temp)
 void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 {
 	int min;
+
+	min = ft_min(mlx);
 	if(mlx->y < temp->map_height)
 	{
-	mlx->z0 = mlx->int_data[mlx->y][mlx->x] * mlx->z_zoom; // Added z value
-	mlx->z1 = mlx->int_data[mlx->y + 1][mlx->x] * mlx->z_zoom; // Added z value
+	mlx->z0 = mlx->int_data[mlx->y][mlx->x] * mlx->z_zoom * min; // Added z value
+	mlx->z1 = mlx->int_data[mlx->y + 1][mlx->x] * mlx->z_zoom * min; // Added z value
 	}
 	mlx->x1 = mlx->x0;
 	mlx->y1 = mlx->y0 + 1;
 
-	mlx->x0 = mlx->x0 * mlx->xy_zoom;
-	mlx->x1 = mlx->x1 * mlx->xy_zoom;
-	mlx->y0 = mlx->y0 * mlx->xy_zoom;
-	mlx->y1 = mlx->y1 * mlx->xy_zoom;
+	mlx->x0 = mlx->x0 * mlx->xy_zoom * min;
+	mlx->x1 = mlx->x1 * mlx->xy_zoom * min;
+	mlx->y0 = mlx->y0 * mlx->xy_zoom * min;
+	mlx->y1 = mlx->y1 * mlx->xy_zoom * min;
+
 	rotation_matrix(mlx, &mlx->x0, &mlx->y0, mlx->z0);
 	rotation_matrix(mlx, &mlx->x1, &mlx->y1, mlx->z1);
 
@@ -206,20 +209,21 @@ void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 {
 	int min;
-
+	
+	min = ft_min(mlx);
 	if(mlx->x < temp->map_width)
 	{
-	mlx->z0 = mlx->int_data[mlx->y][mlx->x] * mlx->z_zoom;   //Added z value 
-	mlx->z1 = mlx->int_data[mlx->y][mlx->x + 1] * mlx->z_zoom; //Added z value
+	mlx->z0 = mlx->int_data[mlx->y][mlx->x] * mlx->z_zoom * min;   //Added z value 
+	mlx->z1 = mlx->int_data[mlx->y][mlx->x + 1] * mlx->z_zoom * min; //Added z value
 	}
 	mlx->x1 = mlx->x0 + 1;
 	mlx->y1 = mlx->y0;
 
 
-	mlx->x0 = mlx->x0 * mlx->xy_zoom;
-	mlx->x1 = mlx->x1 * mlx->xy_zoom;
-	mlx->y0 = mlx->y0 * mlx->xy_zoom;
-	mlx->y1 = mlx->y1 * mlx->xy_zoom;
+	mlx->x0 = mlx->x0 * mlx->xy_zoom * min;
+	mlx->x1 = mlx->x1 * mlx->xy_zoom * min;
+	mlx->y0 = mlx->y0 * mlx->xy_zoom * min;
+	mlx->y1 = mlx->y1 * mlx->xy_zoom * min;
 	
 	rotation_matrix(mlx, &mlx->x0, &mlx->y0, mlx->z0);
 	rotation_matrix(mlx, &mlx->x1, &mlx->y1, mlx->z1);

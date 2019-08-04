@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/03 19:27:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/03 20:58:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,16 +147,16 @@ void centeralize_with_zoom(t_mlx *mlx, int key)
 {
 	if(key == ZOOM_IN_Q)
 	{
-		mlx->x0 = mlx->x0 - 9; //(P_WIDTH/160 * mlx->map_width);
+		mlx->x0 = mlx->x0 - mlx->x0; //(P_WIDTH/160 * mlx->map_width);
 		mlx->x1 = mlx->x0;
-		mlx->y0 = mlx->y0 - 6;//(P_HEIGHT/95 * mlx->map_height);
+		mlx->y0 = mlx->y0 - mlx->y0;//(P_HEIGHT/95 * mlx->map_height);
 		mlx->y1 = mlx->y0;
 	}
 	else if(key == ZOOM_OUT_A)
 	{
-		mlx->x0 = mlx->x0 + 9;//(P_WIDTH/160 * mlx->map_width);
+		mlx->x0 = mlx->x0 + mlx->x0;//(P_WIDTH/160 * mlx->map_width);
 		mlx->x1 = mlx->x0;
-		mlx->y0 = mlx->y0 + 6;//(P_HEIGHT/95 * mlx->map_height);
+		mlx->y0 = mlx->y0 + mlx->y0;//(P_HEIGHT/95 * mlx->map_height);
 		mlx->y1 = mlx->y0;
 	}
 }
@@ -165,8 +165,9 @@ void zoom_program(t_mlx *mlx, int key)
 {
 	if(key == ZOOM_IN_Q)
 		mlx->xy_zoom = mlx->xy_zoom + XY_ZOOM;
-	else if(key == ZOOM_OUT_A)
+	if(key == ZOOM_OUT_A && mlx->xy_zoom > 0.04)
 		mlx->xy_zoom = mlx->xy_zoom - XY_ZOOM;
+	printf("xy_zoom:|%f|\n", mlx->xy_zoom);
 	ft_render(mlx);
 }
 
