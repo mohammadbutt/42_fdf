@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 12:04:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 13:01:09 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int ft_width(char **characters)
 {
 	int width;
 
-//	width = ft_wordcount(characters[0], ' ');
-	width = ft_wordcount(characters[0]);
+	width = ft_wordcount(characters[0], ' ');
+//	width = ft_wordcount(characters[0]);
 
 	return(width);
 }

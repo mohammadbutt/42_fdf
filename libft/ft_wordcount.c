@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 15:07:43 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 19:13:05 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 13:01:14 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 */
 
 #include "libft.h"
+
+int ft_wordcount(char const *str, char c)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	if(str == NULL)
+		return(count);
+	while(str[i])
+	{
+//		if(ft_space(str[i]) == 0 && (ft_space(str[i+1]) == 1 || str[i+1] == '\0'))
+		if(str[i] != c && (str[i+1] == c || str[i+1] == '\0'))	
+			count++;
+		i++;
+	}
+	return(count);
+}
+
+
+/*
 int ft_space(char c)
 {
 	if(c == ' ' || c == '\t' || c == '\n')
@@ -39,6 +61,7 @@ int ft_wordcount(char const *str)
 	}
 	return(count);
 }
+*/
 /*
 int		ft_wordcount(char const *s, char c)
 {

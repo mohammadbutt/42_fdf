@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:40:09 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 19:12:14 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 12:56:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 */
 int					ft_isspace(int c);
 char				**ft_doublestr(char const *s);
-int					ft_wordcount(char const *s);
+//int					ft_wordcount(char const *s);
+int					ft_wordcount(char const *str, char c);
 char				*ft_words(char const *s, char c);
 int					ft_endtrim(char const *s, char c);
 int					ft_numlen(int n);

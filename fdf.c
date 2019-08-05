@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 12:22:50 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 12:59:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ int ft_valid(int fd, int height, char *argv)
 		ft_exit_dir(argv);
 	if(ft_return == 1)
 	{
-		wcount = ft_wordcount(temp_line);
+//		wcount = ft_wordcount(temp_line);
+		wcount = ft_wordcount(temp_line, ' ');
 		free(temp_line);
 		height++;
 	}
 	while((ft_return = get_next_line(fd, &temp_line) == 1))
 	{
-		temp_wcount = ft_wordcount(temp_line);
+//		temp_wcount = ft_wordcount(temp_line);
+		temp_wcount = ft_wordcount(temp_line, ' ');
 		if(temp_wcount != wcount)
 			ft_exit("Error: Invalid file. Exiting program.\n");
 		free(temp_line);
