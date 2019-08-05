@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/01 15:24:49 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/04 21:03:31 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= fdf
 CC		= gcc
 CFLAG	= -Wall -Wextra -Werror
 ##SRC	= srcs/test_draw.c Dont use it
-SRC		= fdf.c linked_list.c main.c maintain1.c fcc_drawline.c rotation_matrix.c
+SRC		= fdf.c main.c maintain1.c fcc_drawline.c rotation_matrix.c #linked_list.c
 #SRC		= square_test.c
 OBJ		= $(SRC:.c=.o)
 
