@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 13:42:56 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 14:56:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,44 +136,41 @@ typedef struct	s_mlx
 	int			y_shift;
 	double 		xy_zoom;
 	double		z_zoom;
-	double		angle_y;
-	double		angle_z;
 	double		degree_angle;
 	double 		x_axis;
 	double 		y_axis;
 	double		z_axis;
 	double		map_min;
-//	int			size;
-//	void		*img_ptr; Not using it currently
 }				t_mlx;
 
+/*
 typedef struct		s_fdf
 {
 	t_mlx			mlx;
-	int				x0;
-	int				y0;
-	int				z0;
-	int				x1;
-	int				y1;
-	int				z1;
-	int				x_move;
-	int				y_move;
-	int				**int_data_2;
-	int				*struct_coordinates;
-	int				map_width; /*map_columns*/
-	int				map_height; /*map_rows*/
-	struct s_fdf	*next;
+//	int				x0;
+//	int				y0;
+//	int				z0;
+//	int				x1;
+//	int				y1;
+//	int				z1;
+//	int				x_move;
+//	int				y_move;
+//	int				**int_data_2;
+//	int				*struct_coordinates;
+//	int				map_width; //map_columns
+//	int				map_height; //map_rows
+//	struct s_fdf	*next;
 }					t_fdf;
-
+*/
 /*
 ** linked_list.c ---------------------------------------------------------------
 */
 
-t_fdf	*create(int *struct_coordinates);
-t_fdf	*append(t_fdf *head, int *struct_coordinates);
-t_fdf	*int_data_to_struct(int **int_data, int height);
-int		**str_to_int_struct(char **characters);
-void	print_data_coord(t_fdf *struct_pointer, char **characters);
+//t_fdf	*create(int *struct_coordinates);
+//t_fdf	*append(t_fdf *head, int *struct_coordinates);
+//t_fdf	*int_data_to_struct(int **int_data, int height);
+//int		**str_to_int_struct(char **characters);
+//void	print_data_coord(t_fdf *struct_pointer, char **characters);
 
 /*
 ** fdf.c 
@@ -227,15 +224,15 @@ void	plot_any_line(t_mlx *mlx);
 void	get_struct_values(t_mlx *mlx);
 void	isometric_view(int *x, int *y, int z);
 void	topdown_view(int *x, int *y, int z);
-int		normalize_map(t_fdf *fdf);
-void	centeralize_map(t_fdf *fdf, int x, int y);
-void	place_z_on_horizontal(t_fdf *fdf, int x, int y, int normalize);
-void	place_z_on_vertical(t_fdf *fdf, int x, int y, int normalize);
-void	horizontal_x1_y1(t_fdf *fdf);
-void	vertical_x1_y1(t_fdf *fdf);
-void	horizontal_shift(t_fdf *fdf);
-void	horizontal_render(t_fdf *fdf, int x, int y);
-void	vertical_render(t_fdf *fdf, int x, int y);
+//int		normalize_map(t_fdf *fdf);
+//void	centeralize_map(t_fdf *fdf, int x, int y);
+//void	place_z_on_horizontal(t_fdf *fdf, int x, int y, int normalize);
+//void	place_z_on_vertical(t_fdf *fdf, int x, int y, int normalize);
+//void	horizontal_x1_y1(t_fdf *fdf);
+//void	vertical_x1_y1(t_fdf *fdf);
+//void	horizontal_shift(t_fdf *fdf);
+//void	horizontal_render(t_fdf *fdf, int x, int y);
+//void	vertical_render(t_fdf *fdf, int x, int y);
 void	ft_dots(t_mlx *mlx);
 void	struct_copy(t_mlx *source, t_mlx *dest);
 void	get_z_value(t_mlx *mlx, t_mlx *temp);
