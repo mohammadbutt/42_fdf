@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 21:01:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 12:22:50 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,31 @@ char **str_data(int fd, int height, char *argv)
 	characters[i] = NULL;
 	return(characters);
 }
+
 /*
-** str_to_int takes datapoints that were stored in a 2d char array, converts
-** then into integers and stores them in a 2-Dimensional int array.
+** **str_to_int takes in 2D array of string that were stored using str_data,
+** and converts them into 2D int array.
+**
+** 2D string array that's taken in is stored as such:
+** "0  1  3  0"
+** "0 10 -5  0"
+**
+** This will look like this:
+** characters[0] = "7  1  3  0"
+** characters[1] = "4 10 -5  0"
+** When any of the elements in this string are accessed they are perceived
+** as characters, not numbers. chararcters [1][0] will be '4', characters[1][1]
+** will be ' ', a space, and characters[1][2] will be '1';
+**
+** After the string is converted to a 2d int array, it will be stored as such:
+** {7, 1, 3, 0}
+** {4, 10, -5, 0}
+** Now when any of the elements in this int array are accessed they are
+** perceived as numbers. int_data[1][0] will be 4. int_data[1][1] will be 10,
+** and int_data[1][2] will be -5.
+** 
 */
+
 int		**str_to_int(char **characters)
 {
 	int i;
