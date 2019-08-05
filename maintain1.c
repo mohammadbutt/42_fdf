@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 21:03:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 12:04:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,7 @@ int *ft_2d_atoi(char *str)
 	words = ft_strsplit(str, ' ');
 	while(words[wordcount])
 		wordcount++;
-	if(!(wordcount))
-		ft_exit("Invalid File\n");
-//		printf("%s\n",words[wordcount++]);
 	int_data = malloc(sizeof(int) * (wordcount));
-//	printf("ft_2d_atoi: wordcount:|%d|\n", wordcount);
 	if(int_data == NULL)
 		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
 	while(wordcount)
@@ -134,7 +130,6 @@ int *ft_2d_atoi(char *str)
 			int_data[i] = ft_atoi(words[i]);
 		else
 			ft_exit("Invalid File.\n");
-//		printf("int_data[i]:|%d|\n", int_data[i]);
 		free(words[i]);
 		i++;
 		wordcount--;
@@ -143,37 +138,6 @@ int *ft_2d_atoi(char *str)
 	return(int_data);
 }
 
-
-/*
-// Works, but doesnt store values properly for all maps
-int *ft_2d_atoi(char *str)
-{
-	int i;
-	int wordcount;
-	int *int_data;
-	char **words;
-
-	i = 0;
-//	wordcount = ft_wordcount(str, ' ');
-	wordcount = ft_wordcount(str);
-
-//	int_data = (int *)malloc(sizeof(int) * (wordcount));
-	int_data = malloc(sizeof(int) * (wordcount));
-	printf("ft_2d_atoi: wordcount:|%d|\n", wordcount);
-	if(int_data == NULL)
-		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
-	words = ft_strsplit(str, ' ');
-	while(wordcount)
-	{
-		int_data[i] = ft_atoi(words[i]);
-		free(words[i]);
-		i++;
-		wordcount--;
-	}
-	free(words);
-	return(int_data);
-}
-*/
 int ft_hue(int y, int color)
 {
 	int final_color;
@@ -190,29 +154,6 @@ void random_color(t_mlx *mlx, int key)
 	mlx->color = rand() % random_seed;
 	ft_render(mlx);
 }
-/*
-** Map does not offset when the map is zoomed in or out.
-** Centeralize_with_zoom helps offset when zoom is applied to
-** centeralize the map.
-*/
-
-void centeralize_with_zoom(t_mlx *mlx, int key)
-{
-	if(key == ZOOM_IN_Q)
-	{
-		mlx->x0 = mlx->x0 - mlx->x0; //(P_WIDTH/160 * mlx->map_width);
-		mlx->x1 = mlx->x0;
-		mlx->y0 = mlx->y0 - mlx->y0;//(P_HEIGHT/95 * mlx->map_height);
-		mlx->y1 = mlx->y0;
-	}
-	else if(key == ZOOM_OUT_A)
-	{
-		mlx->x0 = mlx->x0 + mlx->x0;//(P_WIDTH/160 * mlx->map_width);
-		mlx->x1 = mlx->x0;
-		mlx->y0 = mlx->y0 + mlx->y0;//(P_HEIGHT/95 * mlx->map_height);
-		mlx->y1 = mlx->y0;
-	}
-}
 
 void zoom_program(t_mlx *mlx, int key)
 {
@@ -220,7 +161,6 @@ void zoom_program(t_mlx *mlx, int key)
 		mlx->xy_zoom = mlx->xy_zoom + XY_ZOOM;
 	if(key == ZOOM_OUT_A && mlx->xy_zoom > 0.04)
 		mlx->xy_zoom = mlx->xy_zoom - XY_ZOOM;
-	printf("xy_zoom:|%f|\n", mlx->xy_zoom);
 	ft_render(mlx);
 }
 
@@ -233,23 +173,6 @@ void change_altitude(t_mlx *mlx, int key)
 	ft_render(mlx);
 }	
 
-/*
-// Zoom works with flat maps.
-void zoom_program(t_mlx *mlx, int key)
-{
-	if(key == ZOOM_IN_Q)
-	{
-		mlx->size = mlx->size + 2;
-		centeralize_with_zoom(mlx, key);
-	}
-	if(key == ZOOM_OUT_A && mlx->size != 3)
-	{
-		mlx->size = mlx->size - 2;
-//		centeralize_with_zoom(mlx, key);
-	}
-	ft_render(mlx);
-}
-*/
 void reset_program(t_mlx *mlx)
 {
 	get_struct_values(mlx);
@@ -269,50 +192,6 @@ void shift_program(t_mlx *mlx, int key)
 	ft_render(mlx);
 }
 
-/*
-// Works with flat map - Changing it to make it work with rotated map
-void shift_program(t_mlx *mlx, int key)
-{
-	if(key == UP_K)
-	{
-		mlx->y0 = mlx->y0 - 5;
-	//	mlx->y1 = mlx->y1 - 5;
-		mlx->y1 = mlx->y0;
-	}
-	else if(key == DOWN_K)
-	{
-		mlx->y0 = mlx->y0 + 5;
-	//	mlx->y1 = mlx->y1 + 5;
-		mlx->y1 = mlx->y0;
-	}
-	else if(key == RIGHT_K)
-	{
-		mlx->x0 = mlx->x0 + 5;
-	//	mlx->x1 = mlx->x1 + 5;
-		mlx->x1 = mlx->x0;
-	}
-	else if(key == LEFT_K)
-	{
-		mlx->x0 = mlx->x0 - 5;
-	//	mlx->x1 = mlx->x1 - 5;
-		mlx->x1 = mlx->x0;
-	}
-	ft_render(mlx);
-}
-*/
-void iso_projection(t_mlx *mlx)
-{
-//	mlx->x1 = (mlx->x0 * cos(0.52)) - (mlx->y0 * sin(0.52));
-//	mlx->y1 = (mlx->x0 * sin(0.52)) + (mlx->y0 * cos(0.52));
-//	mlx->x1 = mlx->x0;
-//	mlx->y1 = mlx->y0;
-	
-//	mlx->x1 = (mlx->x0 - mlx->y0) * cos(0.52399);
-//	mlx->y1 = (mlx->x0 + mlx->y0) * cos(0.52399);
-	
-	ft_render(mlx);
-}
-
 void change_camera(t_mlx *mlx)
 {
 	if(mlx->camera == 0)
@@ -324,16 +203,6 @@ void change_camera(t_mlx *mlx)
 
 void rotate_axis(t_mlx *mlx, int key)
 {
-/*
-	if(key == ROTATE_UP_I)
-		mlx->y_axis = mlx->y_axis - 0.03;
-	else if(key == ROTATE_DOWN_K)
-		mlx->y_axis = mlx->y_axis + 0.03;
-	else if(key == ROTATE_LEFT_J)
-		mlx->x_axis = mlx->x_axis - 0.03;
-	else if(key == ROTATE_RIGHT_L)
-		mlx->x_axis = mlx->x_axis + 0.03;
-*/
 	if(key == ROTATE_UP_I)
 		mlx->x_axis = mlx->x_axis + 0.02;
 	else if(key == ROTATE_DOWN_K)
@@ -347,17 +216,12 @@ void rotate_axis(t_mlx *mlx, int key)
 		mlx->z_axis = mlx->z_axis + 0.02;
 	else if(key == ROTATE_SIDE_O)
 		mlx->z_axis = mlx->z_axis - 0.02;
-
-	printf("key:|%d|\n", key);
-	printf("key:|%c|\n", key);
 	ft_render(mlx);
 }
 
 int program_keys(int key, t_mlx *mlx)
 {
 	if(key == ESCAPE_ESC)
-//		exit(0); //When preogram works fine, replace it with ft_exit_success();
-//		exit(EXIT_SUCCESS);
 		ft_exit_success("\33[1;32mProgram shut down successfully.\n\33[m");
 	else if(key == UP_K || key == DOWN_K || key == LEFT_K || key == RIGHT_K)
 		shift_program(mlx, key);
@@ -383,7 +247,6 @@ int program_keys(int key, t_mlx *mlx)
 int solve_driver1(int fd, int height, char *argv)
 {
 	t_mlx *mlx;
-//	t_mlx temp;
 	char **characters;
 	int **int_data;
 
@@ -394,12 +257,11 @@ int solve_driver1(int fd, int height, char *argv)
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, P_WIDTH, P_HEIGHT, "ok");
 	height = ft_valid(fd, height, argv);
 	characters = str_data(fd, height, argv);
-//	get_struct_values(mlx);
 	mlx->int_data = str_to_int(characters);
 	mlx->map_height = ft_height(characters); // Can we also do mlx->map_height = height;?
 	mlx->map_width = ft_width(characters);
 	get_struct_values(mlx);
-//	ft_print_data(mlx);
+//	ft_print_data(mlx); 		/*To test if values are stored properly*/
 	ft_render(mlx);
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, mlx);
 	mlx_loop(mlx->mlx_ptr);
