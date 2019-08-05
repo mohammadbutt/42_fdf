@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 14:00:37 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 17:49:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,13 +149,15 @@ void ft_menu(t_mlx *mlx)
 	char *str4;
 	char *str5;
 	char *str6;
+	char *str7;
 
 	str1 = "Menu Controls";
 	str2 = "Shift: Arrow Keys: < ^ v >";
-	str3 = "Zoom: Q A";
-	str4 = "Altitude: W S";
-	str5 = "Reset map: E";
-	str6 = "Random Colors: R";
+	str3 = "Rotate: I J K L";
+	str4 = "Zoom: Q A";
+	str5 = "Altitude: W S";
+	str6 = "Reset map: E";
+	str7 = "Random Colors: R";
 
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, 0xffffff, str1);
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 40, 0xadadad, str2);
@@ -163,6 +165,7 @@ void ft_menu(t_mlx *mlx)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 80, 0xadadad, str4);
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 100, 0xadadad, str5);
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 120, 0xadadad, str6);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 140, 0xadadad, str7);
 
 }
 /*

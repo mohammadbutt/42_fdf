@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 14:00:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 17:49:22 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@ int		ft_min(t_mlx *mlx)
 		return(height);
 	else if(width <= height)
 		return(width);
-	return(0);
+/*
+	if(height > width)
+		return(height);
+	else if(width >= height)
+		return(width);
+*/
+	return(-77);
 }
 
 double degree_to_radian(double degrees)
@@ -184,7 +190,6 @@ void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 	int min;
 
 	min = ft_min(mlx);
-	mlx->map_min = 1;
 	if(mlx->y < temp->map_height)
 	{
 	mlx->z0 = mlx->int_data[mlx->y][mlx->x] * mlx->z_zoom * min; // Added z value
@@ -212,13 +217,10 @@ void rotate_vertical_line(t_mlx *mlx, t_mlx *temp)
 	rotation_matrix(mlx, &mlx->x0, &mlx->y0, mlx->z0);
 	rotation_matrix(mlx, &mlx->x1, &mlx->y1, mlx->z1);
 
-
-
-	mlx->x0 = mlx->x0 + mlx->x_shift;
-	mlx->x1 = mlx->x1 + mlx->x_shift;
-	mlx->y0 = mlx->y0 + mlx->y_shift;
-	mlx->y1 = mlx->y1 + mlx->y_shift;
-
+	mlx->x0 = mlx->x0 + mlx->x_shift + (P_WIDTH/2.5);
+	mlx->x1 = mlx->x1 + mlx->x_shift + (P_WIDTH/2.5);
+	mlx->y0 = mlx->y0 + mlx->y_shift + (P_HEIGHT/4);
+	mlx->y1 = mlx->y1 + mlx->y_shift + (P_HEIGHT/4);
 }
 
 void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
@@ -226,7 +228,6 @@ void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 	int min;
 	
 	min = ft_min(mlx);
-	mlx->map_min = 1;
 	if(mlx->x < temp->map_width)
 	{
 	mlx->z0 = mlx->int_data[mlx->y][mlx->x] * mlx->z_zoom * min;   //Added z value 
@@ -252,11 +253,10 @@ void rotate_horizontal_line(t_mlx *mlx, t_mlx *temp)
 	rotation_matrix(mlx, &mlx->x0, &mlx->y0, mlx->z0);
 	rotation_matrix(mlx, &mlx->x1, &mlx->y1, mlx->z1);
 
-
-	mlx->x0 = mlx->x0 + mlx->x_shift;
-	mlx->x1 = mlx->x1 + mlx->x_shift;
-	mlx->y0 = mlx->y0 + mlx->y_shift;
-	mlx->y1 = mlx->y1 + mlx->y_shift;
+	mlx->x0 = mlx->x0 + mlx->x_shift + (P_WIDTH/2.5);
+	mlx->x1 = mlx->x1 + mlx->x_shift + (P_WIDTH/2.5);
+	mlx->y0 = mlx->y0 + mlx->y_shift + (P_HEIGHT/4);
+	mlx->y1 = mlx->y1 + mlx->y_shift + (P_HEIGHT/4);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 14:00:33 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 17:49:19 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ typedef struct	s_data
 # define ISOMETRIC 0.52
 # define TOPDOWN 1.57
 
-//# define XY_ZOOM 0.01
-//# define Z_ZOOM 0.01
+//# define XY_ZOOM 0.5
+//# define Z_ZOOM 0.5
 
 #define XY_ZOOM 0.005
 #define Z_ZOOM 0.005
