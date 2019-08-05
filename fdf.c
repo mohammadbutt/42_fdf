@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 20:22:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 20:50:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,20 +108,19 @@ int ft_valid(int fd, int height, char *argv)
 
 	ft_zero(&temp_wcount, &wcount, &ft_return, &height);
 	ft_return = get_next_line(fd, &temp_line);
+	if(ft_return == 0)
+		ft_exit("Invalid Error. Empty file.\n");
 	if(ft_return == -1)
 		ft_exit_dir(argv);
 	if(ft_return == 1)
 	{
-//		wcount = ft_wordcount(temp_line, ' ');
 		wcount = ft_wordcount(temp_line);
 		free(temp_line);
 		height++;
 	}
 	while((ft_return = get_next_line(fd, &temp_line) == 1))
 	{
-//		temp_wcount = ft_wordcount(temp_line, ' ');
 		temp_wcount = ft_wordcount(temp_line);
-
 		if(temp_wcount != wcount)
 			ft_exit("Error: Invalid file. Exiting program.\n");
 		free(temp_line);
@@ -148,7 +147,6 @@ char **str_data(int fd, int height, char *argv)
 	fd = open(argv, O_RDONLY);
 	while(get_next_line(fd, &line) == 1)
 	{
-//		(width == 0) && (width = ft_strlen(line));
 		width = ft_strlen(line);
 		line[width] = '\0';
 		characters[i] = ft_strdup(line);
