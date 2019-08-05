@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:35:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/11 13:39:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 10:48:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int argc, char **argv)
 {
-//	t_fdf *fdf;
 	int fd;
 	int height;
 	
@@ -28,49 +27,8 @@ int main(int argc, char **argv)
 		ft_exit("Main Error 1:\nFile does not exist\n");
 //		ft_exit_dir(argv[1]);
 	}
-//	fdf = malloc(sizeof(t_fdf));
-//	if(fdf == NULL)
-//		ft_exit("main.c main error: Unable to allocate memory.\n");
-//	fdf->mlx.mlx_ptr = mlx_init();
 	solve_driver1(fd, height, argv[1]);
 	
-//	mlx_loop(fdf->mlx.mlx_ptr);
 	close(fd);
 	return(0);
 }
-
-
-
-/*
-int main(int argc, char **argv)
-{
-	int fd;
-	int height;
-	char **characters;
-	t_fdf struct_pointer; //delete after testing
-//	struct_pointer = struct_pointer.struct_coordinates; //delete after testing
-
-	ft_zero(&height, &fd, &fd, &fd);
-	if(argc == 1)
-		ft_usage("Usage: ./fdf resources/test_maps\n");
-	fd = open(argv[1], O_RDONLY);
-	if(fd  == -1)
-	{
-		ft_exit("Main Error 1:\nFile does not exist\n");
-//		ft_exit_dir(argv[1]);
-	}
-	height = ft_valid(fd, height, argv[1]);
-	characters = str_data(fd, height, argv[1]);
-	str_to_int(characters);
-
-	printf("   rows:|%d|\n", ft_height(characters));
-	printf("columns:|%d|\n", ft_width(characters));
-	print_data_coord(&struct_pointer, characters);
-
-//	printf("|%d|\n", t_fdf.struct_coordinates[0][2]);
-//	printf("|%d|\n", t_fdf->struct_coordinates[1][2]);
-
-	close(fd);
-	return(0);
-}
-*/
