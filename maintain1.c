@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 17:49:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 20:22:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ int ft_width(char **characters)
 {
 	int width;
 
-	width = ft_wordcount(characters[0], ' ');
+//	width = ft_wordcount(characters[0], ' ');
+	width = ft_wordcount(characters[0]);
+
 	return(width);
 }
 
@@ -106,8 +108,58 @@ int *ft_2d_atoi(char *str)
 	char **words;
 
 	i = 0;
-	wordcount = ft_wordcount(str, ' ');
-	int_data = (int *)malloc(sizeof(int) * (wordcount));
+//	wordcount = ft_wordcount(str, ' ');
+//	wordcount = ft_wordcount(str);
+	wordcount = 0;
+//	int_data = (int *)malloc(sizeof(int) * (wordcount));
+//	int_data = malloc(sizeof(int) * (wordcount));
+//	printf("ft_2d_atoi: wordcount:|%d|\n", wordcount);
+//	if(int_data == NULL)
+//		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
+	words = ft_strsplit(str, ' ');
+	while(words[wordcount])
+		wordcount++;
+	if(!(wordcount))
+		ft_exit("Invalid File\n");
+//		printf("%s\n",words[wordcount++]);
+	int_data = malloc(sizeof(int) * (wordcount));
+//	printf("ft_2d_atoi: wordcount:|%d|\n", wordcount);
+	if(int_data == NULL)
+		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
+	while(wordcount)
+	{
+		if(ft_isdigit(words[i][0]) == 1)
+			int_data[i] = ft_atoi(words[i]);
+		else if(words[i][0] == '-' && ft_isdigit(words[i][1]) == 1)
+			int_data[i] = ft_atoi(words[i]);
+		else
+			ft_exit("Invalid File.\n");
+//		printf("int_data[i]:|%d|\n", int_data[i]);
+		free(words[i]);
+		i++;
+		wordcount--;
+	}
+	free(words);
+	return(int_data);
+}
+
+
+/*
+// Works, but doesnt store values properly for all maps
+int *ft_2d_atoi(char *str)
+{
+	int i;
+	int wordcount;
+	int *int_data;
+	char **words;
+
+	i = 0;
+//	wordcount = ft_wordcount(str, ' ');
+	wordcount = ft_wordcount(str);
+
+//	int_data = (int *)malloc(sizeof(int) * (wordcount));
+	int_data = malloc(sizeof(int) * (wordcount));
+	printf("ft_2d_atoi: wordcount:|%d|\n", wordcount);
 	if(int_data == NULL)
 		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
 	words = ft_strsplit(str, ' ');
@@ -121,6 +173,7 @@ int *ft_2d_atoi(char *str)
 	free(words);
 	return(int_data);
 }
+*/
 int ft_hue(int y, int color)
 {
 	int final_color;
@@ -303,7 +356,9 @@ void rotate_axis(t_mlx *mlx, int key)
 int program_keys(int key, t_mlx *mlx)
 {
 	if(key == ESCAPE_ESC)
-		exit(0); //When preogram works fine, replace it with ft_exit_success();
+//		exit(0); //When preogram works fine, replace it with ft_exit_success();
+//		exit(EXIT_SUCCESS);
+		ft_exit_success("\33[1;32mProgram shut down successfully.\n\33[m");
 	else if(key == UP_K || key == DOWN_K || key == LEFT_K || key == RIGHT_K)
 		shift_program(mlx, key);
 	else if(key == ZOOM_IN_Q || key == ZOOM_OUT_A)
@@ -344,8 +399,8 @@ int solve_driver1(int fd, int height, char *argv)
 	mlx->map_height = ft_height(characters); // Can we also do mlx->map_height = height;?
 	mlx->map_width = ft_width(characters);
 	get_struct_values(mlx);
-	ft_render(mlx);
 //	ft_print_data(mlx);
+	ft_render(mlx);
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return(1);

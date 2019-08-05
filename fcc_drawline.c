@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 17:49:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 18:43:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -652,6 +652,7 @@ void ft_render(t_mlx *mlx)
 	t_mlx temp;
 	t_mlx temp_reset;
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	ft_print_data(mlx);
 	ft_menu(mlx);
 	struct_copy(mlx, &temp);
 	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp_reset);
@@ -782,11 +783,14 @@ void ft_print_data(t_mlx *mlx)
 	{
 		while(j < width)
 		{
+	//		ft_putnbr(mlx->int_data[i][j]);
+	//		if(mlx->int_data[i][j+1] == 0 && j+1 != width)
+	//			ft_putstr("  ");
+	//		else if(mlx->int_data[i][j+1] == 10)
+	//			ft_putstr(" ");
+	//		j++;
 			ft_putnbr(mlx->int_data[i][j]);
-			if(mlx->int_data[i][j+1] == 0 && j+1 != width)
-				ft_putstr("  ");
-			else if(mlx->int_data[i][j+1] == 10)
-				ft_putstr(" ");
+			ft_putstr(" ");
 			j++;
 		}
 		ft_putstr("\n");

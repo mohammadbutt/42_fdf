@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 17:49:22 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 20:22:22 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_min(t_mlx *mlx)
 	else if(width >= height)
 		return(width);
 */
-	return(-77);
+	return(0);
 }
 
 double degree_to_radian(double degrees)

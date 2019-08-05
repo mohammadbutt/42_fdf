@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 21:46:49 by mbutt             #+#    #+#             */
-/*   Updated: 2019/03/25 12:31:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 19:07:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ char		**ft_strsplit(char const *s, char c)
 	a = 0;
 	if (!s)
 		return (NULL);
-	if (!(new_s = (char **)malloc(sizeof(char *) * (ft_wordcount(s, c) + 1))))
+//	if (!(new_s = (char **)malloc(sizeof(char *) * (ft_wordcount(s, c) + 1))))
+	if (!(new_s = (char **)malloc(sizeof(char *) * (ft_wordcount(s) + 1))))
+
 		return (NULL);
 	while (i <= ft_endtrim(s, c))
 	{

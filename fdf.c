@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/07/11 10:44:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/04 20:22:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,16 @@ int ft_valid(int fd, int height, char *argv)
 		ft_exit_dir(argv);
 	if(ft_return == 1)
 	{
-		wcount = ft_wordcount(temp_line, ' ');
+//		wcount = ft_wordcount(temp_line, ' ');
+		wcount = ft_wordcount(temp_line);
 		free(temp_line);
 		height++;
 	}
 	while((ft_return = get_next_line(fd, &temp_line) == 1))
 	{
-		temp_wcount = ft_wordcount(temp_line, ' ');
+//		temp_wcount = ft_wordcount(temp_line, ' ');
+		temp_wcount = ft_wordcount(temp_line);
+
 		if(temp_wcount != wcount)
 			ft_exit("Error: Invalid file. Exiting program.\n");
 		free(temp_line);
@@ -145,10 +148,12 @@ char **str_data(int fd, int height, char *argv)
 	fd = open(argv, O_RDONLY);
 	while(get_next_line(fd, &line) == 1)
 	{
-		(width == 0) && (width = ft_strlen(line));
+//		(width == 0) && (width = ft_strlen(line));
+		width = ft_strlen(line);
 		line[width] = '\0';
 		characters[i] = ft_strdup(line);
-		ft_bzero(line, width);
+		printf("%s\n\n", line);
+//		ft_bzero(line, width);
 		free(line);
 		i++;
 	}
@@ -176,7 +181,9 @@ int *ft_rows_columns(char **characters)
 	if(characters)
 		while(characters[rows])
 			rows++;
-	columns = ft_wordcount(characters[0], ' ');
+//	columns = ft_wordcount(characters[0], ' ');
+	columns = ft_wordcount(characters[0]);
+
 	rows_columns[0] = rows;
 	rows_columns[1] = columns;
 	return(rows_columns);
