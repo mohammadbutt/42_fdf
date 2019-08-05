@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 14:56:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 15:52:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,7 +251,7 @@ void	ft_print_data(t_mlx *mlx);
 ** rotation_matrix.c
 */
 
-int		ft_min(t_mlx *mlx);
+int		ft_normalize(t_mlx *mlx);
 double 	degree_to_radian(double degrees);
 //void 	rotation_matrix(t_mlx *mlx, int *x, int *y, double degree_angle);
 //void	rotation_matrix(t_mlx *mlx, t_mlx *temp, double degree_angle);
