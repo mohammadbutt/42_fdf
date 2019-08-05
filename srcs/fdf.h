@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/04 17:49:19 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 13:42:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //#include "../resources/minilibx_macos/mlx.h"
 //#include "./minilibx/mlx.h"
-#include "./resources/minilibx_macos/mlx.h"
+#include "../resources/minilibx_macos/mlx.h"
 #include "libft/libft.h"
 #include <math.h>
 #include <unistd.h>
