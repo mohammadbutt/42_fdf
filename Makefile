@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/05 17:58:21 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/05 18:24:11 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAG	= -Wall -Wextra -Werror
 #SRC	= srcs/test_draw.c Dont use it
 SRC 	= srcs/fdf.c srcs/main.c srcs/maintain1.c srcs/fcc_drawline.c \
 		  srcs/rotation_matrix.c \
-		  srcs/utility_functions1.c
+		  srcs/utility_functions1.c srcs/utility_functions2.c
 #SRC		= fdf.c main.c maintain1.c fcc_drawline.c rotation_matrix.c #linked_list.c
 #SRC		= square_test.c
 OBJ		= $(SRC:.c=.o)

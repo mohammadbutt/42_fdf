@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 14:44:37 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:25:49 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,49 +47,6 @@ void	ft_exit_success(char *str)
 {
 	ft_putstr(str);
 	exit(EXIT_SUCCESS);
-}
-
-/*
-** ft_zero initializes the values of multiple variables to 0.
-*/
-
-int		ft_zero(int *a, int *b, int *c, int *d)
-{
-	*a = 0;
-	*b = 0;
-	*c = 0;
-	*d = 0;
-	return (0);
-}
-
-/*
-** ft_height counts the number of elements/height/rows there are in a 2D-array.
-** It will only work with strings. It will not work with int because in an int
-** coming across 0 means that it was the end of the int array unless the length
-** was specified.
-*/
-
-int		ft_height(char **characters)
-{
-	int i;
-
-	i = 0;
-	if (characters)
-		while (characters[i])
-			i++;
-	return (i);
-}
-
-/*
-** ft_width counts the number of columns/width of a 2D-char array.
-*/
-
-int		ft_width(char **characters)
-{
-	int width;
-
-	width = ft_wordcount(characters[0], ' ');
-	return (width);
 }
 
 /*

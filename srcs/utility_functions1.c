@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 17:57:37 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:13:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:16:38 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	get_struct_values(t_mlx *mlx)
 ** Copies values of height and width from struct and saves them in a temp struct
 ** and decrements height and width by 1.
 */
-void copy_height_width(t_mlx *mlx, t_mlx *temp)
+
+void	copy_height_width(t_mlx *mlx, t_mlx *temp)
 {
 	temp->map_height = mlx->map_height;
 	temp->map_width = mlx->map_width;

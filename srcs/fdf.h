@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:10:01 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:28:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp);
 //void	reset_y0y1(t_mlx *mlx, t_mlx *temp_reset);
 //void	reset_x0x1_y0y1(t_mlx *mlx, t_mlx *temp_reset);
 void	ft_render(t_mlx *mlx);
-void	ft_print_data(t_mlx *mlx);
+//void	ft_print_data(t_mlx *mlx);
 
 /*
 ** rotation_matrix.c
@@ -203,5 +203,16 @@ int		ft_abs(int num);
 void	struct_copy(t_mlx *source, t_mlx *dest);
 void	get_struct_values(t_mlx *mlx);
 void	copy_height_width(t_mlx *mlx, t_mlx *temp);
+
+
+/*
+** utility_functions2.c
+*/
+
+int		ft_zero(int *a, int *b, int *c, int *d);
+int		ft_height(char **characters);
+int		ft_width(char **characters);
+void	ft_print_data(t_mlx *mlx);
+
 
 #endif

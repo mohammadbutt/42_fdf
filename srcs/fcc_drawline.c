@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:13:22 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:26:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,34 +204,4 @@ void	ft_render(t_mlx *mlx)
 	struct_copy(&temp_reset, mlx);
 	mlx->x = 0;
 	mlx->y = 0;
-}
-
-/*
-** ft_print_data prints the data that is stored in t_mlx struct inside int_data.
-*/
-
-void	ft_print_data(t_mlx *mlx)
-{
-	int i;
-	int j;
-	int width;
-	int height;
-
-	i = 0;
-	j = 0;
-	width = mlx->map_width;
-	height = mlx->map_height;
-	while (height)
-	{
-		while (j < width)
-		{
-			ft_putnbr(mlx->int_data[i][j]);
-			ft_putstr(" ");
-			j++;
-		}
-		ft_putstr("\n");
-		j = 0;
-		i++;
-		height--;
-	}
 }
