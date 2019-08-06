@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/05 19:17:22 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/05 19:38:07 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ CC		= gcc
 CFLAG	= -Wall -Wextra -Werror
 #SRC	= srcs/test_draw.c Dont use it
 SRC 	= srcs/bresenham_line_algorithm.c \
+		  srcs/control_menu.c \
 		  srcs/error_messages.c \
-		  srcs/main.c srcs/maintain1.c srcs/fcc_drawline.c \
+		  srcs/main.c srcs/maintain1.c \
 		  srcs/parse_and_store.c \
 		  srcs/render_map.c \
 		  srcs/rotation_matrix.c \

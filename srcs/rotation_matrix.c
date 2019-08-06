@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:55:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 16:37:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 19:38:03 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,7 @@ void	rotation_matrix(t_mlx *mlx, int *x, int *y, int z)
 	*x = (temp_x - temp_y) * cos(radian);
 	*y = -z + (temp_x + temp_y) * sin(radian);
 }
-/*
-void	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(t_mlx *mlx, t_mlx *temp)
-{
-	temp->x0 = mlx->x0;
-	temp->x1 = mlx->x1;
-	temp->y0 = mlx->y0;
-	temp->y1 = mlx->y1;
-}
-*/
+
 void	adjust_zoom(t_mlx *mlx, int standard)
 {
 	mlx->x0 = mlx->x0 * mlx->xy_zoom * standard;

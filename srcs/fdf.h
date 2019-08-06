@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 19:25:41 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 19:37:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,13 @@ void	plot_low_line(t_mlx *mlx);
 void	plot_high_line(t_mlx *mlx);
 void	plot_any_line(t_mlx *mlx);
 
+/*
+** control_menu.c
+*/
+
+void	ft_menu1(t_mlx *mlx);
+void	ft_menu2(t_mlx *mlx);
+void	ft_menu(t_mlx *mlx);
 
 /*
 ** error_messages.c
