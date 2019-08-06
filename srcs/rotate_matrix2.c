@@ -6,11 +6,20 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 20:38:02 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/06 08:24:37 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 08:38:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/*
+** rotate_x_axis, rotate_y_axis, and rotate_z_axis are derived using the
+** standard rotation matrix equation:
+** new_x = x cosθ - y cosθ
+** new_y = x cosθ + y cosθ.
+** x and y are changed based on what which axis is being used as radian or
+** thetha.
+*/
 
 void	rotate_x_axis(t_mlx *mlx, int *y, int *z, double x_axis)
 {
