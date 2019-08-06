@@ -6,40 +6,12 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:01:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 15:11:15 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:13:22 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fdf.h"
-
-/*
-** ft_swap, swaps values of a and b
-*/
-
-int		ft_swap(int *a, int *b)
-{
-	int temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-	return (0);
-}
-
-/*
-** ft_abs performs the same function as abs(3) function found in stdlib.h
-** Converts a value into an absolute value, so a negative values becomes
-** positive.
-** Return Value: Returns a postive value.
-*/
-
-int		ft_abs(int num)
-{
-	if (num < 0)
-		num = -1 * num;
-	return (num);
-}
 
 void	calculate_delta_xy(t_mlx *mlx)
 {
@@ -208,57 +180,6 @@ void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp)
 	}
 }
 
-void	struct_copy(t_mlx *source, t_mlx *dest)
-{
-	dest->map_height = source->map_height;
-	dest->map_width = source->map_width;
-	dest->map_height--;
-	dest->map_width--;
-	dest->x0 = source->x0;
-	dest->y0 = source->y0;
-	dest->x1 = source->x1;
-	dest->y1 = source->y1;
-}
-
-void	get_struct_values(t_mlx *mlx)
-{
-	mlx->size = 15;
-	mlx->x = 0;
-	mlx->y = 0;
-	mlx->x0 = 0;
-	mlx->y0 = 0;
-	mlx->x1 = mlx->x0;
-	mlx->y1 = mlx->y0;
-	mlx->camera = 0;
-	mlx->x_shift = 0;
-	mlx->y_shift = 0;
-	mlx->camera = 0;
-	mlx->degree_angle = 30;
-	mlx->xy_zoom = 0.5;
-	mlx->z_zoom = 0.03;
-	mlx->x_axis = 0;
-	mlx->y_axis = 0;
-	mlx->z_axis = 0;
-	mlx->color = 0xff000;
-}
-
-/*
-** reset_y0y1 is used in ft_render to reset values for y0, and y1. Because
-** y0 and y1 get changed in the while loop. It is important to reset y0 and y1
-** back to their original values if we want to integrate keyboard into the
-** program allowing us to shift the program in any direction and change zoom.
-*/
-
-void	reset_x0x1_y0y1(t_mlx *mlx, t_mlx *temp_reset)
-{
-	mlx->x0 = temp_reset->x0;
-	mlx->x1 = temp_reset->x1;
-	mlx->x = 0;
-	mlx->y0 = temp_reset->y0;
-	mlx->y1 = temp_reset->y1;
-	mlx->y = 0;
-}
-
 void	ft_render(t_mlx *mlx)
 {
 	t_mlx temp;
@@ -268,7 +189,8 @@ void	ft_render(t_mlx *mlx)
 	ft_print_data(mlx);
 	ft_menu(mlx);
 	struct_copy(mlx, &temp);
-	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(mlx, &temp_reset);
+	struct_copy(mlx, &temp_reset);
+	copy_height_width(mlx, &temp);
 	while (mlx->y <= temp.map_height)
 	{
 		while (mlx->x <= temp.map_width)
@@ -279,7 +201,9 @@ void	ft_render(t_mlx *mlx)
 		mlx->x = 0;
 		mlx->y++;
 	}
-	reset_x0x1_y0y1(mlx, &temp_reset);
+	struct_copy(&temp_reset, mlx);
+	mlx->x = 0;
+	mlx->y = 0;
 }
 
 /*
