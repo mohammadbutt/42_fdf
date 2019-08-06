@@ -55,3 +55,4 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 ## Tools
 1. [Online Graph Calculator](https://www.desmos.com/calculator)
+2. [Change colors in echo](https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux)
