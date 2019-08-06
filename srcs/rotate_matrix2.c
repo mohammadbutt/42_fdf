@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 20:38:02 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 20:38:11 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 08:24:37 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	rotate_z_axis(t_mlx *mlx, int *x, int *y, double z_axis)
 	*y = temp_y;
 }
 
-void	rotate_any_axis(t_mlx *mlx)
+void	rotate_xyz_axis(t_mlx *mlx)
 {
 	rotate_x_axis(mlx, &mlx->y0, &mlx->z0, mlx->x_axis);
 	rotate_x_axis(mlx, &mlx->y1, &mlx->z1, mlx->x_axis);

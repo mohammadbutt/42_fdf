@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 20:47:06 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 08:23:08 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ void	adjust_zoom(t_mlx *mlx, int normalize);
 void	rotate_x_axis(t_mlx *mlx, int *y, int *z, double x_axis);
 void	rotate_y_axis(t_mlx *mlx, int *x, int *z, double y_axis);
 void	rotate_z_axis(t_mlx *mlx, int *x, int *y, double z_axis);
-void	rotate_any_axis(t_mlx *mlx);
+void	rotate_xyz_axis(t_mlx *mlx);
 
 /*
 ** rotate_matrix3.c

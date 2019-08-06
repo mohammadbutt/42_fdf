@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 20:38:19 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 20:38:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 08:24:34 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	shift_and_centeralize_map(t_mlx *mlx)
 void	implement_transformations(t_mlx *mlx, int normalize)
 {
 	adjust_zoom(mlx, normalize);
-	rotate_any_axis(mlx);
+	rotate_xyz_axis(mlx);
 	change_projection_view(mlx);
 	shift_and_centeralize_map(mlx);
 }
