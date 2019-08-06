@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 19:37:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 20:01:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,6 @@ void 	rotate_x_axis(t_mlx *mlx, int *y, int *z, double x_axis);
 void	rotate_y_axis(t_mlx *mlx, int *x, int *z, double y_axis);
 void	rotate_z_axis(t_mlx *mlx, int *x, int *y, double z_axis);
 
-
 /*
 **	bresenham_line_algorithm.c
 */
@@ -205,14 +204,6 @@ void	calculate_delta_xy(t_mlx *mlx);
 void	plot_low_line(t_mlx *mlx);
 void	plot_high_line(t_mlx *mlx);
 void	plot_any_line(t_mlx *mlx);
-
-/*
-** control_menu.c
-*/
-
-void	ft_menu1(t_mlx *mlx);
-void	ft_menu2(t_mlx *mlx);
-void	ft_menu(t_mlx *mlx);
 
 /*
 ** error_messages.c
@@ -225,6 +216,22 @@ void	ft_exit_success(char *str);
 void	invalid_file_message(int ft_return, char *argv);
 
 /*
+** main_and_solve_driver.c
+*/
+
+int		solve_driver1(int fd, int height, char *argv);
+int		main(int argc, char **argv);
+
+/*
+** menu.c
+*/
+
+void	ft_menu1(t_mlx *mlx);
+void	ft_menu2(t_mlx *mlx);
+void	ft_menu(t_mlx *mlx);
+
+
+/*
 ** parse_and_store.c
 */
 
@@ -232,6 +239,24 @@ int		ft_valid(int fd, int height, char *argv);
 char	**str_data(int fd, int height, char *argv);
 int		*ft_2d_atoi(char *str);
 int		**str_to_int(char **characters);
+
+/*
+** program_control_events1.c
+*/
+
+void	random_color(t_mlx *mlx, int key);
+void	zoom_program(t_mlx *mlx, int key);
+void	change_altitude(t_mlx *mlx, int key);
+void	reset_program(t_mlx *mlx);
+void	shift_program(t_mlx *mlx, int key);
+
+/*
+** program_control_events2.c
+*/
+
+void	change_camera(t_mlx *mlx);
+void	rotate_axis(t_mlx *mlx, int key);
+int		program_keys(int key, t_mlx *mlx);
 
 /*
 ** render_map.c

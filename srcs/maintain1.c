@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 19:19:59 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 20:00:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_hue(int y, int color)
 	final_color = color + ft_abs(y / 2);
 	return (final_color);
 }
-
+/*
 void	random_color(t_mlx *mlx, int key)
 {
 	size_t random_seed;
@@ -66,7 +66,8 @@ void	shift_program(t_mlx *mlx, int key)
 		mlx->x_shift = mlx->x_shift + 5;
 	ft_render(mlx);
 }
-
+*/
+/*
 void	change_camera(t_mlx *mlx)
 {
 	if (mlx->camera == 0)
@@ -117,7 +118,8 @@ int		program_keys(int key, t_mlx *mlx)
 		rotate_axis(mlx, key);
 	return (0);
 }
-
+*/
+/*
 int		solve_driver1(int fd, int height, char *argv)
 {
 	t_mlx	*mlx;
@@ -136,9 +138,10 @@ int		solve_driver1(int fd, int height, char *argv)
 	mlx->map_height = height;
 	mlx->map_width = ft_width(characters);
 	get_struct_values(mlx);
-//	ft_print_data(mlx); 		/*To test if values are stored properly*/
+//	ft_print_data(mlx); 	//	To test if values are stored properly
 	ft_render(mlx);
 	mlx_hook(mlx->win_ptr, 2, 5, program_keys, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (1);
 }
+*/
