@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:38:14 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:52:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,27 @@ void 	rotate_x_axis(t_mlx *mlx, int *y, int *z, double x_axis);
 void	rotate_y_axis(t_mlx *mlx, int *x, int *z, double y_axis);
 void	rotate_z_axis(t_mlx *mlx, int *x, int *y, double z_axis);
 
+
+/*
+**	bresenham_line_algorithm.c
+*/
+
+void	calculate_delta_xy(t_mlx *mlx);
+void	plot_low_line(t_mlx *mlx);
+void	plot_high_line(t_mlx *mlx);
+void	plot_any_line(t_mlx *mlx);
+
+/*
+** parse_and_store.c
+*/
+
+void	invalid_file_message(int ft_return, char *argv);
+int		ft_valid(int fd, int height, char *argv);
+char	**str_data(int fd, int height, char *argv);
+int		*ft_2d_atoi(char *str);
+int		**str_to_int(char **characters);
+
+
 /*
 ** utility_functions1.c
 */
@@ -214,13 +235,5 @@ int		ft_height(char **characters);
 int		ft_width(char **characters);
 void	ft_print_data(t_mlx *mlx);
 
-/*
-**	bresenham_line_algorithm.c
-*/
-
-void	calculate_delta_xy(t_mlx *mlx);
-void	plot_low_line(t_mlx *mlx);
-void	plot_high_line(t_mlx *mlx);
-void	plot_any_line(t_mlx *mlx);
 
 #endif

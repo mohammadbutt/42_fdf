@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   parse_and_store.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/29 20:34:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 14:15:47 by mbutt            ###   ########.fr       */
+/*   Created: 2019/08/05 18:44:57 by mbutt             #+#    #+#             */
+/*   Updated: 2019/08/05 18:47:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,42 @@ char	**str_data(int fd, int height, char *argv)
 	}
 	characters[i] = NULL;
 	return (characters);
+}
+
+/*
+** ft_2d_atoi takes a string and converts all of the numbers from string format
+** into an int array:
+** Has builtin garbage collector to free memory that was allocated using
+** malloc(3).
+*/
+
+int		*ft_2d_atoi(char *str)
+{
+	int		i;
+	int		wordcount;
+	int		*int_data;
+	char	**words;
+
+	i = 0;
+	wordcount = ft_wordcount(str, ' ');
+	words = ft_strsplit(str, ' ');
+	int_data = malloc(sizeof(int) * (wordcount));
+	if (int_data == NULL)
+		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
+	while (wordcount)
+	{
+		if (ft_isdigit(words[i][0]) == 1)
+			int_data[i] = ft_atoi(words[i]);
+		else if (words[i][0] == '-' && ft_isdigit(words[i][1]) == 1)
+			int_data[i] = ft_atoi(words[i]);
+		else
+			ft_exit("Invalid File.\n");
+		free(words[i]);
+		i++;
+		wordcount--;
+	}
+	free(words);
+	return (int_data);
 }
 
 /*

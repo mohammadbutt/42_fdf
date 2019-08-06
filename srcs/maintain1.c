@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:25:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:52:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,42 +47,6 @@ void	ft_exit_success(char *str)
 {
 	ft_putstr(str);
 	exit(EXIT_SUCCESS);
-}
-
-/*
-** ft_2d_atoi takes a string and converts all of the numbers from string format
-** into an int array:
-** Has builtin garbage collector to free memory that was allocated using
-** malloc(3).
-*/
-
-int		*ft_2d_atoi(char *str)
-{
-	int		i;
-	int		wordcount;
-	int		*int_data;
-	char	**words;
-
-	i = 0;
-	wordcount = ft_wordcount(str, ' ');
-	words = ft_strsplit(str, ' ');
-	int_data = malloc(sizeof(int) * (wordcount));
-	if (int_data == NULL)
-		ft_exit("matintain1.c ft_2d_atoi() error: Unable to malloc.\n");
-	while (wordcount)
-	{
-		if (ft_isdigit(words[i][0]) == 1)
-			int_data[i] = ft_atoi(words[i]);
-		else if (words[i][0] == '-' && ft_isdigit(words[i][1]) == 1)
-			int_data[i] = ft_atoi(words[i]);
-		else
-			ft_exit("Invalid File.\n");
-		free(words[i]);
-		i++;
-		wordcount--;
-	}
-	free(words);
-	return (int_data);
 }
 
 int		ft_hue(int y, int color)
