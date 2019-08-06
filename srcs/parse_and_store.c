@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 18:44:57 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 21:11:51 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 13:48:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_valid(int fd, int height, char *argv)
 	{
 		temp_wcount = ft_wordcount(temp_line, ' ');
 		if (temp_wcount != wcount)
-			ft_exit("Error: Invalid file. Exiting program.\n");
+			ft_exit(YELLOW"Error: Irregular number of elements in rows\n");
 		free(temp_line);
 		height++;
 	}
@@ -101,7 +101,7 @@ int		*ft_2d_atoi(char *str)
 		else if (words[i][0] == '-' && ft_isdigit(words[i][1]) == 1)
 			int_data[i] = ft_atoi(words[i]);
 		else
-			ft_exit("Invalid File.\n");
+			ft_exit(YELLOW"Error: File has non integer values\n");
 		free(words[i]);
 		i++;
 		wordcount--;

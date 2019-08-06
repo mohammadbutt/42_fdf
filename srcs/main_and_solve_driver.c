@@ -6,13 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 19:56:59 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 21:19:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 11:44:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		solve_driver(int fd, int height, char *argv)
+int	solve_driver(int fd, int height, char *argv)
 {
 	t_mlx	*mlx;
 	char	**characters;
@@ -22,7 +22,7 @@ int		solve_driver(int fd, int height, char *argv)
 	if (mlx == NULL)
 		ft_exit("maintain1.c solve_driver1() error: Unable to malloc.\n");
 	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, P_WIDTH, P_HEIGHT, "ok");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, P_WIDTH, P_HEIGHT, argv);
 	height = ft_valid(fd, height, argv);
 	characters = str_data(fd, height, argv);
 	mlx->int_data = str_to_int(characters);
@@ -44,13 +44,10 @@ int	main(int argc, char **argv)
 	fd = 0;
 	height = 0;
 	if (argc == 1)
-		ft_usage("Usage: ./fdf resources/test_maps\n");
+		ft_exit(YELLOW"Usage: ./fdf resources/test_maps\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		ft_exit("Main Error 1:\nFile does not exist\n");
-//		ft_exit_dir(argv[1]);
-	}
+		ft_exit_no_file(argv[1]);
 	solve_driver(fd, height, argv[1]);
 	close(fd);
 	return (0);

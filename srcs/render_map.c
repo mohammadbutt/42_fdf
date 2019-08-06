@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 18:56:42 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 21:22:03 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 11:47:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	ft_render(t_mlx *mlx)
 	t_mlx temp_reset;
 
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-//	ft_print_data(mlx);
 	ft_menu(mlx);
 	struct_copy(mlx, &temp);
 	struct_copy(mlx, &temp_reset);

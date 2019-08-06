@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/05 21:23:32 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/06 13:51:46 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,35 +24,25 @@ SRC 	= srcs/bresenham_line_algorithm.c \
 		  srcs/utility_functions1.c srcs/utility_functions2.c
 OBJ		= $(SRC:.c=.o)
 
-#MLXLINK = -L resources/minilibx 				#uncomment it for linux
-#MINILIBX = -I resources/minilibx 				#uncomment it for linux
-MLXLINK = -L resources/minilibx_macos 			#comment it for linux
-MINILIBX = -I resources/minilibx_macos 			#comment it for linux
+MLXLINK = -L resources/minilibx_macos
+MINILIBX = -I resources/minilibx_macos
 LIBFT = srcs/libft/libft.a
-#LIBFT = libft/libft.a
 OPENGL = -lmlx -framework OpenGL -framework AppKit
-
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	#make -C resources/minilibx/				#uncomment it for linux
-	make -C resources/minilibx_macos/			#comment it for linux
-	#make -C libft/
+	make -C resources/minilibx_macos/
 	make -C srcs/libft/
 	$(CC) $(CFLAG) $(MLXLINK) $(MINILIBX) $(LIBFT) $(OPENGL) $^ -o $(NAME)
 
 clean:
-	#make clean -C resources/minilibx/	#uncomment it for linux
-	make clean -C resources/minilibx_macos/		#comment it for linux
-	#make clean -C libft/
-	#/bin/rm -f *.o
+	make clean -C resources/minilibx_macos/
 	make clean -C srcs/libft/
 	/bin/rm -f srcs/*.o
 
 fclean: clean
 	make fclean -C srcs/libft/
-	#make fclean -C libft/
 	/bin/rm -f $(NAME)
 
 re: fclean all

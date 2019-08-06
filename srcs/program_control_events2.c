@@ -6,12 +6,11 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 19:50:46 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 19:55:02 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 11:45:53 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 void	change_camera(t_mlx *mlx)
 {
@@ -42,7 +41,7 @@ void	rotate_axis(t_mlx *mlx, int key)
 int		program_keys(int key, t_mlx *mlx)
 {
 	if (key == ESCAPE_ESC)
-		ft_exit_success("\33[1;32mProgram shut down successfully.\n\33[m");
+		ft_exit_success(GREEN"Program shut down successfully.\n");
 	else if (key == UP_K || key == DOWN_K || key == LEFT_K || key == RIGHT_K)
 		shift_program(mlx, key);
 	else if (key == ZOOM_IN_Q || key == ZOOM_OUT_A)

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 19:12:11 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 19:30:47 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 13:51:42 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 ** ft_usage is used if the user does not specfiy a file name.
 */
 
-void	ft_usage(char *str)
+void	ft_exit_no_file(char *argv)
 {
-	ft_putstr(str);
-	exit(EXIT_FAILURE);
+	ft_putstr(YELLOW"Error: "CYAN);
+	ft_putstr(argv);
+	ft_exit(YELLOW" file does not exist\n");
 }
 
 /*
@@ -28,7 +29,7 @@ void	ft_usage(char *str)
 
 void	ft_exit_dir(char *str)
 {
-	ft_putstr("Error\n");
+	ft_putstr(YELLOW"Error: "CYAN);
 	perror(str);
 	exit(EXIT_FAILURE);
 }
@@ -57,7 +58,7 @@ void	ft_exit_success(char *str)
 void	invalid_file_message(int ft_return, char *argv)
 {
 	if (ft_return == 0)
-		ft_exit("Invalid Error. Empty file...\n");
+		ft_exit(YELLOW"Error: File is empty\n");
 	if (ft_return == -1)
 		ft_exit_dir(argv);
 }
