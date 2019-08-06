@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 19:56:59 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 20:00:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 20:05:27 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		solve_driver(int fd, int height, char *argv)
 	mlx_loop(mlx->mlx_ptr);
 	return (1);
 }
-
 
 int	main(int argc, char **argv)
 {

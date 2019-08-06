@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 17:57:37 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:16:38 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 20:47:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	struct_copy(t_mlx *source, t_mlx *dest)
 
 void	get_struct_values(t_mlx *mlx)
 {
-	mlx->size = 15;
 	mlx->x = 0;
 	mlx->y = 0;
 	mlx->x0 = 0;

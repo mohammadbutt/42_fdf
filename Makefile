@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/05 19:57:35 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/05 20:35:37 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,11 @@ CFLAG	= -Wall -Wextra -Werror
 SRC 	= srcs/bresenham_line_algorithm.c \
 		  srcs/error_messages.c \
 		  srcs/main_and_solve_driver.c \
-		  srcs/maintain1.c \
 		  srcs/menu.c \
 		  srcs/parse_and_store.c \
 		  srcs/program_control_events1.c srcs/program_control_events2.c \
 		  srcs/render_map.c \
-		  srcs/rotation_matrix.c \
+		  srcs/rotate_matrix1.c srcs/rotate_matrix2.c srcs/rotate_matrix3.c \
 		  srcs/utility_functions1.c srcs/utility_functions2.c
 #SRC		= fdf.c main.c maintain1.c fcc_drawline.c rotation_matrix.c #linked_list.c
 #SRC		= square_test.c

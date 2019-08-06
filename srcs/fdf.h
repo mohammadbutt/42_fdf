@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 20:01:59 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 20:47:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,8 @@
 
 # define P_WIDTH 1280
 # define P_HEIGHT 720
-
-//# define ISOMETRIC 0.52
-//# define TOPDOWN 1.57
-
-#define XY_ZOOM 0.005
-#define Z_ZOOM 0.005
+# define XY_ZOOM 0.005
+# define Z_ZOOM 0.005
 
 /*
 ** Structs ---------------------------------------------------------------------
@@ -78,7 +74,6 @@ typedef struct	s_mlx
 	void		*win_ptr;
 	int			x;
 	int			y;
-	int			size;
 	size_t		color;
 	int			x0;
 	int			y0;
@@ -105,96 +100,6 @@ typedef struct	s_mlx
 	double		z_axis;
 	double		map_min;
 }				t_mlx;
-
-/*
-** fdf.c 
-*/
-//void	ft_read(int fd, char *argv); Not being used currently
-int		ft_valid(int fd, int height, char *argv);
-char	**str_data(int fd, int height, char *argv);
-int		*ft_rows_columns(char **characters); /*This function might be deleted later*/
-int		**str_to_int(char **characters);
-//int		**str_to_int_struct(char **characters); function is commented.
-
-/*
-** maintain1.c functions
-*/
-void 	ft_usage(char *str);
-void 	ft_exit_dir(char *str);
-void	ft_exit(char *str);
-void	ft_exit_success(char *str);
-int		ft_zero(int *a, int *b, int *c, int *d);
-int		ft_height(char **characters);
-int		ft_width(char **characters);
-int		*ft_2d_atoi(char *str);
-int 	ft_hue(int y, int color);
-void	random_color(t_mlx *mlx, int key);
-void	centeralize_with_zoom(t_mlx *mlx, int key);
-void	zoom_program(t_mlx *mlx, int key);
-void	reset_program(t_mlx *mlx);
-void	shift_program(t_mlx *mlx, int key);
-void	iso_projection(t_mlx *mlx);
-void	change_camera(t_mlx *mlx);
-void	rotate_axis(t_mlx *mlx, int key);
-int		program_keys(int key, t_mlx *mlx);
-int 	solve_driver1(int fd, int height, char *argv);
-
-/*
-** fcc_drawline.c
-*/
-//int		find_min(int x, int y);
-//int		ft_abs(int num);
-void	calculate_delta_xy(t_mlx *mlx);
-void	plot_low_line(t_mlx *mlx);
-void	plot_high_line(t_mlx *mlx);
-void	plot_any_line(t_mlx *mlx);
-//void	get_struct_values(t_mlx *mlx);
-//void	isometric_view(int *x, int *y, int z);
-//void	topdown_view(int *x, int *y, int z);
-//int		normalize_map(t_fdf *fdf);
-//void	centeralize_map(t_fdf *fdf, int x, int y);
-//void	place_z_on_horizontal(t_fdf *fdf, int x, int y, int normalize);
-//void	place_z_on_vertical(t_fdf *fdf, int x, int y, int normalize);
-//void	horizontal_x1_y1(t_fdf *fdf);
-//void	vertical_x1_y1(t_fdf *fdf);
-//void	horizontal_shift(t_fdf *fdf);
-//void	horizontal_render(t_fdf *fdf, int x, int y);
-//void	vertical_render(t_fdf *fdf, int x, int y);
-//void	ft_dots(t_mlx *mlx);
-//void	struct_copy(t_mlx *source, t_mlx *dest);
-//void	get_z_value(t_mlx *mlx, t_mlx *temp);
-void	ft_render_vertical(t_mlx *mlx, t_mlx *temp);
-void	ft_render_horizontal(t_mlx *mlx, t_mlx *temp);
-void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp);
-//void	ft_render_edges(t_mlx *mlx, t_mlx *temp);
-//void	reset_xy_values(t_mlx *mlx, t_mlx *temp);
-//void	reset_x0x1(t_mlx *mlx, t_mlx *temp_reset);
-//void	reset_y0y1(t_mlx *mlx, t_mlx *temp_reset);
-//void	reset_x0x1_y0y1(t_mlx *mlx, t_mlx *temp_reset);
-void	ft_menu1(t_mlx *mlx);
-void	ft_menu2(t_mlx *mlx);
-void	ft_menu(t_mlx *mlx);
-//void	ft_print_data(t_mlx *mlx);
-
-/*
-** rotation_matrix.c
-*/
-
-int		ft_normalize(t_mlx *mlx);
-double 	degree_to_radian(double degrees);
-void	rotation_matrix(t_mlx *mlx, int *x, int *y, int z);
-void	subtract_x0y0_from_x1y1(t_mlx *mlx, t_mlx *temp);
-void	add_rotated_x1y1_to_x0y0(t_mlx *mlx);
-void	copy_mlx_x0y0x1y1_to_temp_x0y0x1y1(t_mlx *mlx, t_mlx *temp);
-void	copy_temp_x0y0x1y1_to_mlx_x0y0x1y1(t_mlx *mlx, t_mlx *temp);
-void	rotate_horizontal_line(t_mlx *mlx, t_mlx *temp);
-void	rotate_vertical_line(t_mlx *mlx, t_mlx *temp);
-void	find_min_x(t_mlx *mlx, t_mlx *temp);
-void	find_max_y(t_mlx *mlx, t_mlx *temp);
-void	copy_temp_xy_to_mlx_x0y0x1y1(t_mlx *mlx, t_mlx *temp);
-void 	rotate_x_axis(t_mlx *mlx, int *y, int *z, double x_axis);
-void	rotate_y_axis(t_mlx *mlx, int *x, int *z, double y_axis);
-void	rotate_z_axis(t_mlx *mlx, int *x, int *y, double z_axis);
 
 /*
 **	bresenham_line_algorithm.c
@@ -266,6 +171,34 @@ void	ft_render_vertical(t_mlx *mlx, t_mlx *temp);
 void	ft_render_horizontal(t_mlx *mlx, t_mlx *temp);
 void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp);
 void	ft_render(t_mlx *mlx);
+
+/*
+** rotate_matrix1.c
+*/
+
+int		ft_normalize(t_mlx *mlx);
+double	degree_to_radian(double degrees);
+void	rotation_matrix(t_mlx *mlx, int *x, int *y, int z);
+void	adjust_zoom(t_mlx *mlx, int normalize);
+
+/*
+** rotate_matrix2.c
+*/
+
+void	rotate_x_axis(t_mlx *mlx, int *y, int *z, double x_axis);
+void	rotate_y_axis(t_mlx *mlx, int *x, int *z, double y_axis);
+void	rotate_z_axis(t_mlx *mlx, int *x, int *y, double z_axis);
+void	rotate_any_axis(t_mlx *mlx);
+
+/*
+** rotate_matrix3.c
+*/
+
+void	change_projection_view(t_mlx *mlx);
+void	shift_and_centeralize_map(t_mlx *mlx);
+void	implement_transformations(t_mlx *mlx, int normalize);
+void	rotate_vertical_line(t_mlx *mlx, t_mlx *temp);
+void	rotate_horizontal_line(t_mlx *mlx, t_mlx *temp);
 
 /*
 ** utility_functions1.c
