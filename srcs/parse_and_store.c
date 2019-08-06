@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 18:44:57 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:47:11 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 19:24:38 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 ** ft_valid checks if the file path is a directory or if the file is invalid
 ** because all of the lines dont have the same number of elements or words.
 */
-
-void	invalid_file_message(int ft_return, char *argv)
-{
-	if (ft_return == 0)
-		ft_exit("Invalid Error. Empty file...\n");
-	if (ft_return == -1)
-		ft_exit_dir(argv);
-}
 
 int		ft_valid(int fd, int height, char *argv)
 {

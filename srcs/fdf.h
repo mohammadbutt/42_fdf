@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 19:03:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 19:25:41 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,11 +206,21 @@ void	plot_low_line(t_mlx *mlx);
 void	plot_high_line(t_mlx *mlx);
 void	plot_any_line(t_mlx *mlx);
 
+
+/*
+** error_messages.c
+*/
+
+void	ft_usage(char *str);
+void	ft_exit_dir(char *str);
+void	ft_exit(char *str);
+void	ft_exit_success(char *str);
+void	invalid_file_message(int ft_return, char *argv);
+
 /*
 ** parse_and_store.c
 */
 
-void	invalid_file_message(int ft_return, char *argv);
 int		ft_valid(int fd, int height, char *argv);
 char	**str_data(int fd, int height, char *argv);
 int		*ft_2d_atoi(char *str);

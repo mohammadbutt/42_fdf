@@ -6,48 +6,11 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 20:03:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:52:04 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 19:19:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-/*
-** ft_usage is used if the user does not specfiy a file name.
-*/
-
-void	ft_usage(char *str)
-{
-	ft_putstr(str);
-	exit(EXIT_FAILURE);
-}
-
-/*
-** ft_exit_dir is used if the chosen file path is a directory
-*/
-
-void	ft_exit_dir(char *str)
-{
-	ft_putstr("Error\n");
-	perror(str);
-	exit(EXIT_FAILURE);
-}
-
-/*
-** ft_exit is used if the specified file does not exist or the file is invalid
-*/
-
-void	ft_exit(char *str)
-{
-	ft_putstr(str);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_exit_success(char *str)
-{
-	ft_putstr(str);
-	exit(EXIT_SUCCESS);
-}
 
 int		ft_hue(int y, int color)
 {
