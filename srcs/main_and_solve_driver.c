@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 19:56:59 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 20:05:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 21:19:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		solve_driver(int fd, int height, char *argv)
 	height = ft_valid(fd, height, argv);
 	characters = str_data(fd, height, argv);
 	mlx->int_data = str_to_int(characters);
-//	mlx->map_height = ft_height(characters); // Can we mlx->map_height = height?
 	mlx->map_height = height;
 	mlx->map_width = ft_width(characters);
 	get_struct_values(mlx);

@@ -6,14 +6,13 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 22:08:05 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/05 20:35:37 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/05 20:55:05 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= fdf
 CC		= gcc
 CFLAG	= -Wall -Wextra -Werror
-#SRC	= srcs/test_draw.c Dont use it
 SRC 	= srcs/bresenham_line_algorithm.c \
 		  srcs/error_messages.c \
 		  srcs/main_and_solve_driver.c \
@@ -23,8 +22,6 @@ SRC 	= srcs/bresenham_line_algorithm.c \
 		  srcs/render_map.c \
 		  srcs/rotate_matrix1.c srcs/rotate_matrix2.c srcs/rotate_matrix3.c \
 		  srcs/utility_functions1.c srcs/utility_functions2.c
-#SRC		= fdf.c main.c maintain1.c fcc_drawline.c rotation_matrix.c #linked_list.c
-#SRC		= square_test.c
 OBJ		= $(SRC:.c=.o)
 
 #MLXLINK = -L resources/minilibx 				#uncomment it for linux
