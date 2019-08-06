@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:28:15 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 18:38:14 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,13 @@ int		ft_height(char **characters);
 int		ft_width(char **characters);
 void	ft_print_data(t_mlx *mlx);
 
+/*
+**	bresenham_line_algorithm.c
+*/
+
+void	calculate_delta_xy(t_mlx *mlx);
+void	plot_low_line(t_mlx *mlx);
+void	plot_high_line(t_mlx *mlx);
+void	plot_any_line(t_mlx *mlx);
 
 #endif
