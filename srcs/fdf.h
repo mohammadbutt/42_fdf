@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 22:23:01 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 18:52:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/05 19:03:49 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,9 @@ void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp);
 //void	reset_x0x1(t_mlx *mlx, t_mlx *temp_reset);
 //void	reset_y0y1(t_mlx *mlx, t_mlx *temp_reset);
 //void	reset_x0x1_y0y1(t_mlx *mlx, t_mlx *temp_reset);
-void	ft_render(t_mlx *mlx);
+void	ft_menu1(t_mlx *mlx);
+void	ft_menu2(t_mlx *mlx);
+void	ft_menu(t_mlx *mlx);
 //void	ft_print_data(t_mlx *mlx);
 
 /*
@@ -214,6 +216,14 @@ char	**str_data(int fd, int height, char *argv);
 int		*ft_2d_atoi(char *str);
 int		**str_to_int(char **characters);
 
+/*
+** render_map.c
+*/
+
+void	ft_render_vertical(t_mlx *mlx, t_mlx *temp);
+void	ft_render_horizontal(t_mlx *mlx, t_mlx *temp);
+void	ft_render_vertical_horizontal(t_mlx *mlx, t_mlx *temp);
+void	ft_render(t_mlx *mlx);
 
 /*
 ** utility_functions1.c
