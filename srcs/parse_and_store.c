@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 18:44:57 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/06 13:48:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 15:46:09 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ char	**str_data(int fd, int height, char *argv)
 /*
 ** ft_2d_atoi takes a string and converts all of the numbers from string format
 ** into an int array:
+** They way string is converted and stored in an int array is that a single line
+** is read and all the numbers for the line are stored in an int array as shown
+** below:
+** "12 45 78 95"
+** In the above exmaple, the wordcount will be four and the while loop will run
+** four times to convert the number in string format to an int array.
+** Below is
+** what the return values will look like:
+** {12, 45, 78, 95}
+**
 ** Has builtin garbage collector to free memory that was allocated using
 ** malloc(3).
 */
@@ -111,10 +121,19 @@ int		*ft_2d_atoi(char *str)
 }
 
 /*
-** **str_to_int takes in 2D array of string that were stored using str_data,
-** and converts them into 2D int array.
+** **str_to_int uses *ft_2d_atoi to convert string for each line into numbers.
+** For instance if a file has 2 lines and has the following strings.
+** "0   1  3  0"
+** "0  10 -5  3"
+** Then str_to_int will call onto *ft_2d_atoi twice and turn them into arrays as
+** shown below:
+** {0, 1, 3, 0}
+** {0, 10, -5, 3}
 **
-** 2D string array that's taken in is stored as such:
+** Below is further explanation why it is necessary to convert strings into
+** numbers.
+**
+** Suppose a 2D string array that's taken in is stored as such:
 ** "0  1  3  0"
 ** "0 10 -5  0"
 **
