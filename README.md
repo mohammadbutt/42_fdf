@@ -26,9 +26,10 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 - [ ] 10. Implement 3D cube methadology to fdf.
 
 # Installing repo
-```git clone https://github.com/mohammadbutt/42_fdf.git
-
-cd 42_fdf```
+```
+git clone https://github.com/mohammadbutt/42_fdf.git
+cd 42_fdf
+```
 
 # Installing FDF
 ```make```
