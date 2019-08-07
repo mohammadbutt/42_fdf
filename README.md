@@ -1,4 +1,4 @@
-# Wireframe - A program that reads a text file and generates an interactive 3D map.
+# FDF Wireframe is a map rednering program that reads a text file to generates an interactive 3D map.
 ### Allowed C functions(2) - close(2), open(2), read(2), write(2).
 ### Allowed C functions(3) - exit(3), free(3), malloc(3), perror(3), strerror(3).
 ### Additional functions allowed - math library and miniLibx(library), library made by 42 students.
