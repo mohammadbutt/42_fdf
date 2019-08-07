@@ -29,7 +29,7 @@ The user will get one of the following error messages if the file is invalid.
 
 # Project Summary
 
-Project reads a file using the function (get_next_line)[https://github.com/mohammadbutt/42_get_next_line]
+Project reads a file using the function [get_next_line](https://github.com/mohammadbutt/42_get_next_line)
 
 # Resources
 ## Reading Resources
