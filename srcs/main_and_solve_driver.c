@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 19:56:59 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/06 15:30:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 20:18:13 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	fd = 0;
 	height = 0;
 	if (argc == 1)
-		ft_exit(YELLOW"Usage: ./fdf resources/test_maps\n");
+		ft_exit(YELLOW"Usage: ./fdf resources/maps/test_maps\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_exit_no_file(argv[1]);

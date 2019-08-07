@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 19:44:10 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/05 19:45:47 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/06 20:16:47 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ void	ft_menu2(t_mlx *mlx)
 	char *str5;
 	char *str6;
 	char *str7;
+	char *str8;
 
 	str5 = "Altitude: W S";
 	str6 = "Reset map: E";
 	str7 = "Random Colors: R";
+	str8 = "Change Camera: C";
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 100, 0xadadad, str5);
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 120, 0xadadad, str6);
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 140, 0xadadad, str7);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 160, 0xadadad, str8);
 }
 
 void	ft_menu(t_mlx *mlx)
