@@ -27,6 +27,10 @@ make
 The user will get one of the following error messages if the file is invalid.
 <img src= "https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png">
 
+# Project Summary
+
+Project reads a file using the function (get_next_line)[https://github.com/mohammadbutt/42_get_next_line]
+
 # Resources
 ## Reading Resources
 1. [Mac Virtual Key Code](https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes)
