@@ -15,11 +15,15 @@ git clone https://github.com/mohammadbutt/42_fdf.git
 cd 42_fdf
 ```
 
-# Installing FDF
+# Installing FDF MacOs only
 ```
 make
 ./fdf resources/maps/test/maps/
 ```
+User will be given error messages if:
+- The user does not enter a file name.
+- The file is invalid because it is either empty, the number of elements are not the same in all rows, or the file path is a directory.
+- 
 
 # Resources
 ## Reading Resources
