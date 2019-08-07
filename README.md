@@ -39,11 +39,17 @@ To perform conversion on all of the rows, function, `**str_to_int` is created, w
 In order to create lines, Bresenham's line algorithm is used. Using the line algorithm, lines are created vertically(down) and horizontally(to the right). This almost works, but the only challenge is that it does not create smooth edges and produces the following lines:
 
 ```
-  _ _ _ _ _ _ _
- |_|_|_|_|_|_|_
- |_|_|_|_|_|_|_
- | | | | | | |
+ _ _ _ _ _ _ _
+|_|_|_|_|_|_|_
+|_|_|_|_|_|_|_
+| | | | | | |
 ```
+To rememedy this horizontal lines are rendered as long as y is less than height of the map. And vertical lines are only rendered as long as x is less than the width of the map, which will produce the following lines which is what we wanted to create to render a perfect map:
+
+ _ _ _ _ _ _ _
+|_|_|_|_|_|_|_|
+|_|_|_|_|_|_|_|
+|_|_|_|_|_|_|_|
 
 # Resources
 ## Reading Resources
