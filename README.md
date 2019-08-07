@@ -25,6 +25,11 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 - [ ] 10. Implement 3D cube methadology to fdf.
 
+# Installation
+```git clone https://github.com/mohammadbutt/42_fdf.git```
+```cd 42_fdf```
+
+
 # Resources
 ## Reading Resources
 1. [Mac Virtual Key Code](https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes)
