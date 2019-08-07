@@ -20,6 +20,10 @@ git clone https://github.com/mohammadbutt/42_fdf.git
 make
 ./fdf resources/maps/test/maps/
 ```
+# Demo
+
+![](https://github.com/mohammadbutt/42_fdf/blob/master/Media/fdf_720p_25fps.gif)
+
 # Program Controls
 
 |Action                       |Controls                                            |
