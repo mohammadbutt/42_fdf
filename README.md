@@ -32,9 +32,10 @@ cd 42_fdf
 ```
 
 # Installing FDF
-```make```
-
-```./fdf resources/maps/test/maps/...```
+```
+make
+./fdf resources/maps/test/maps/
+```
 
 # Resources
 ## Reading Resources
