@@ -27,12 +27,12 @@ The user will get one of the following error messages if the file is invalid.
 <img src= "https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png">
 
 # Project Summary
-### Parsing and storing
+### Parsing and storing - [Source Code](https://github.com/mohammadbutt/42_fdf/blob/master/srcs/parse_and_store.c)
 Program reads a file using the function [get_next_line](https://github.com/mohammadbutt/42_get_next_line), which I created to read a file that mimics the functionality of getline(3). Once a file is read, then it goes through several validation stages to ensure all lines or rows have the same number of elements.
 
 If a file is valid then each row is stored as a string using the function `**str_data` malloc(3) is used to allocate memory to store the string and the temp_line is freed using free(3) before exiting the while loop to ensure there are no memory leaks. Since the numbers are stored as a string, these numbers are only characters. In order to convert these strings into numbers to perform arithmatic operations `*ft_2d_atoi` is called which takes one line and converts all of the elements of that string into numbers by using `ft_atoi`. String are converted into numbers for just 1 line.
 
-To perform conversion on all of the rows, function, `**str_to_int` is created, which will perform this conversion on all of the lines. Source code, [parse_and_store](https://github.com/mohammadbutt/42_fdf/blob/master/srcs/parse_and_store.c), has additional comments and explanation on parsing and storing.
+To perform conversion on all of the rows, function, `**str_to_int` is created, which will perform this conversion on all of the lines.
 
 ### Rendering
 In order to create lines, Bresenham's line algorithm is used. Using the line algorithm, lines are created vertically(down) and horizontally(to the right). This almost works, but the only challenge is that it does not create smooth edges and produces the following lines:
@@ -52,7 +52,7 @@ To rememedy this horizontal lines are rendered as long as y is less than height 
 |_|_|_|_|_|_|_|
 ```
 
-### Rotation matrix
+### Rotation matrix - [Source Code](https://github.com/mohammadbutt/42_fdf/blob/master/srcs/rotate_matrix2.c)
 Rotating the map is one of the useful features of the project in order. In order to rotate the map in any direction standard rotation matrix is used. Below is the rotation Matrix equation:
 ```
 new_x = x cos(zθ) - y sin(zθ)
