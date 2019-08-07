@@ -21,7 +21,7 @@ make
 ./fdf resources/maps/test/maps/
 ```
 The user will get one of the following error messages if the file is not valid.
-[](https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png)
+[!](https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png)
 
 # Resources
 ## Reading Resources
