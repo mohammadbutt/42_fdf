@@ -22,8 +22,6 @@ make
 ```
 # Program Controls
 
-<details>
-
 |Action                       |Controls                                                   |
 |---------------------------- |:---------------------------------------------------------:|
 |Move map: up down left right | [:arrow_up:] [:arrow_down:] [:arrow_left:] [:arrow_right:]|
@@ -33,9 +31,6 @@ make
 |Reset map                    |E                                                          |
 |Random Color                 |R                                                          |
 |Change Camera View           |C                                                          |
-
-</details>
-
 
 Move map up down left right: ⃖ ↑↓ ➔
 Rotate: I J K L
