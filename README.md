@@ -35,6 +35,13 @@ If a file is valid then each row is stored as a string using the function `**str
 
 To perform conversion on all of the rows, function, `**str_to_int` is created, which will perform this conversion on all of the lines. Source code, [parse_and_store](https://github.com/mohammadbutt/42_fdf/blob/master/srcs/parse_and_store.c), has additional comments and explanation on parsing and storing.
 
+### Rendering
+In order to create lines, Bresenham's line algorithm is used. Using the line algorithm, lines are created vertically(down) and horizontally(to the right). This almost works, but the only challenge is that it does not create smooth edges and produces the following lines:
+
+**  _ _ _ _ _ _ _
+** |_|_|_|_|_|_|_
+** |_|_|_|_|_|_|_
+** | | | | | | |
 
 
 # Resources
