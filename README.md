@@ -9,28 +9,6 @@ Allowed C functions(3) - exit(3), free(3), malloc(3), perror(3), strerror(3).
 
 Additional functions allowed - math library and miniLibx(library), library made by 42 students.
 
-Brainstorming - Draw simple things using minilibx library. Path to miniLibx library ```sources/minilibx/man```. In man directory, ```man1/mlx_pixel_put.1```, that has mlx_pixel_put and mlx_string_put functions.
-
-- [x] 1. Create a function that draws a horizontal line and offset x. Optional, draw a vertical line and offset y.
-
-- [x] 2. Draw a perfect square. To draw a perfect square, both x and y have to be offset.
-
-- [x] 3. Keyboard integration - End the program with Escape key.
-
-- [x] 4. Keyboard integration - Zoom in with Q button. Zoom out with A.
-
-- [x] 5. Keyboard integration - Shift the square with up, down, left, right arrow keys.
-
-- [x] 6. Keyboard integration - Change Colors.
-
-- [X] 7. Keyboard integration - Normalize/ standardize the map when zoom is applied.
-
-- [X] 8. Create a 3D cube from the square.
-
-- [ ] 9. Rotate the 3D cube with mouse.
-
-- [ ] 10. Implement 3D cube methadology to fdf.
-
 # Installing repo
 ```
 git clone https://github.com/mohammadbutt/42_fdf.git
