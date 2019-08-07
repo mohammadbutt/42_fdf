@@ -20,6 +20,9 @@ cd 42_fdf
 make
 ./fdf resources/maps/test/maps/
 ```
+
+# Error messages
+
 The user will get one of the following error messages if the file is not valid.
 <img src= "https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png">
 
