@@ -20,10 +20,8 @@ cd 42_fdf
 make
 ./fdf resources/maps/test/maps/
 ```
-User will be given error messages if:
-- The user does not enter a file name.
-- The file is invalid because it is either empty, the number of elements are not the same in all rows, or the file path is a directory.
-- 
+The user will get one of the following error messages if the file is not valid.
+[](https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png)
 
 # Resources
 ## Reading Resources
