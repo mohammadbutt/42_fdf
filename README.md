@@ -15,7 +15,7 @@ git clone https://github.com/mohammadbutt/42_fdf.git
 cd 42_fdf
 ```
 
-# Installing FDF MacOs only
+# Installing FDF macOS only
 ```
 make
 ./fdf resources/maps/test/maps/
