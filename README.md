@@ -22,25 +22,15 @@ make
 ```
 # Program Controls
 
-|Action                       |Controls                                                   |
-|---------------------------- |:---------------------------------------------------------:|
-|Move map: up down left right | [:arrow_up:] [:arrow_down:] [:arrow_left:] [:arrow_right:]|
-|Rotate                       |I J K L                                                    |
-|ZOOM                         |Q A                                                        |
-|Altitude                     |W S                                                        |
-|Reset map                    |E                                                          |
-|Random Color                 |R                                                          |
-|Change Camera View           |C                                                          |
-
-Move map up down left right: ⃖ ↑↓ ➔
-Rotate: I J K L
-Zoom: Q A
-Altitude: W S
-Reset map: E
-Random Color: R
-Change Camera view: C
-
-
+|Action                       |Controls                                            |
+|---------------------------- |:--------------------------------------------------:|
+|Move map: up down left right | :arrow_up: :arrow_down: :arrow_left: :arrow_right: |
+|Rotate                       |I J K L                                             |
+|ZOOM                         |Q A                                                 |
+|Altitude                     |W S                                                 |
+|Reset map                    |E                                                   |
+|Random Color                 |R                                                   |
+|Change Camera View           |C                                                   |
 
 # Error messages
 
