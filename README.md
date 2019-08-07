@@ -24,7 +24,7 @@ make
 
 # Error messages
 
-The user will get one of the following error messages if the file is not valid.
+The user will get one of the following error messages if the file is invalid.
 <img src= "https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png">
 
 # Resources
