@@ -23,7 +23,6 @@ make
 # Program Controls
 
 <details>
-    <summary>Show Level 0 Questions</summary>
 
 |Action                       |Controls                                                   |
 |---------------------------- |:---------------------------------------------------------:|
