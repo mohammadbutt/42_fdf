@@ -15,8 +15,8 @@
 /*
 ** rotate_x_axis, rotate_y_axis, and rotate_z_axis are derived using the
 ** standard rotation matrix equation:
-** new_x = x cosθ - y cosθ
-** new_y = x cosθ + y cosθ.
+** new_x = x cosθ - y sinθ
+** new_y = x sinθ + y cosθ.
 ** x and y are changed based on what which axis is being used as radian or
 ** thetha.
 */
