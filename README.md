@@ -38,11 +38,12 @@ To perform conversion on all of the rows, function, `**str_to_int` is created, w
 ### Rendering
 In order to create lines, Bresenham's line algorithm is used. Using the line algorithm, lines are created vertically(down) and horizontally(to the right). This almost works, but the only challenge is that it does not create smooth edges and produces the following lines:
 
+```
   _ _ _ _ _ _ _
  |_|_|_|_|_|_|_
  |_|_|_|_|_|_|_
  | | | | | | |
-
+```
 
 # Resources
 ## Reading Resources
