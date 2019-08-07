@@ -20,6 +20,17 @@ git clone https://github.com/mohammadbutt/42_fdf.git
 make
 ./fdf resources/maps/test/maps/
 ```
+# Program Controls
+```
+Move map up down left right: ⃖ ↑↓ ➔
+Rotate: I J K L
+Zoom: Q A
+Altitude: W S
+Reset map: E
+Random Color: R
+Change Camera view: C
+```
+
 
 # Error messages
 
