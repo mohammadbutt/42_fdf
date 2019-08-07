@@ -27,6 +27,7 @@ Brainstorming - Draw simple things using minilibx library. Path to miniLibx libr
 
 # Installation
 ```git clone https://github.com/mohammadbutt/42_fdf.git```
+
 ```cd 42_fdf```
 
 
