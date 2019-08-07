@@ -28,7 +28,7 @@ The user will get one of the following error messages if the file is invalid.
 <img src= "https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png">
 
 # Project Summary
-
+### Parsing and storing
 Project reads a file using the function [get_next_line](https://github.com/mohammadbutt/42_get_next_line), which I created to read a file that mimics the functionality of getline(3). Once a file is read, then it goes through several validation stages to ensure all lines or rows have the same number of elements.
 
 If a file is valid then each row is stored as a string using the function `**str_data` malloc(3) is used to allocate memory to store the string. Since the numbers are stored as a string, these numbers are only characters. In order to convert these strings into numbers to perform arithmatic operations `*ft_2d_atoi` is called which takes one line and converts all of the elements of that string into numbers by using `ft_atoi`. String are converted into numbers for just 1 line.
