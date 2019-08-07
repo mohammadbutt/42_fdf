@@ -21,7 +21,23 @@ make
 ./fdf resources/maps/test/maps/
 ```
 # Program Controls
-```
+
+<details>
+    <summary>Show Level 0 Questions</summary>
+
+|Action                       |Controls                                                   |
+|---------------------------- |:---------------------------------------------------------:|
+|Move map: up down left right | [:arrow_up:] [:arrow_down:] [:arrow_left:] [:arrow_right:]|
+|Rotate                       |I J K L                                                    |
+|ZOOM                         |Q A                                                        |
+|Altitude                     |W S                                                        |
+|Reset map                    |E                                                          |
+|Random Color                 |R                                                          |
+|Change Camera View           |C                                                          |
+
+</details>
+
+
 Move map up down left right: ⃖ ↑↓ ➔
 Rotate: I J K L
 Zoom: Q A
@@ -29,7 +45,7 @@ Altitude: W S
 Reset map: E
 Random Color: R
 Change Camera view: C
-```
+
 
 
 # Error messages
