@@ -46,7 +46,8 @@ In order to create lines, Bresenham's line algorithm is used. Using the line alg
 ```
 To rememedy this horizontal lines are rendered as long as y is less than height of the map. And vertical lines are only rendered as long as x is less than the width of the map, which will produce the following lines which is what we wanted to create to render a perfect map:
 
-``` _ _ _ _ _ _ _
+``` 
+ _ _ _ _ _ _ _
 |_|_|_|_|_|_|_|
 |_|_|_|_|_|_|_|
 |_|_|_|_|_|_|_|
