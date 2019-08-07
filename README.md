@@ -52,6 +52,21 @@ To rememedy this horizontal lines are rendered as long as y is less than height 
 |_|_|_|_|_|_|_|
 |_|_|_|_|_|_|_|
 ```
+
+### Rotation matrix
+Rotating the map is one of the useful features of the project in order. In order to rotate the map in any direction standard rotation matrix is used. Below is the rotation Matrix equation:
+```
+new_x = x cos(zθ) - y sin(zθ)
+new_y = x sin(zθ) + y cos(zθ)
+```
+Thetha is replaced by the radian value or axis. For example if the map is being rotated on x_axis then we will use the below equation:
+
+```
+new_y = y cos(x_axis) - z sin(x_axis)
+new_z = y sin(x_axis) + z cos(x_axis)
+```
+My source code [rotate_matrix](https://github.com/mohammadbutt/42_fdf/blob/master/srcs/rotate_matrix2.c) shows what all of the transformations look like to rotate the map on x_axis, y_axis, and z_axis. But in a nutshell when `sin` or `cos` are applied on x, y, or z, we get new x and y coordinates that creates the illusions that a map is 3 dimensional. [Wikipedia rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix) provides much deeper knowledge about rotation matrix.
+
 # Resources
 ## Reading Resources
 1. [Mac Virtual Key Code](https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes)
