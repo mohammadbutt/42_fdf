@@ -83,6 +83,7 @@ My source code [rotate_matrix](https://github.com/mohammadbutt/42_fdf/blob/maste
 
 # Resources
 ## Reading Resources
+0. [Color Theory/Color Gradient](https://en.wikibooks.org/wiki/Color_Theory/Color_gradient)
 1. [Mac Virtual Key Code](https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes)
 2. [FDF Cookbook for 42 students](https://forum.intra.42.fr/topics/19254/messages?page=1#93530)
 3. [Wikipedia - Bresenham's line algorithm - Chooses just the color](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
