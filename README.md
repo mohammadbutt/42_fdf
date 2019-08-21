@@ -10,7 +10,16 @@ Allowed C functions(3) - exit(3), free(3), malloc(3), perror(3), strerror(3).
 Additional functions allowed - math library and miniLibx(library), library made by 42 students.
 
 ---
-# Cloning repository
+# Table of Contents
+* [Cloning Repository](#cloning-repository)
+* [Installing FDF macOS only](#installing-fdf-macos-only)
+* [Program Demo](#program-demo)
+* [Program Controls](#program-controls)
+* [Invalid File Error Messages](#invalid-file-error-messages)
+* [Project Summary](#project-summary)
+* [Resources And References](#resources-and-references)
+
+# Cloning Repository
 ```
 git clone https://github.com/mohammadbutt/42_fdf.git
 ```
@@ -20,7 +29,7 @@ git clone https://github.com/mohammadbutt/42_fdf.git
 make
 ./fdf resources/maps/test/maps/
 ```
-# Demo
+# Program Demo
 
 ![](https://github.com/mohammadbutt/42_fdf/blob/master/Media/fdf_720p_25fps.gif)
 
@@ -36,7 +45,7 @@ make
 |Random Color                 |R                                                   |
 |Change Camera View           |C                                                   |
 
-# Error messages
+# Invalid File Error Messages
 
 The user will get one of the following error messages if the file is invalid.
 <img src= "https://github.com/mohammadbutt/42_fdf/blob/master/Media/invalid_messages.png">
@@ -81,7 +90,7 @@ new_z = y sin(x_axis) + z cos(x_axis)
 ```
 My source code [rotate_matrix](https://github.com/mohammadbutt/42_fdf/blob/master/srcs/rotate_matrix2.c) shows what all of the transformations look like to rotate the map on x_axis, y_axis, and z_axis. But in a nutshell when `sin` or `cos` are applied on x, y, or z, we get new x and y coordinates that creates the illusion that a map is 3 dimensional. [Wikipedia rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix) has additional information about rotation matrix.
 
-# Resources
+# Resources And References
 ## Reading Resources
 0. [Color Theory/Color Gradient - Wikipedia](https://en.wikibooks.org/wiki/Color_Theory/Color_gradient)
 1. [Mac Virtual Key Code](https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes)
