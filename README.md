@@ -13,7 +13,7 @@ Additional functions allowed - math library and miniLibx(library), library made 
 # Table of Contents
 * [Cloning Repository](#cloning-repository)
 * [Installing FDF macOS only](#installing-fdf-macos-only)
-* [Program Demo](#program-demo)
+* [**Program Demo**](#program-demo)
 * [Program Controls](#program-controls)
 * [Invalid File Error Messages](#invalid-file-error-messages)
 * [Project Summary](#project-summary)
