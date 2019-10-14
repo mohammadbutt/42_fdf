@@ -10,7 +10,7 @@ Allowed C functions(3) - exit(3), free(3), malloc(3), perror(3), strerror(3).
 Additional functions allowed - math library and miniLibx(library), library made by 42 students.
 
 ---
-# Table of Contents - Click one to jump to that section
+# Table of Contents - Click a section to jump to it
 * [Cloning Repository](#cloning-repository)
 * [Installing FDF macOS only](#installing-fdf-macos-only)
 * [**Program Demo**](#program-demo)
