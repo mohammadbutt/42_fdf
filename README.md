@@ -13,7 +13,7 @@ Additional functions allowed - math library and miniLibx(library), library made 
 # Table of Contents - Click a section to jump to it
 * [Cloning Repository](#cloning-repository)
 * [Installing FDF macOS only](#installing-fdf-macos-only)
-* [**Program Demo**](#program-demo)
+* [**Program Demo**](#demo)
 * [Program Controls](#program-controls)
 * [Invalid File Error Messages](#invalid-file-error-messages)
 * [Project Summary](#project-summary)
@@ -32,7 +32,7 @@ git clone https://github.com/mohammadbutt/42_fdf.git
 make
 ./fdf resources/maps/test/maps/
 ```
-# Program Demo
+# Demo
 
 ![](https://github.com/mohammadbutt/42_fdf/blob/master/Media/fdf_720p_25fps.gif)
 
